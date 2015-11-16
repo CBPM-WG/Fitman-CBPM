@@ -1,0 +1,2 @@
+# Hostname to disable SSL verification check 
+SSOHostname=tpvision-msee.eng.it

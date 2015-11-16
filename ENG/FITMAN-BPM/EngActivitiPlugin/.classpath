@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry exported="true" kind="lib" path="libs/activiti-spring-5.12.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0"/>
+	<classpathentry kind="lib" path="/ActivitiLibs/libs/activiti/activiti-bpmn-converter-5.16.4.jar"/>
+	<classpathentry kind="lib" path="/ActivitiLibs/libs/activiti/activiti-bpmn-layout-5.16.4.jar"/>
+	<classpathentry kind="lib" path="/ActivitiLibs/libs/activiti/activiti-bpmn-model-5.16.4.jar"/>
+	<classpathentry kind="lib" path="/ActivitiLibs/libs/activiti/activiti-common-rest-5.16.4.jar"/>
+	<classpathentry kind="lib" path="/ActivitiLibs/libs/activiti/activiti-diagram-rest-5.16.4.jar"/>
+	<classpathentry kind="lib" path="/ActivitiLibs/libs/activiti/activiti-engine-5.16.4.jar"/>
+	<classpathentry kind="lib" path="/ActivitiLibs/libs/activiti/activiti-explorer-5.16.4.jar"/>
+	<classpathentry kind="lib" path="/ActivitiLibs/libs/activiti/activiti-json-converter-5.16.4.jar"/>
+	<classpathentry kind="lib" path="/ActivitiLibs/libs/activiti/activiti-modeler-5.16.4.jar"/>
+	<classpathentry kind="lib" path="/ActivitiLibs/libs/activiti/activiti-simple-workflow-5.16.4.jar"/>
+	<classpathentry kind="lib" path="/ActivitiLibs/libs/activiti/activiti-spring-5.16.4.jar"/>
+	<classpathentry kind="lib" path="/ActivitiLibs/libs/vaadin-6.8.8.jar"/>
+	<classpathentry kind="lib" path="/ActivitiLibs/libs/cas-client-core-3.1.6.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

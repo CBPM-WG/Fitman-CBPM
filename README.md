@@ -23,15 +23,15 @@ These instructions are focused on the installation of YourBPM module.
 ## Installation
 ### Configuration
 
-Configure the following modules. Change Tomcat <host>:<port> in following configuration files:
+Configure the following modules. Change Tomcat ``<host>:<port>`` in following configuration files:
 
 - Compel module:
-    - $COMPEL/Compel/src/main/resources/compel.properties: modify Tomcat <host>:<port> for Oryx URL, ontologies and DTC endpoint
+    - $COMPEL/Compel/src/main/resources/compel.properties: modify Tomcat ``<host>:<port>`` for Oryx URL, ontologies and DTC endpoint
 - KBClient module:
-    - $COMPEL/KBClient/src/main/resources/sesame.properties: modify Tomcat <host>:<port> for sesame.server property
-    - $COMPEL/KBClient/src/test/resources/ServiceDescriptions directory: modify Tomcat <host>:<port> in each test service description in (*.posm files) rdfs:isDefinedBy property pointing at the service wsdl url.
+    - $COMPEL/KBClient/src/main/resources/sesame.properties: modify Tomcat ``<host>:<port>`` for sesame.server property
+    - $COMPEL/KBClient/src/test/resources/ServiceDescriptions directory: modify Tomcat ``<host>:<port>`` in each test service description in (*.posm files) rdfs:isDefinedBy property pointing at the service wsdl url.
 - activiti-webapp-explorer2:
-    - $COMPEL/activiti/activiti-webapp-explorer2/src/main/resources/yourbpm.properties: modify Tomcat <host>:<port> for compel.root and bpmnservice.endpoint properties.
+    - $COMPEL/activiti/activiti-webapp-explorer2/src/main/resources/yourbpm.properties: modify Tomcat ``<host>:<port>`` for compel.root and bpmnservice.endpoint properties.
 
 In the following we refer to the server and port where COMPEL is deployed as $COMPEL_SERVER and $COMPEL_PORT
 

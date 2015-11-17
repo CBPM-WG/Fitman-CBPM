@@ -3,12 +3,15 @@
 CBPM is a web-based, integrated platform for the semantically-enhanced design, execution and monitoring of Business Processes in the scope of service-oriented Manufacturing Ecosystems. Targeted at the Virtual Factory domain, and based on open standards like Business Process Model and Notation (BPMN) 2.0, it is delivered as a web portal in order to maximize its collaborative nature.
 
 CBPM requires from three main modules in order to work properly: 
-•	Liferay Portal 
-•	SSO (Single Sign On)
-•	Compel (aka YourBPM)
+- Liferay Portal 
+- SSO (Single Sign On)
+- Compel (aka YourBPM)
 
 Readme, how to install Liferay Portal and SSO can be found here:
 * [ENG/FITMAN-BPM/README.md] [PlDb]
+
+These instructions are focused on the installation of YourBPM module.
+
 
 ## Prerequisites
 

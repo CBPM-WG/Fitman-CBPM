@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ns="http://dtc.yourbpm.seiplab.atosresearch.eu" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:ax21="http://exception.dtc.yourbpm.seiplab.atosresearch.eu/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://dtc.yourbpm.seiplab.atosresearch.eu">
+    <wsdl:documentation>DTComposer</wsdl:documentation>
+    <wsdl:types>
+        <xs:schema xmlns:ax22="http://dtc.yourbpm.seiplab.atosresearch.eu" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://exception.dtc.yourbpm.seiplab.atosresearch.eu/xsd">
+            <xs:import namespace="http://dtc.yourbpm.seiplab.atosresearch.eu"/>
+            <xs:complexType name="DTComposerException">
+                <xs:complexContent>
+                    <xs:extension base="ax22:Exception">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="message" nillable="true" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema xmlns:ax23="http://exception.dtc.yourbpm.seiplab.atosresearch.eu/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://dtc.yourbpm.seiplab.atosresearch.eu">
+            <xs:import namespace="http://exception.dtc.yourbpm.seiplab.atosresearch.eu/xsd"/>
+            <xs:complexType name="Exception">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="Exception" nillable="true" type="xs:anyType"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="DTComposerException">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="DTComposerException" nillable="true" type="ax21:DTComposerException"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="searchForActivityBindings">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="processURI" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="activityURI" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="searchForActivityBindingsResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:boolean"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="bindActivity">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="sourceProcessModel" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="activityTargetURI" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="bindActivityResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="generateDataFlow">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="sourceProcessModel" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="generateDataFlowResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="resolveActivity">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="sourceProcessModel" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="activityTargetURI" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="resolveActivityResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="resolveProcess">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="sourceProcessModel" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="resolveProcessResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="generateDataFlowRequest">
+        <wsdl:part name="parameters" element="ns:generateDataFlow"/>
+    </wsdl:message>
+    <wsdl:message name="generateDataFlowResponse">
+        <wsdl:part name="parameters" element="ns:generateDataFlowResponse"/>
+    </wsdl:message>
+    <wsdl:message name="DTComposerException">
+        <wsdl:part name="parameters" element="ns:DTComposerException"/>
+    </wsdl:message>
+    <wsdl:message name="searchForActivityBindingsRequest">
+        <wsdl:part name="parameters" element="ns:searchForActivityBindings"/>
+    </wsdl:message>
+    <wsdl:message name="searchForActivityBindingsResponse">
+        <wsdl:part name="parameters" element="ns:searchForActivityBindingsResponse"/>
+    </wsdl:message>
+    <wsdl:message name="bindActivityRequest">
+        <wsdl:part name="parameters" element="ns:bindActivity"/>
+    </wsdl:message>
+    <wsdl:message name="bindActivityResponse">
+        <wsdl:part name="parameters" element="ns:bindActivityResponse"/>
+    </wsdl:message>
+    <wsdl:message name="resolveActivityRequest">
+        <wsdl:part name="parameters" element="ns:resolveActivity"/>
+    </wsdl:message>
+    <wsdl:message name="resolveActivityResponse">
+        <wsdl:part name="parameters" element="ns:resolveActivityResponse"/>
+    </wsdl:message>
+    <wsdl:message name="resolveProcessRequest">
+        <wsdl:part name="parameters" element="ns:resolveProcess"/>
+    </wsdl:message>
+    <wsdl:message name="resolveProcessResponse">
+        <wsdl:part name="parameters" element="ns:resolveProcessResponse"/>
+    </wsdl:message>
+    <wsdl:message name="checkIOSemanticCompatibilityRequest"/>
+    <wsdl:message name="checkIOSemanticCompatibilityResponse"/>
+    <wsdl:portType name="DTComposerPortType">
+        <wsdl:operation name="generateDataFlow">
+            <wsdl:input message="ns:generateDataFlowRequest" wsaw:Action="urn:generateDataFlow"/>
+            <wsdl:output message="ns:generateDataFlowResponse" wsaw:Action="urn:generateDataFlowResponse"/>
+            <wsdl:fault message="ns:DTComposerException" name="DTComposerException" wsaw:Action="urn:generateDataFlowDTComposerException"/>
+        </wsdl:operation>
+        <wsdl:operation name="searchForActivityBindings">
+            <wsdl:input message="ns:searchForActivityBindingsRequest" wsaw:Action="urn:searchForActivityBindings"/>
+            <wsdl:output message="ns:searchForActivityBindingsResponse" wsaw:Action="urn:searchForActivityBindingsResponse"/>
+            <wsdl:fault message="ns:DTComposerException" name="DTComposerException" wsaw:Action="urn:searchForActivityBindingsDTComposerException"/>
+        </wsdl:operation>
+        <wsdl:operation name="bindActivity">
+            <wsdl:input message="ns:bindActivityRequest" wsaw:Action="urn:bindActivity"/>
+            <wsdl:output message="ns:bindActivityResponse" wsaw:Action="urn:bindActivityResponse"/>
+            <wsdl:fault message="ns:DTComposerException" name="DTComposerException" wsaw:Action="urn:bindActivityDTComposerException"/>
+        </wsdl:operation>
+        <wsdl:operation name="resolveActivity">
+            <wsdl:input message="ns:resolveActivityRequest" wsaw:Action="urn:resolveActivity"/>
+            <wsdl:output message="ns:resolveActivityResponse" wsaw:Action="urn:resolveActivityResponse"/>
+            <wsdl:fault message="ns:DTComposerException" name="DTComposerException" wsaw:Action="urn:resolveActivityDTComposerException"/>
+        </wsdl:operation>
+        <wsdl:operation name="resolveProcess">
+            <wsdl:input message="ns:resolveProcessRequest" wsaw:Action="urn:resolveProcess"/>
+            <wsdl:output message="ns:resolveProcessResponse" wsaw:Action="urn:resolveProcessResponse"/>
+            <wsdl:fault message="ns:DTComposerException" name="DTComposerException" wsaw:Action="urn:resolveProcessDTComposerException"/>
+        </wsdl:operation>
+        <wsdl:operation name="checkIOSemanticCompatibility">
+            <wsdl:input message="ns:checkIOSemanticCompatibilityRequest" wsaw:Action="urn:checkIOSemanticCompatibility"/>
+            <wsdl:output message="ns:checkIOSemanticCompatibilityResponse" wsaw:Action="urn:checkIOSemanticCompatibilityResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="DTComposerSoap11Binding" type="ns:DTComposerPortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="generateDataFlow">
+            <soap:operation soapAction="urn:generateDataFlow" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="DTComposerException">
+                <soap:fault use="literal" name="DTComposerException"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="searchForActivityBindings">
+            <soap:operation soapAction="urn:searchForActivityBindings" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="DTComposerException">
+                <soap:fault use="literal" name="DTComposerException"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="bindActivity">
+            <soap:operation soapAction="urn:bindActivity" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="DTComposerException">
+                <soap:fault use="literal" name="DTComposerException"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="resolveActivity">
+            <soap:operation soapAction="urn:resolveActivity" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="DTComposerException">
+                <soap:fault use="literal" name="DTComposerException"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="resolveProcess">
+            <soap:operation soapAction="urn:resolveProcess" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="DTComposerException">
+                <soap:fault use="literal" name="DTComposerException"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="checkIOSemanticCompatibility">
+            <soap:operation soapAction="urn:checkIOSemanticCompatibility" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="DTComposerSoap12Binding" type="ns:DTComposerPortType">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="generateDataFlow">
+            <soap12:operation soapAction="urn:generateDataFlow" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="DTComposerException">
+                <soap12:fault use="literal" name="DTComposerException"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="searchForActivityBindings">
+            <soap12:operation soapAction="urn:searchForActivityBindings" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="DTComposerException">
+                <soap12:fault use="literal" name="DTComposerException"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="bindActivity">
+            <soap12:operation soapAction="urn:bindActivity" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="DTComposerException">
+                <soap12:fault use="literal" name="DTComposerException"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="resolveActivity">
+            <soap12:operation soapAction="urn:resolveActivity" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="DTComposerException">
+                <soap12:fault use="literal" name="DTComposerException"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="resolveProcess">
+            <soap12:operation soapAction="urn:resolveProcess" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="DTComposerException">
+                <soap12:fault use="literal" name="DTComposerException"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="checkIOSemanticCompatibility">
+            <soap12:operation soapAction="urn:checkIOSemanticCompatibility" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="DTComposerHttpBinding" type="ns:DTComposerPortType">
+        <http:binding verb="POST"/>
+        <wsdl:operation name="generateDataFlow">
+            <http:operation location="DTComposer/generateDataFlow"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="generateDataFlow"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="generateDataFlow"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="searchForActivityBindings">
+            <http:operation location="DTComposer/searchForActivityBindings"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="searchForActivityBindings"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="searchForActivityBindings"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="bindActivity">
+            <http:operation location="DTComposer/bindActivity"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="bindActivity"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="bindActivity"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="resolveActivity">
+            <http:operation location="DTComposer/resolveActivity"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="resolveActivity"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="resolveActivity"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="resolveProcess">
+            <http:operation location="DTComposer/resolveProcess"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="resolveProcess"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="resolveProcess"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="checkIOSemanticCompatibility">
+            <http:operation location="DTComposer/checkIOSemanticCompatibility"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="checkIOSemanticCompatibility"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="checkIOSemanticCompatibility"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="DTComposer">
+        <wsdl:port name="DTComposerHttpSoap11Endpoint" binding="ns:DTComposerSoap11Binding">
+            <soap:address location="http://192.168.180.12:8080/DesignTimeComposer/services/DTComposer.DTComposerHttpSoap11Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="DTComposerHttpSoap12Endpoint" binding="ns:DTComposerSoap12Binding">
+            <soap12:address location="http://192.168.180.12:8080/DesignTimeComposer/services/DTComposer.DTComposerHttpSoap12Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="DTComposerHttpEndpoint" binding="ns:DTComposerHttpBinding">
+            <http:address location="http://192.168.180.12:8080/DesignTimeComposer/services/DTComposer.DTComposerHttpEndpoint/"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

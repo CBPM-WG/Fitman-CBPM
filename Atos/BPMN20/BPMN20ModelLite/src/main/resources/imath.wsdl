@@ -1,0 +1,155 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions name="IMathService" targetNamespace="http://services.examples.bpmn.webn1.atosresearch.eu/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://services.examples.bpmn.webn1.atosresearch.eu/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xsd:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://services.examples.bpmn.webn1.atosresearch.eu/" xmlns:tns="http://services.examples.bpmn.webn1.atosresearch.eu/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:element name="getRandomIntegerUpToMax" type="tns:getRandomIntegerUpToMax" />
+    <xsd:complexType name="getRandomIntegerUpToMax">
+        <xsd:sequence>
+            <xsd:element name="maxInteger" type="xsd:int" />
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="getRandomIntegerUpToMaxResponse" type="tns:getRandomIntegerUpToMaxResponse" />
+    <xsd:complexType name="getRandomIntegerUpToMaxResponse">
+        <xsd:sequence>
+            <xsd:element name="number" type="xsd:int" />
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="sumIntegers" type="tns:sumIntegers" />
+    <xsd:complexType name="sumIntegers">
+        <xsd:sequence>
+            <xsd:element name="num1" type="xsd:int" />
+            <xsd:element name="num2" type="xsd:int" />
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="sumIntegersResponse" type="tns:sumIntegersResponse" />
+    <xsd:complexType name="sumIntegersResponse">
+        <xsd:sequence>
+            <xsd:element name="sum" type="xsd:int" />
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="square" type="tns:square" />
+    <xsd:complexType name="square">
+        <xsd:sequence>
+            <xsd:element name="num" type="xsd:int" />
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="squareResponse" type="tns:squareResponse" />
+    <xsd:complexType name="squareResponse">
+        <xsd:sequence>
+            <xsd:element name="square" type="xsd:int" />
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="getRandomInteger" type="tns:getRandomInteger" />
+    <xsd:complexType name="getRandomInteger">
+        <xsd:sequence />
+    </xsd:complexType>
+    <xsd:element name="getRandomIntegerResponse" type="tns:getRandomIntegerResponse" />
+    <xsd:complexType name="getRandomIntegerResponse">
+        <xsd:sequence>
+            <xsd:element name="number" type="xsd:int" />
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="sumIntegersResponse">
+    <wsdl:part element="tns:sumIntegersResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="squareResponse">
+    <wsdl:part element="tns:squareResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sumIntegers">
+    <wsdl:part element="tns:sumIntegers" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRandomIntegerUpToMaxResponse">
+    <wsdl:part element="tns:getRandomIntegerUpToMaxResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRandomIntegerUpToMax">
+    <wsdl:part element="tns:getRandomIntegerUpToMax" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRandomInteger">
+    <wsdl:part element="tns:getRandomInteger" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRandomIntegerResponse">
+    <wsdl:part element="tns:getRandomIntegerResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="square">
+    <wsdl:part element="tns:square" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="IMath">
+    <wsdl:operation name="getRandomIntegerUpToMax">
+      <wsdl:input message="tns:getRandomIntegerUpToMax" name="getRandomIntegerUpToMax">
+    </wsdl:input>
+      <wsdl:output message="tns:getRandomIntegerUpToMaxResponse" name="getRandomIntegerUpToMaxResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sumIntegers">
+      <wsdl:input message="tns:sumIntegers" name="sumIntegers">
+    </wsdl:input>
+      <wsdl:output message="tns:sumIntegersResponse" name="sumIntegersResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="square">
+      <wsdl:input message="tns:square" name="square">
+    </wsdl:input>
+      <wsdl:output message="tns:squareResponse" name="squareResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRandomInteger">
+      <wsdl:input message="tns:getRandomInteger" name="getRandomInteger">
+    </wsdl:input>
+      <wsdl:output message="tns:getRandomIntegerResponse" name="getRandomIntegerResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="IMathServiceSoapBinding" type="tns:IMath">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getRandomIntegerUpToMax">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getRandomIntegerUpToMax">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getRandomIntegerUpToMaxResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sumIntegers">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="sumIntegers">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="sumIntegersResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="square">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="square">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="squareResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRandomInteger">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getRandomInteger">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getRandomIntegerResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="IMathService">
+    <wsdl:port binding="tns:IMathServiceSoapBinding" name="IMathPort">
+      <soap:address location="http://localhost:63081/math" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

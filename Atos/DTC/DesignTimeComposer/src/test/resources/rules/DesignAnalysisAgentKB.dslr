@@ -1,0 +1,28 @@
+#created on: 20-may-2009
+package eu.atosresearch.seiplab.yourbpm.dtc.agents;
+
+#list any import classes here.
+
+expander AnalysisAgentLanguage.dsl
+
+#list any import classes here.
+import java.util.*; 
+import eu.atosresearch.seiplab.yourbpm.dtc.designmodel.DesignModel;
+import eu.atosresearch.seiplab.yourbpm.dtc.agents.events.NewDesignModelEvent;
+import eu.atosresearch.seiplab.yourbpm.dtc.common.namespace.Namespace;
+import eu.atosresearch.seiplab.yourbpm.dtc.terminology.Terminology;
+
+#declare any global variables here
+
+global DesignAnalysisAgent agent
+
+# analysis rule
+rule "Analyze DM"
+	when
+		new design
+	then 
+		check design is complete
+		check design is admissible
+		check design is suitable
+		check design is io compatibile
+end

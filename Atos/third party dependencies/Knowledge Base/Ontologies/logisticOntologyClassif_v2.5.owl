@@ -1,0 +1,763 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:Truck="http://www.logistics.com/logisticOntology.owl#Truck+"
+    xmlns:Locom="http://www.logistics.com/logisticOntology.owl#Locom+"
+    xmlns:hasProvider="http://www.logistics.com/logisticOntology.owl#hasProvider&amp;"
+    xmlns:logisticOntology="http://www.logistics.com/logisticOntology.owl#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:wsmo-lite="http://www.wsmo.org/ns/wsmo-lite#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:exchanges="http://www.logistics.com/logisticOntology.owl#exchanges&amp;"
+  xml:base="http://www.logistics.com/logisticOntology.owl">
+  <owl:Ontology rdf:about="">
+    <owl:versionInfo>2.5</owl:versionInfo>
+    <rdfs:comment>Version 2.5 - December  2012 
+
+List of changes compared to the previous version 2.4:
+
+1. Activity class:
+    - decomposition of activities in atomic and complex activities;
+    - introduction of the ActivityType class to denote different types of activities
+
+2. Introduction of the Event class 
+
+3. Actor class:
+    - The Actor class of version 2.4 is now called Party
+    - The Shipper class (under the class Party) is now called Consignor
+
+4. Introduction of the Entity class:
+    - The Resource class of version 2.4 is now incorporated in the Entity class and it is now refined in Moveable Resource and Static Resource 
+   - The ModeofTransport of version 2.4 is now called TrasnportMode and it is incorporated in the Entity class as an IntangibleEntity
+    
+5. Location class:
+    - it is now decomposed in GeoArea and GeoPoint in order to denote coarse-grained location and fine-grained location. 
+    - the Location class of version 2.4, which was decomposed in Port and Terminal, now it is called Facility and it is a type of StaticResource (under the Entity class) </rdfs:comment>
+  </owl:Ontology>
+  <owl:Class rdf:ID="HeavyMachinery">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="ProductClass"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Trailer">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="MoveableEquipment"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Facility">
+    <rdfs:comment>A facility is a static resource built, installed or established to faciltate related activities in a point location. A facility has a location of type GeoPoint (in contrast to ports or airports, which have a location of type GeoArea since they denote an entire geographical area).
+
+A facility can be part of a port or an airport.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="StaticResource"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Storage">
+    <rdfs:comment>Storage is the activity of keeping in stock products, and/or packages, and/or pieces of equipment, but also empty containers, in a warehouse facility for a certain period of time</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="ActivityType"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Party">
+    <rdfs:comment>Actors are overlapping since they may change over time depending on the situation (for example, a forwarder can also be a carrier). However, with respect to a specific transaction, actors always have specific role, namely consumer or provider. </rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Train">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="TransportMeans"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Port">
+    <rdfs:comment>A port is a static resource built, installed or established to faciltate related activities in a geographical area. A port has a location of type GeoArea (in contrast to a facility, which has a location of type GeoPoint since it denotes a specific address that we consider as a point location).
+
+A port hosts several facilities.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#StaticResource"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Organic">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#ProductClass"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Airplane">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#TransportMeans"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Consolidation">
+    <rdfs:comment>Consolidation is the activity of assembling several (small) load units into one (big) unit.
+
+For example, in case of LCL (Less than Container Load) process, several (small) load units belonging to different consignors but with the same destination can be consolidated into one container in order to be trasported as a single load unit.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#ActivityType"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Pallet">
+    <rdfs:comment>Pallet  is classified as a moveable equipment, but it can also be considered as package (therefore, the classes MoveableEquipment and Package are NOT disjoint).</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#MoveableEquipment"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#StaticResource">
+    <rdfs:comment>A static resource is a (spatial) entity used to host and/or handle moveable resources prior to their transportation</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="SpatialEntity"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Subscribe">
+    <rdfs:comment>Subscribe is a subscription event necessary to get notifications of interest for the successfull completion (or not successfull) of activities </rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Event"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="PhysicalState">
+    <rdfs:comment>The physical state denotes in which state a certain product class exists and, therefore, it is used to select the proper package, equipment, transport means, etc. for the transportation of that product  </rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="State"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="RelativeTimePoint">
+    <rdfs:comment>A relative time point is a kind of time point characterised by being represented as a durational offset from an origin,
+
+For example, the day after tomorrw.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="TimePoint"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Consignor">
+    <rdfs:comment>Who is shipping (sometimes is the same than the seller) - Shipper is a synonym of Consignor</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Party"/>
+  </owl:Class>
+  <owl:Class rdf:ID="BargeTerminalOperator">
+    <rdfs:comment>the party who is operating the terminal between iInland waterway and road </rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="InlandTerminalOperator"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#ProductClass">
+    <rdfs:comment>A product class is used  to select proper package, moveable equipment and transport means for the logistics activities, especially for transport. The selection is based on relevant properties of the product class, such as its physical state (solid, liquid, gas), reuired temperature, dangerousness, etc.
+
+The classification of product classes types is is not complete and can be further extended </rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="MoveableResource"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="SeaTerminalOperator">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="TerminalOperator"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#TerminalOperator">
+    <rdfs:subClassOf rdf:resource="#Party"/>
+  </owl:Class>
+  <owl:Class rdf:ID="AirCarrier">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Carrier"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Gas">
+    <rdfs:subClassOf rdf:resource="#PhysicalState"/>
+  </owl:Class>
+  <owl:Class rdf:about="#ActivityType">
+    <rdfs:comment>An activity type denotes the type of action that is taking place in an activity.
+
+We have identified some relevant activity types, but the list is not complete and can be further extended. 
+
+The identified activity types are the following:
+- Transport, which denotes the activity of moving load units (namely, products and/or packages and/or pieces of equipment, but also empty containers) from a location of origin to a location of destination, in a certain time, using suitable transport mode and transport means;
+- Transhipment, which denotes the activity of changing transport mode at an intermediate destination and, consequently, transshipment implies a change of transport means (for example, from a truck to a vessel in a port);
+- Loading,  which denotes the activity of placing load units (namely, products and/or packages and/or pieces of equipment, but also empty containers) into/onto a transport means prior to transportation;
+- Unloading, which denotes the activity of taking out load units (or other piece of equipment) (namely, products and/or packages and/or pieces of equipment, but also empty containers) from a transport means after transportation;
+- Storage, which denotes the activity of keeping in stock products, and/or packages, and/or pieces of equipment, but also empty containers, in a warehouse facility for a certain period of time;
+- Consolidation, which denotes the activity of assembling of several (small) load units into one (big) unit;
+- Deconsolidation, which denotes the activity of disassembling of one (big) load unit in several (small) units.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.wsmo.org/ns/wsmo-lite#FunctionalClassificationRoot"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="CustomsAuthority">
+    <rdfs:subClassOf rdf:resource="#Party"/>
+  </owl:Class>
+  <owl:Class rdf:about="#TimePoint">
+    <rdfs:comment>A time point is a specific, instantaneous point in time</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Depart">
+    <rdfs:comment>Depart (of a transport means) can be regarded as the ending event for the activity of transport</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Event"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="UniformLoadDevice">
+    <rdfs:comment>A uniform load device is a container used for air transport </rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#MoveableEquipment"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Seller">
+    <rdfs:comment>Who is selling (is getting paid)</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Party"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Stevedore">
+    <rdfs:comment>who is phisically handling the containers in a location (sea transport related)</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Party"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Drop">
+    <rdfs:comment>Drop (of a container or other moveable equipment) can be regarded as the starting event for the activity of storage</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Event"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="CustomsBroker">
+    <rdfs:comment>who is acting on behalf of an importer (who can be the buyer) or exporter (who can be the seller) for customs related issues</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Party"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Bank">
+    <rdfs:subClassOf rdf:resource="#Party"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.wsmo.org/ns/wsmo-lite#FunctionalClassificationRoot">
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Perishable">
+    <rdfs:subClassOf rdf:resource="#ProductClass"/>
+  </owl:Class>
+  <owl:Class rdf:ID="SeaCarrier">
+    <rdfs:comment>A synonym of seaCarrier is OceanCarrier</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Carrier"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Arrive">
+    <rdfs:comment>Arrive (of a transport means) can be regarded as the starting event for the activity of transport</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Event"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Consignee">
+    <rdfs:comment>Who is receving (sometimes buyer and consignee are the same)</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Party"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Truck">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#TransportMeans"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Warehouse">
+    <rdfs:subClassOf rdf:resource="#Facility"/>
+  </owl:Class>
+  <owl:Class rdf:about="#TransportMeans">
+    <rdfs:comment>A transport means is a reusable entity that facilitates the activity of transport and moves on its own (powered vehicle)</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#MoveableResource"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="RailwayWagon">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#MoveableEquipment"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Consumer">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Role"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="NormalTruck">
+    <rdfs:subClassOf rdf:resource="#Truck"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Activity">
+    <rdfs:comment>An activity denotes some action continuous in time that is relevant for the purpose of logistics.
+
+An Activity has an ActivityType (such as, for example, Transport, Transhipment, Storage, etc.)
+
+Some activities are atomic and can be used to compose more complex activities. An example of complex activity is the following:
+1) Loading a certain transport means with a container in a location of origin
+2) Transport of the container using the transport means towards a location of destination
+3) Unloading the transport means at the location of destination
+
+Activities can be combined with events. For example, consider the following sequence : 
+1) the activity of loading a container on a truck and the departure event of the truck;
+2) the road transport activity and the arrival event of the truck at a certain port; 
+3) the transshipment of the container from the truck to a vessel, which implies that an arrival event of the vessel has previously taken place; 
+4) the departure event of the vessel and the sea transport activity of the container; 
+5) the arrival event of the vessel in a port of destination;  
+6) the transshipment of the container from the vessel to a truck, which implies that an arrival event of the truck has previously taken place; 
+7) the departure event of the truck and the road transport activity towards a destination location; and 
+8) the arrival event of the truck and the activity of unloading the container from the truck.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:ID="GeoArea">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Location"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Deconsolidation">
+    <rdfs:comment>Deconsolidation is the activity of disassembling one (big) load unit in several (small) units
+
+For example, once a container that carries several (small) load units has reached its destination, it can be deconsolidated for the final delivery of the individual units to the corresponding consignee. </rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#ActivityType"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Box">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Package"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Liquid">
+    <rdfs:subClassOf rdf:resource="#PhysicalState"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Pick">
+    <rdfs:comment>Pick (of a container or other moveable equipment) can be regarded as the end event for the activity of storage</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Event"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Barrel">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Package"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Container">
+    <rdfs:comment>Container is classified as a moveable equipment, but it can also be considered as package (therefore, the classes MoveableEquipment and Package are NOT disjoint).</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#MoveableEquipment"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="AirTransport">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="TransportMode"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Airport">
+    <rdfs:comment>An airport is a static resource built, installed or established to faciltate related activities in a geographical area. An airport has a location of type GeoArea (in contrast to a facility, which has a location of type GeoPoint since it denotes a specific address that we consider as a point location).
+
+An airport hosts several facilities.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#StaticResource"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Insurer">
+    <rdfs:subClassOf rdf:resource="#Party"/>
+  </owl:Class>
+  <owl:Class rdf:ID="RailwayTransport">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#TransportMode"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Carton">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Package"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Terminal">
+    <rdfs:comment>A terminal is a facility used both for air transport and maritime transport </rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Facility"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Vessel">
+    <rdfs:subClassOf rdf:resource="#TransportMeans"/>
+  </owl:Class>
+  <owl:Class rdf:about="#State">
+    <rdfs:comment>A state is an intangible entity that denotes the way of being of an entity.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="IntangibleEntity"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Transport">
+    <rdfs:comment>Transport is the activity of moving load units (namely, products and/or packages and/or pieces of equipment, but also empty containers) from a location of origin to a location of destination, in a certain time, using suitable transport mode and transport means.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#ActivityType"/>
+  </owl:Class>
+  <owl:Class rdf:ID="RailwayStation">
+    <rdfs:subClassOf rdf:resource="#Facility"/>
+  </owl:Class>
+  <owl:Class rdf:about="#InlandTerminalOperator">
+    <rdfs:subClassOf rdf:resource="#TerminalOperator"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Loading">
+    <rdfs:comment>Loading is the activity of placing load units (namely, products and/or packages and/or pieces of equipment, but also empty containers) into/onto a transport means prior to transportation</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#ActivityType"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Suspend">
+    <rdfs:comment>Suspend is a notification event of the suspension of an activity that was being executed</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Event"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="ComplexActivity">
+    <rdfs:comment>A complex activity is an activity that can be decomposed in more atomic activities
+
+A complex activity consists of at least two or more (2..*) atomic activities
+
+An example of complex activity is the following:
+1) Loading a certain transport means with a container in a location of origin
+2) Transport of the container using the transport means towards a location of destination
+3) Unloading the transport means at the location of destination</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Activity"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Tank">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Package"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Tractor">
+    <rdfs:subClassOf rdf:resource="#Truck"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Entity">
+    <rdfs:comment>An entity represents something that is used or exchanged during an activity.
+
+For example, a container is a SpatialEntity of type MoveableResource that is exchanged during the activity of Transport. 
+Another example is a crane, which is a StaticResource that is used during the activity of Transport to facilitate the movement of containers whithin a port</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="BargeOperator">
+    <owl:disjointWith>
+      <owl:Class rdf:ID="RailOperator"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Carrier"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Regular">
+    <rdfs:subClassOf rdf:resource="#ProductClass"/>
+  </owl:Class>
+  <owl:Class rdf:ID="TimeInterval">
+    <rdfs:comment>Since the concept of time is relevant to logistics, but it is common to other domains, instead of specifying it from scratch, we followed  the representation of time proposed in: 
+Uschold, M., King, M., Moralee, S., Zorgios, Y.: The Enterprise Ontology. In: the Knowledge Engineering Review, vol. 13 (1), pp. 31-89. Cambridge University Press (1998)
+
+A time interval is an ordered, continuous, infinite sequence of time points that represents a duration associated to processes and activities</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Event">
+    <rdfs:comment>An event is an occurrence of interest for the execution of a certain activity.
+
+In contrast to an activity, which denotes an action that is continous in time, an event denotes an occurrence at a specific moment in time. Events trigger the execution of activities.
+
+For example, the departure of a transport means from a location of origin and its arrival to the destination can be regarded, respectively, as start and end events for the transport activity
+
+Events can be combined with activities. For example, consider the following sequence : 
+1) the activity of loading a container on a truck and the departure event of the truck;
+2) the road transport activity and the arrival event of the truck at a certain port; 
+3) the transshipment of the container from the truck to a vessel, which implies that an arrival event of the vessel has previously taken place; 
+4) the departure event of the vessel and the sea transport activity of the container; 
+5) the arrival event of the vessel in a port of destination;  
+6) the transshipment of the container from the vessel to a truck, which implies that an arrival event of the truck has previously taken place; 
+7) the departure event of the truck and the road transport activity towards a destination location; and 
+8) the arrival event of the truck and the activity of unloading the container from the truck.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:ID="AtomicActivity">
+    <rdfs:comment>An atomic activity is a basic building block that can be used to compose more complex activities
+
+An atomic activitiy can be part of zero or more (0..*) complex activities 
+
+An example of atomic activity is the follwoing:
+Loading a certain transport means with a container in a location of origin</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Activity"/>
+  </owl:Class>
+  <owl:Class rdf:about="#TransportMode">
+    <rdfs:comment>TransportMode is the modality used for the activities of transport and transhipment</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Modality"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#SpatialEntity">
+    <rdfs:comment>A spatial entity represents a tangible object, such as an equipment or a person.
+
+A SpatialEntity is furter specialized in MoveableResource and StaticResource</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Entity"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Package">
+    <rdfs:comment>Package is material used for containment, protection and movement of product classes</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#MoveableResource"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Flammable">
+    <rdfs:subClassOf rdf:resource="#ProductClass"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Toxic">
+    <rdfs:subClassOf rdf:resource="#ProductClass"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Resume">
+    <rdfs:comment>Resume is a notification event of the resume of an activity that was previously suspended</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Event"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Modality">
+    <rdfs:comment>A modality is an intangible entity that denotes the specific mode in which a certain activity is used.
+
+For example, the mode of transport is a modality that denotes which particluar mode is used for the activity of transport, i.e., air transport, road transport, etc. </rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#IntangibleEntity"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Location">
+    <rdfs:comment>The geo location represents the geographical area or geographical point used to define the place of origin and destination for entities and activities. 
+
+Location can have different levels of granularity. Location can be coarse-grained for scheduling, since in long term planning it is sufficient to specify approximately the place of origin and destination, such as, for example, the Netherlands or the port of Rotterdam. However, location needs to be fine-grained for delivery, since one has to specify the precise address to which a certain item must be delivered.
+
+Since location is a concept common to other domains, we probably do not need to define it from scratch, but we can import another existing ontology (if there are any). </rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Buyer">
+    <rdfs:comment>Who is paying </rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Party"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Unloading">
+    <rdfs:comment>Unloading is the activity of taking out load units (or other piece of equipment) (namely, products and/or packages and/or pieces of equipment, but also empty containers) from a transport means after transportation</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#ActivityType"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Haulier">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Carrier"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#IntangibleEntity">
+    <rdfs:comment>An intangible entity represents an intangible object, such as a modality or an application.
+
+We have identified Modality and Sate as type of IntangibleObject, but the list is not complete and can be further extended</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Entity"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Forwarder">
+    <rdfs:comment>Who is handling/organizing the shipment on behalf of somebody else that owns the goods. This organization sometimes is hust about having a phone and a desk, maybe a computer, and booking resources. In other cases, for example DHL, the forwarder also executes some parts because he owns resources (airplanes, trucks), but the forwarder never own the goods himself. </rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Party"/>
+  </owl:Class>
+  <owl:Class rdf:about="#RailOperator">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Carrier"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Hub">
+    <rdfs:comment>Hub is a facility where items/containers/load units are dropped and stored for a limited time before being distributed to another hub or to their final destination (using road transport) </rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Facility"/>
+  </owl:Class>
+  <owl:Class rdf:ID="CalendarDate">
+    <rdfs:comment>A calendar date is a kind of time point characterised by being represented as a specific calendar year, month, day, hour and minute
+
+For example, 20 December 2012 18:23</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#TimePoint"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Bulk">
+    <rdfs:subClassOf rdf:resource="#ProductClass"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Notify">
+    <rdfs:comment>Notify is a notification event for the successfull completion (or not successfull) of an activity </rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Event"/>
+  </owl:Class>
+  <owl:Class rdf:ID="SemiTrailer">
+    <rdfs:subClassOf rdf:resource="#Truck"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Provider">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Role"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Crane">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="StaticEquipment"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#MoveableEquipment">
+    <rdfs:comment>A moveable equipment is a reusable entity used for containment, protection and movement of product classes with or without package. A moveable equipment cannot move on its own (unpowered vehicle), but can be pulled or contained in a transport means</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#MoveableResource"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Transshipment">
+    <rdfs:comment>Transshipment is the activity of changing transport mode at an intermediate destination and, consequently, transshipment implies a change of transport means (for example, from a truck to a vessel in a port). 
+
+Therefore, transshipment can be defined as a complex activity that takes place at an intermediate destination and consists of:
+1) Unloading a load unit from a transport means;
+2) Storage (optional);
+3) Loading to another transport means;
+afterwards, the transshipment is followed by the actual transport towards the final destination (maybe through other intermediate locations).
+
+Sometimes transshipment is realized for the purpose of consolidation and this activity is called "cross-docking". In this case, we have a complex activity of transhipment that involves:
+1) Unloading; 
+2) Deconsolidation;
+3) Storage (optional);
+4) Consolidation; 
+5) Loading;
+afterwards, the transshipment is followed by the actual transport towards the final destination (maybe through other intermediate locations).</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#ActivityType"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Solid">
+    <rdfs:subClassOf rdf:resource="#PhysicalState"/>
+  </owl:Class>
+  <owl:Class rdf:about="#StaticEquipment">
+    <rdfs:comment>A static equipment is a reusable entity that cannot move of its own (unpowered) used to handle moveable resources prior to their transportation</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#StaticResource"/>
+  </owl:Class>
+  <owl:Class rdf:ID="MaritimeTransport">
+    <rdfs:comment>MaritimeTransport uses Port as Location. the follwing holds:
+MaritimeTransport hasInputPlace POL (PortOfLoading)  AND MaritimeTransport hasOutputPlace POD (PortOfDischarge)</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#TransportMode"/>
+  </owl:Class>
+  <owl:Class rdf:ID="TrimodalTerminalOperator">
+    <rdfs:comment>the party who is operating the terminal between inland waterway and road and rail</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#InlandTerminalOperator"/>
+  </owl:Class>
+  <owl:Class rdf:about="#MoveableResource">
+    <rdfs:comment>A moveable resource is a (spatial) entity characterized by the capability of moving on its own or being contained in another entity for the purpose of transportation</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#SpatialEntity"/>
+  </owl:Class>
+  <owl:Class rdf:ID="RoadTransport">
+    <rdfs:comment>RoadTransport uses Warehouses and Port as Location.
+- In case of Warehouses:
+RoadTransport hasInputPlace PLA (PlaceOfAcceptance)  AND RoadTransport hasOutputPlace PLD (PlaceOfDelivery) 
+ - In case of Port:
+RoadTransport hasInputPlace POD (PortOfDischarge) AND RoadTransport hasOutputPlace POL (PortOfLoading)</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#TransportMode"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Role">
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:ID="GeoPoint">
+    <rdfs:subClassOf rdf:resource="#Location"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Carrier">
+    <rdfs:comment>Who is carrying the goods and is operating the transport means. That's why a synonim of carrier is Operator.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Party"/>
+  </owl:Class>
+  <owl:Class rdf:ID="RailTerminalOperator">
+    <rdfs:comment>the party who is operating the terminal  between road and rail</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#InlandTerminalOperator"/>
+  </owl:Class>
+  <owl:ObjectProperty rdf:ID="has">
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#TimeInterval"/>
+          <owl:Class rdf:about="#TimePoint"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+    <rdfs:range rdf:resource="#Party"/>
+    <rdfs:range rdf:resource="#Location"/>
+    <rdfs:range rdf:resource="#Event"/>
+    <rdfs:range rdf:resource="#ActivityType"/>
+    <rdfs:domain rdf:resource="#Activity"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="requiresProper">
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+    <rdfs:domain rdf:resource="#ProductClass"/>
+    <rdfs:range rdf:resource="#Package"/>
+    <rdfs:range rdf:resource="#MoveableEquipment"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="contains">
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:ID="transports"/>
+    </rdfs:subPropertyOf>
+    <rdfs:domain rdf:resource="#Truck"/>
+    <rdfs:range rdf:resource="#Pallet"/>
+    <rdfs:range rdf:resource="#Container"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="isTransportedBy">
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#transports"/>
+    </owl:inverseOf>
+    <rdfs:range rdf:resource="#TransportMeans"/>
+    <rdfs:domain rdf:resource="#MoveableEquipment"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasRole">
+    <rdfs:range rdf:resource="#Role"/>
+    <rdfs:domain rdf:resource="#Party"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#transports">
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+    <rdfs:domain rdf:resource="#TransportMeans"/>
+    <rdfs:range rdf:resource="#MoveableEquipment"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="isEndTimeOf">
+    <rdfs:domain rdf:resource="#TimePoint"/>
+    <rdfs:range rdf:resource="#TimeInterval"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="isAvailableIn">
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#TimeInterval"/>
+          <owl:Class rdf:about="#TimePoint"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+    <rdfs:domain rdf:resource="#SpatialEntity"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasEndTime">
+    <owl:inverseOf rdf:resource="#isEndTimeOf"/>
+    <rdfs:range rdf:resource="#TimePoint"/>
+    <rdfs:domain rdf:resource="#TimeInterval"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="consistsOf">
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="isPartOf"/>
+    </owl:inverseOf>
+    <rdfs:domain rdf:resource="#ComplexActivity"/>
+    <rdfs:range rdf:resource="#AtomicActivity"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#isPartOf">
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+    <rdfs:range rdf:resource="#ComplexActivity"/>
+    <rdfs:domain rdf:resource="#AtomicActivity"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="isAssociatedWith">
+    <rdfs:domain rdf:resource="#Modality"/>
+    <rdfs:range rdf:resource="#Facility"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="pulls">
+    <rdfs:subPropertyOf rdf:resource="#transports"/>
+    <rdfs:range rdf:resource="#Trailer"/>
+    <rdfs:domain rdf:resource="#Tractor"/>
+    <rdfs:domain rdf:resource="#SemiTrailer"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="isRelativeTo">
+    <rdfs:range rdf:resource="#TimePoint"/>
+    <rdfs:domain rdf:resource="#RelativeTimePoint"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="involves">
+    <rdfs:range rdf:resource="#Entity"/>
+    <rdfs:domain rdf:resource="#Activity"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasStartTime">
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="isStartTimeOf"/>
+    </owl:inverseOf>
+    <rdfs:range rdf:resource="#TimePoint"/>
+    <rdfs:domain rdf:resource="#TimeInterval"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#isStartTimeOf">
+    <rdfs:domain rdf:resource="#TimePoint"/>
+    <rdfs:range rdf:resource="#TimeInterval"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="isAvailableAt">
+    <rdfs:domain rdf:resource="#SpatialEntity"/>
+    <rdfs:range rdf:resource="#Location"/>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:ID="exampleproperty"/>
+  <owl:NamedIndividual rdf:ID="Test"/>
+  <owl:AllDisjointClasses>
+    <owl:members rdf:parseType="Collection">
+      <owl:Class rdf:about="#Box"/>
+      <owl:Class rdf:about="#Carton"/>
+      <owl:Class rdf:about="#Pallet"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
+  <owl:AllDisjointClasses>
+    <owl:members rdf:parseType="Collection">
+      <owl:Class rdf:about="#Container"/>
+      <owl:Class rdf:about="#RailwayWagon"/>
+      <owl:Class rdf:about="#UniformLoadDevice"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
+  <owl:NamedIndividual rdf:ID="Mode"/>
+  <owl:AllDisjointClasses>
+    <owl:members rdf:parseType="Collection">
+      <owl:Class rdf:about="#NormalTruck"/>
+      <owl:Class rdf:about="#SemiTrailer"/>
+      <owl:Class rdf:about="#Tractor"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
+  <owl:AllDisjointClasses>
+    <owl:members rdf:parseType="Collection">
+      <owl:Class rdf:about="#Gas"/>
+      <owl:Class rdf:about="#Liquid"/>
+      <owl:Class rdf:about="#Solid"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
+</rdf:RDF>
+
+<!-- Created with TopBraid -->

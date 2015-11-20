@@ -1,0 +1,134 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nfp: <http://www.soa4all.eu/ontology/eGovernment/nfp#> .
+@prefix wl: <http://www.wsmo.org/ns/wsmo-lite#> .
+@prefix rbr: <http://www.wsmo.org/ontologies/nfp/preferenceOntology#>.
+@prefix wsml: <http://www.wsmo.org/wsml/wsml-syntax#>.
+@prefix : <http://www.soa4all.eu/ontology/eGovernment/nfp#> .
+
+:NFPOntology a wl:Ontology .
+
+:SecurityLevelHigh a rbr:NonFunctionalParameter; a wsml:Axiom;
+     rbr:predicate <http://www.soa4all.eu/ontology/eGovernment/nfp#hasSecurityLevel>;
+     rdf:value "_\"http://www.soa4all.eu/ontology/eGovernment/nfp#hasSecurityLevel\"(?ex, 3) :- 0 = 0 and ?ex member _\"http://www.wsmo.org/ns/posm/0.2#Service\"."^^wsml:AxiomLiteral.
+
+:SecurityLevelMedium a rbr:NonFunctionalParameter; a wsml:Axiom;
+     rbr:predicate <http://www.soa4all.eu/ontology/eGovernment/nfp#hasSecurityLevel>;
+     rdf:value "_\"http://www.soa4all.eu/ontology/eGovernment/nfp#hasSecurityLevel\"(?ex, 2) :- 0 = 0 and ?ex member _\"http://www.wsmo.org/ns/posm/0.2#Service\"."^^wsml:AxiomLiteral.
+
+:SecurityLevelLow a rbr:NonFunctionalParameter; a wsml:Axiom;
+     rbr:predicate <http://www.soa4all.eu/ontology/eGovernment/nfp#hasSecurityLevel>;
+     rdf:value "_\"http://www.soa4all.eu/ontology/eGovernment/nfp#hasSecurityLevel\"(?ex, 1) :- 0 = 0 and ?ex member _\"http://www.wsmo.org/ns/posm/0.2#Service\"."^^wsml:AxiomLiteral.
+
+:FreeCost a rbr:NonFunctionalParameter; a wsml:Axiom;
+     rbr:predicate <http://www.soa4all.eu/ontology/eGovernment/nfp#hasCost>;
+     rdf:value "_\"http://www.soa4all.eu/ontology/eGovernment/nfp#hasCost\"(?ex, 0) :- 0 = 0 and ?ex member _\"http://www.wsmo.org/ns/posm/0.2#Service\"."^^wsml:AxiomLiteral.
+
+:NonFreeCost a rbr:NonFunctionalParameter; a wsml:Axiom;
+     rbr:predicate <http://www.soa4all.eu/ontology/eGovernment/nfp#hasCost>;
+     rdf:value "_\"http://www.soa4all.eu/ontology/eGovernment/nfp#hasCost\"(?ex, 1000) :- 0 = 0 and ?ex member _\"http://www.wsmo.org/ns/posm/0.2#Service\"."^^wsml:AxiomLiteral.
+	 
+:VeryHighAvailability a rbr:NonFunctionalParameter; a wsml:Axiom;
+     rbr:predicate <http://www.soa4all.eu/ontology/eGovernment/nfp#hasAvailability>;
+     rdf:value "_\"http://www.soa4all.eu/ontology/eGovernment/nfp#hasAvailability\"(?ex, 99.999) :- 0 = 0 and ?ex member _\"http://www.wsmo.org/ns/posm/0.2#Service\"."^^wsml:AxiomLiteral.
+	 
+:HighAvailability a rbr:NonFunctionalParameter; a wsml:Axiom;
+     rbr:predicate <http://www.soa4all.eu/ontology/eGovernment/nfp#hasAvailability>;
+     rdf:value "_\"http://www.soa4all.eu/ontology/eGovernment/nfp#hasAvailability\"(?ex, 99.9) :- 0 = 0 and ?ex member _\"http://www.wsmo.org/ns/posm/0.2#Service\"."^^wsml:AxiomLiteral.
+	 
+:MediumAvailability a rbr:NonFunctionalParameter; a wsml:Axiom;
+     rbr:predicate <http://www.soa4all.eu/ontology/eGovernment/nfp#hasAvailability>;
+     rdf:value "_\"http://www.soa4all.eu/ontology/eGovernment/nfp#hasAvailability\"(?ex, 95.0) :- 0 = 0 and ?ex member _\"http://www.wsmo.org/ns/posm/0.2#Service\"."^^wsml:AxiomLiteral.
+		
+:LowAvailability a rbr:NonFunctionalParameter; a wsml:Axiom;
+     rbr:predicate <http://www.soa4all.eu/ontology/eGovernment/nfp#hasAvailability>;
+     rdf:value "_\"http://www.soa4all.eu/ontology/eGovernment/nfp#hasAvailability\"(?ex, 90.0) :- 0 = 0 and ?ex member _\"http://www.wsmo.org/ns/posm/0.2#Service\"."^^wsml:AxiomLiteral.
+		
+:VeryHighReliability a rbr:NonFunctionalParameter; a wsml:Axiom;
+     rbr:predicate <http://www.soa4all.eu/ontology/eGovernment/nfp#hasReliability>;
+     rdf:value "_\"http://www.soa4all.eu/ontology/eGovernment/nfp#hasReliability\"(?ex, 99.9999) :- 0 = 0 and ?ex member _\"http://www.wsmo.org/ns/posm/0.2#Service\"."^^wsml:AxiomLiteral.
+	 
+:HighReliability a rbr:NonFunctionalParameter; a wsml:Axiom;
+     rbr:predicate <http://www.soa4all.eu/ontology/eGovernment/nfp#hasReliability>;
+     rdf:value "_\"http://www.soa4all.eu/ontology/eGovernment/nfp#hasReliability\"(?ex, 99.0) :- 0 = 0 and ?ex member _\"http://www.wsmo.org/ns/posm/0.2#Service\"."^^wsml:AxiomLiteral.
+
+:MediumReliability a rbr:NonFunctionalParameter; a wsml:Axiom;
+     rbr:predicate <http://www.soa4all.eu/ontology/eGovernment/nfp#hasReliability>;
+     rdf:value "_\"http://www.soa4all.eu/ontology/eGovernment/nfp#hasReliability\"(?ex, 95.0) :- 0 = 0 and ?ex member _\"http://www.wsmo.org/ns/posm/0.2#Service\"."^^wsml:AxiomLiteral.
+
+:LowReliability a rbr:NonFunctionalParameter; a wsml:Axiom;
+     rbr:predicate <http://www.soa4all.eu/ontology/eGovernment/nfp#hasReliability>;
+     rdf:value "_\"http://www.soa4all.eu/ontology/eGovernment/nfp#hasReliability\"(?ex, 30.0) :- 0 = 0 and ?ex member _\"http://www.wsmo.org/ns/posm/0.2#Service\"."^^wsml:AxiomLiteral.
+
+:HighPerformance a rbr:NonFunctionalParameter; a wsml:Axiom;
+     rbr:predicate <http://www.soa4all.eu/ontology/eGovernment/nfp#hasMaxDelayMs>;
+     rdf:value "_\"http://www.soa4all.eu/ontology/eGovernment/nfp#hasMaxDelayMs\"(?ex, 5) :- 0 = 0 and ?ex member _\"http://www.wsmo.org/ns/posm/0.2#Service\"."^^wsml:AxiomLiteral.
+	 
+:MediumPerformance a rbr:NonFunctionalParameter; a wsml:Axiom;
+     rbr:predicate <http://www.soa4all.eu/ontology/eGovernment/nfp#hasMaxDelayMs>;
+     rdf:value "_\"http://www.soa4all.eu/ontology/eGovernment/nfp#hasMaxDelayMs\"(?ex, 10) :- 0 = 0 and ?ex member _\"http://www.wsmo.org/ns/posm/0.2#Service\"."^^wsml:AxiomLiteral.
+	 
+:LowPerformance a rbr:NonFunctionalParameter; a wsml:Axiom;
+     rbr:predicate <http://www.soa4all.eu/ontology/eGovernment/nfp#hasMaxDelayMs>;
+     rdf:value "_\"http://www.soa4all.eu/ontology/eGovernment/nfp#hasMaxDelayMs\"(?ex, 100) :- 0 = 0 and ?ex member _\"http://www.wsmo.org/ns/posm/0.2#Service\"."^^wsml:AxiomLiteral.
+
+:NFserviceUsageFree a rbr:NonFunctionalParameter; a wsml:Axiom;
+     rbr:predicate <http://www.soa4all.eu/ontology/eGovernment/nfp#hasUsage>;
+     rdf:value "_\"http://www.soa4all.eu/ontology/eGovernment/nfp#hasUsage\"(?ex, 0) :- 0 = 0 and ?ex member _\"http://www.wsmo.org/ns/posm/0.2#Service\"."^^wsml:AxiomLiteral.
+
+:NFserviceUsageLow a rbr:NonFunctionalParameter; a wsml:Axiom;
+     rbr:predicate <http://www.soa4all.eu/ontology/eGovernment/nfp#hasUsage>;
+     rdf:value "_\"http://www.soa4all.eu/ontology/eGovernment/nfp#hasUsage\"(?ex, 5) :- 0 = 0 and ?ex member _\"http://www.wsmo.org/ns/posm/0.2#Service\"."^^wsml:AxiomLiteral.
+	 
+:NFserviceUsageMedium a rbr:NonFunctionalParameter; a wsml:Axiom;
+     rbr:predicate <http://www.soa4all.eu/ontology/eGovernment/nfp#hasUsage>;
+     rdf:value "_\"http://www.soa4all.eu/ontology/eGovernment/nfp#hasUsage\"(?ex, 20) :- 0 = 0 and ?ex member _\"http://www.wsmo.org/ns/posm/0.2#Service\"."^^wsml:AxiomLiteral.
+	 
+:NFserviceUsageHigh a rbr:NonFunctionalParameter; a wsml:Axiom;
+     rbr:predicate <http://www.soa4all.eu/ontology/eGovernment/nfp#hasUsage>;
+     rdf:value "_\"http://www.soa4all.eu/ontology/eGovernment/nfp#hasUsage\"(?ex, 50) :- 0 = 0 and ?ex member _\"http://www.wsmo.org/ns/posm/0.2#Service\"."^^wsml:AxiomLiteral.
+	 
+:NFserviceUsagePremium a rbr:NonFunctionalParameter; a wsml:Axiom;
+     rbr:predicate <http://www.soa4all.eu/ontology/eGovernment/nfp#hasUsage>;
+     rdf:value "_\"http://www.soa4all.eu/ontology/eGovernment/nfp#hasUsage\"(?ex, 100) :- 0 = 0 and ?ex member _\"http://www.wsmo.org/ns/posm/0.2#Service\"."^^wsml:AxiomLiteral.
+	 
+:NFPprocessingLatencyLow a rbr:NonFunctionalParameter; a wsml:Axiom;
+     rbr:predicate <http://www.soa4all.eu/ontology/eGovernment/nfp#hasLatency>;
+     rdf:value "_\"http://www.soa4all.eu/ontology/eGovernment/nfp#hasLatency\"(?ex, 5) :- 0 = 0 and ?ex member _\"http://www.wsmo.org/ns/posm/0.2#Service\"."^^wsml:AxiomLiteral.
+
+:NFPprocessingLatencyMedium a rbr:NonFunctionalParameter; a wsml:Axiom;
+     rbr:predicate <http://www.soa4all.eu/ontology/eGovernment/nfp#hasLatency>;
+     rdf:value "_\"http://www.soa4all.eu/ontology/eGovernment/nfp#hasLatency\"(?ex, 10) :- 0 = 0 and ?ex member _\"http://www.wsmo.org/ns/posm/0.2#Service\"."^^wsml:AxiomLiteral.
+
+:NFPprocessingLatencyHigh a rbr:NonFunctionalParameter; a wsml:Axiom;
+     rbr:predicate <http://www.soa4all.eu/ontology/eGovernment/nfp#hasLatency>;
+     rdf:value "_\"http://www.soa4all.eu/ontology/eGovernment/nfp#hasLatency\"(?ex, 100) :- 0 = 0 and ?ex member _\"http://www.wsmo.org/ns/posm/0.2#Service\"."^^wsml:AxiomLiteral.
+
+:NFPProcessingDowntimeMinimal a rbr:NonFunctionalParameter; a wsml:Axiom;
+     rbr:predicate <http://www.soa4all.eu/ontology/eGovernment/nfp#hasDowntime>;
+     rdf:value "_\"http://www.soa4all.eu/ontology/eGovernment/nfp#hasDowntime\"(?ex, 1) :- 0 = 0 and ?ex member _\"http://www.wsmo.org/ns/posm/0.2#Service\"."^^wsml:AxiomLiteral.	 
+
+:NFPProcessingDowntimeAcceptable a rbr:NonFunctionalParameter; a wsml:Axiom;
+     rbr:predicate <http://www.soa4all.eu/ontology/eGovernment/nfp#hasDowntime>;
+     rdf:value "_\"http://www.soa4all.eu/ontology/eGovernment/nfp#hasDowntime\"(?ex, 5) :- 0 = 0 and ?ex member _\"http://www.wsmo.org/ns/posm/0.2#Service\"."^^wsml:AxiomLiteral.	 
+	 
+:NFPProcessingDowntimeHigh a rbr:NonFunctionalParameter; a wsml:Axiom;
+     rbr:predicate <http://www.soa4all.eu/ontology/eGovernment/nfp#hasDowntime>;
+     rdf:value "_\"http://www.soa4all.eu/ontology/eGovernment/nfp#hasDowntime\"(?ex, 10) :- 0 = 0 and ?ex member _\"http://www.wsmo.org/ns/posm/0.2#Service\"."^^wsml:AxiomLiteral.	 
+	 
+:NFserviceLicenseModeFreeUsage a rbr:NonFunctionalParameter; a wsml:Axiom;
+     rbr:predicate <http://www.soa4all.eu/ontology/eGovernment/nfp#hasLicenseMode>;
+     rdf:value "_\"http://www.soa4all.eu/ontology/eGovernment/nfp#hasLicenseMode\"(?ex, 0) :- 0 = 0 and ?ex member _\"http://www.wsmo.org/ns/posm/0.2#Service\"."^^wsml:AxiomLiteral.	
+	 
+:NFserviceLicenseModePayPerUsage a rbr:NonFunctionalParameter; a wsml:Axiom;
+     rbr:predicate <http://www.soa4all.eu/ontology/eGovernment/nfp#hasLicenseMode>;
+     rdf:value "_\"http://www.soa4all.eu/ontology/eGovernment/nfp#hasLicenseMode\"(?ex, 1) :- 0 = 0 and ?ex member _\"http://www.wsmo.org/ns/posm/0.2#Service\"."^^wsml:AxiomLiteral.	
+	 
+:NFserviceLicenseModeSubscriptionBasedUsage a rbr:NonFunctionalParameter; a wsml:Axiom;
+     rbr:predicate <http://www.soa4all.eu/ontology/eGovernment/nfp#hasLicenseMode>;
+     rdf:value "_\"http://www.soa4all.eu/ontology/eGovernment/nfp#hasLicenseMode\"(?ex, 2) :- 0 = 0 and ?ex member _\"http://www.wsmo.org/ns/posm/0.2#Service\"."^^wsml:AxiomLiteral.	
+	 
+:NFserviceBundlePurchaseBasedUsage a rbr:NonFunctionalParameter; a wsml:Axiom;
+     rbr:predicate <http://www.soa4all.eu/ontology/eGovernment/nfp#hasLicenseMode>;
+     rdf:value "_\"http://www.soa4all.eu/ontology/eGovernment/nfp#hasLicenseMode\"(?ex, 3) :- 0 = 0 and ?ex member _\"http://www.wsmo.org/ns/posm/0.2#Service\"."^^wsml:AxiomLiteral.	

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.example.org/HostelWorld/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="HostelWorld" targetNamespace="http://www.example.org/HostelWorld/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.example.org/HostelWorld/">
+      <xsd:element name="Book">
+        <xsd:complexType>
+          <xsd:sequence>
+          	<xsd:element name="HotelName" type="xsd:string" />
+          	<xsd:element name="RoomType" type="xsd:string"></xsd:element>
+          	<xsd:element name="nights" type="xsd:int"></xsd:element>
+          	<xsd:element name="ClientId" type="xsd:string"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="BookResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="OperationResult" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="BookRequest">
+    <wsdl:part element="tns:Book" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="BookResponse">
+    <wsdl:part element="tns:BookResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="HostelWorld">
+    <wsdl:operation name="Book">
+      <wsdl:input message="tns:BookRequest"/>
+      <wsdl:output message="tns:BookResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="HostelWorldSOAP" type="tns:HostelWorld">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="Book">
+      <soap:operation soapAction="http://www.example.org/HostelWorld/Book"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="HostelWorld">
+    <wsdl:port binding="tns:HostelWorldSOAP" name="HostelWorldSOAP">
+      <soap:address location="http://www.example.org/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

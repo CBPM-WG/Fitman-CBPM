@@ -1,0 +1,21 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix sawsdl: <http://www.w3.org/ns/sawsdl#>.
+@prefix posm: <http://www.wsmo.org/ns/posm/0.2#>.
+@prefix etour: <http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#> .
+@prefix wn1: <http://www.webn1.org/ontologies/services#> .
+
+wn1:FlighService a posm:Service ;
+	posm:hasOperation wn1:bookFlight ;
+	sawsdl:modelReference etour:Vuelo ;
+	rdfs:isDefinedBy <http://www.webn1.org/services/flighservice.wsdl> .
+
+wn1:bookFlight a posm:Operation ;
+	posm:hasInput wn1:FlightServiceInput ;
+	posm:hasOutput wn1:FlightServiceOutput .
+
+wn1:FlightServiceInput a posm:Message ;
+	sawsdl:modelReference etour:Destino .
+
+wn1:FlightServiceOutput a posm:Message ;
+	sawsdl:modelReference etour:Recurso .
+

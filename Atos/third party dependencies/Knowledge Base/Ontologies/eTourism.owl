@@ -1,0 +1,1005 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#"
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+    xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
+    xmlns:j.0="http://www.owl-ontologies.com/turismo.owl#"
+    xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+    xmlns:Turismo="http://example.org/ontology#http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:sqwrl="http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+    xmlns:wsmo-lite="http://www.wsmo.org/ns/wsmo-lite#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:swrla="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#"
+  xml:base="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl">
+  <owl:Ontology rdf:about="">
+    <rdfs:comment xml:lang="es">Ontologia que representa el dominio de  conocimiento (limitado) sobre turismo en colombia. incluye clases para representar alojamientos,ciudades, destinos, actividades generales, atractivos turisticos especificos, asi como las relaciones entre ellas</rdfs:comment>
+  </owl:Ontology>
+  <owl:Class rdf:ID="DestinoMochilero">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Destiny"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Hostel"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="tiene_alojamiento"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="BackPackerDestiny">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Destiny"/>
+          <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:Class rdf:ID="Park"/>
+            </owl:someValuesFrom>
+            <owl:onProperty>
+              <owl:InverseFunctionalProperty rdf:ID="tiene_atractivo_turistico"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+            >1</owl:minCardinality>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#tiene_alojamiento"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Destiny"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Cultural">
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Sports"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Activity"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Zoo">
+    <rdfs:label>
+      <City rdf:ID="CZaragoza">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+      </City>
+    </rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Park"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Activity">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Entity"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Accomodation"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="TouristAttraction"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Resource"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Category"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Destiny"/>
+    </owl:disjointWith>
+    <rdfs:comment rdf:resource="#CZaragoza"/>
+  </owl:Class>
+  <owl:Class rdf:ID="HistoricalPlace">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#TouristAttraction"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="NavalMuseum"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Museum"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Park"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Theather"/>
+    </owl:disjointWith>
+    <rdfs:label rdf:resource="#CZaragoza"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Province">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Destiny"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Entity">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.w3.org/2002/07/owl#Thing"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Category">
+    <rdfs:subClassOf rdf:resource="#Entity"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Destiny"/>
+    </owl:disjointWith>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:oneOf rdf:parseType="Collection">
+          <Category rdf:ID="UnaEstrella">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+          </Category>
+          <Category rdf:ID="CincoEstrellas">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+          </Category>
+          <Category rdf:ID="DosEstrellas">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+          </Category>
+          <Category rdf:ID="CuatroEstrellas">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+          </Category>
+          <Category rdf:ID="TresEstrellas">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+          </Category>
+        </owl:oneOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:comment rdf:resource="#CZaragoza"/>
+  </owl:Class>
+  <owl:Class rdf:ID="City">
+    <rdfs:label rdf:resource="#CZaragoza"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="UrbanArea"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="ParqueNatural">
+    <owl:disjointWith rdf:resource="#Zoo"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Park"/>
+    </rdfs:subClassOf>
+    <rdfs:label rdf:resource="#CZaragoza"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Flight">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Service"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="NaturalPark">
+    <owl:disjointWith rdf:resource="#Zoo"/>
+    <owl:disjointWith rdf:resource="#ParqueNatural"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Park"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="ThemePark"/>
+    </owl:disjointWith>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:hasValue>
+          <Activity rdf:ID="JuegoAcuatico">
+            <se_ofrece_en>
+              <Park rdf:ID="ParqueMudvi">
+                <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Parque Mudvi</name>
+                <ofrece rdf:resource="#JuegoAcuatico"/>
+                <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+              </Park>
+            </se_ofrece_en>
+            <se_ofrece_en>
+              <NaturalPark rdf:ID="ciciAquaPark">
+                <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >cici AquaPark</name>
+                <ofrece rdf:resource="#JuegoAcuatico"/>
+                <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+              </NaturalPark>
+            </se_ofrece_en>
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+          </Activity>
+        </owl:hasValue>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="ofrece"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:label rdf:resource="#CZaragoza"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.wsmo.org/ns/wsmo-lite#FunctionalClassificationRoot"/>
+  <owl:Class rdf:ID="CulturalDestiny">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <owl:Class rdf:about="#Museum"/>
+              <owl:Class rdf:about="#Theather"/>
+            </owl:unionOf>
+          </owl:Class>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:InverseFunctionalProperty rdf:about="#tiene_atractivo_turistico"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Destiny"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="ApartHotel">
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Pension"/>
+    </owl:disjointWith>
+    <rdfs:label rdf:resource="#CZaragoza"/>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Hotel"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Accomodation"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="LuxuryHotel">
+    <rdfs:label rdf:resource="#CZaragoza"/>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:hasValue rdf:resource="#CincoEstrellas"/>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:ID="tiene_categoria"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Hotel"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#ThemePark">
+    <owl:disjointWith rdf:resource="#Zoo"/>
+    <rdfs:label rdf:resource="#CZaragoza"/>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:hasValue>
+          <Activity rdf:ID="JuegoMecanico">
+            <se_ofrece_en>
+              <ThemePark rdf:ID="MundoAventura">
+                <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Mundo Aventura</name>
+                <ofrece rdf:resource="#JuegoMecanico"/>
+                <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+              </ThemePark>
+            </se_ofrece_en>
+            <se_ofrece_en>
+              <ThemePark rdf:ID="ParqueDiversiones_50">
+                <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Parque generico</name>
+                <ofrece rdf:resource="#JuegoMecanico"/>
+                <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+              </ThemePark>
+            </se_ofrece_en>
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+          </Activity>
+        </owl:hasValue>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#ofrece"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <owl:disjointWith rdf:resource="#ParqueNatural"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Park"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Accomodation">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Service"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Destiny"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Category"/>
+    <rdfs:comment rdf:resource="#CZaragoza"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Resource"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#TouristAttraction"/>
+    </owl:disjointWith>
+    <rdfs:label rdf:resource="#CZaragoza"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Hostel">
+    <rdfs:label rdf:resource="#CZaragoza"/>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class>
+            <owl:oneOf rdf:parseType="Collection">
+              <Category rdf:about="#UnaEstrella"/>
+              <Category rdf:about="#DosEstrellas"/>
+            </owl:oneOf>
+          </owl:Class>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:about="#tiene_categoria"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Hotel"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="#LuxuryHotel"/>
+  </owl:Class>
+  <owl:Class rdf:about="#NavalMuseum">
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Theather"/>
+    </owl:disjointWith>
+    <rdfs:label rdf:resource="#CZaragoza"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Museum"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Park"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:ID="CarRental">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Service"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Sports">
+    <rdfs:subClassOf rdf:resource="#Activity"/>
+  </owl:Class>
+  <owl:Class rdf:ID="RuralArea">
+    <owl:disjointWith rdf:resource="#Province"/>
+    <rdfs:label rdf:resource="#CZaragoza"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#UrbanArea"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Destiny"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#TouristAttraction">
+    <rdfs:subClassOf rdf:resource="#Entity"/>
+    <rdfs:label rdf:resource="#CZaragoza"/>
+    <rdfs:comment rdf:resource="#CZaragoza"/>
+    <owl:disjointWith rdf:resource="#Category"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Destiny"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Resource"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:about="#UrbanArea">
+    <owl:disjointWith rdf:resource="#Province"/>
+    <rdfs:label rdf:resource="#CZaragoza"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Destiny"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.w3.org/2002/07/owl#Datatype"/>
+  <owl:Class rdf:about="#Park">
+    <rdfs:subClassOf rdf:resource="#TouristAttraction"/>
+    <rdfs:label rdf:resource="#CZaragoza"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Theather"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:about="#Hotel">
+    <rdfs:subClassOf rdf:resource="#Accomodation"/>
+    <rdfs:label rdf:resource="#CZaragoza"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Pension">
+    <rdfs:label rdf:resource="#CZaragoza"/>
+    <owl:disjointWith rdf:resource="#Hotel"/>
+    <rdfs:subClassOf rdf:resource="#Accomodation"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Theather">
+    <rdfs:subClassOf rdf:resource="#TouristAttraction"/>
+    <rdfs:label rdf:resource="#CZaragoza"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Resource">
+    <rdfs:subClassOf rdf:resource="#Entity"/>
+    <rdfs:comment rdf:resource="#CZaragoza"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Acuarium">
+    <owl:disjointWith rdf:resource="#Theather"/>
+    <rdfs:label rdf:resource="#CZaragoza"/>
+    <rdfs:subClassOf rdf:resource="#Park"/>
+    <owl:disjointWith rdf:resource="#HistoricalPlace"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Museum"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#NavalMuseum"/>
+    <owl:disjointWith rdf:resource="#Park"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Service">
+    <rdfs:subClassOf rdf:resource="http://www.wsmo.org/ns/wsmo-lite#FunctionalClassificationRoot"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Destiny">
+    <rdfs:subClassOf rdf:resource="#Entity"/>
+    <owl:disjointWith rdf:resource="#Resource"/>
+    <rdfs:comment rdf:resource="#CZaragoza"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Museum">
+    <rdfs:subClassOf rdf:resource="#TouristAttraction"/>
+    <rdfs:label rdf:resource="#CZaragoza"/>
+    <owl:disjointWith rdf:resource="#Theather"/>
+    <owl:disjointWith rdf:resource="#NavalMuseum"/>
+    <owl:disjointWith rdf:resource="#Park"/>
+  </owl:Class>
+  <owl:ObjectProperty rdf:ID="alojamiento_esta_en_destino">
+    <rdfs:domain rdf:resource="#Accomodation"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#tiene_alojamiento"/>
+    </owl:inverseOf>
+    <rdfs:range rdf:resource="#Destiny"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="tiene_recursos">
+    <rdfs:range rdf:resource="#Resource"/>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Accomodation"/>
+          <owl:Class rdf:about="#TouristAttraction"/>
+          <owl:Class rdf:about="#Destiny"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="se_ofrece_en">
+    <rdfs:range rdf:resource="#TouristAttraction"/>
+    <rdfs:domain rdf:resource="#Activity"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#ofrece"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#ofrece">
+    <rdfs:domain rdf:resource="#TouristAttraction"/>
+    <rdfs:range rdf:resource="#Activity"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#tiene_alojamiento">
+    <rdfs:range rdf:resource="#Accomodation"/>
+    <rdfs:domain rdf:resource="#Destiny"/>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:ID="tiene_direccion">
+    <rdfs:domain rdf:resource="#Accomodation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:FunctionalProperty rdf:ID="esta_en_departamento">
+    <rdfs:domain rdf:resource="#City"/>
+    <owl:inverseOf>
+      <owl:InverseFunctionalProperty rdf:ID="tiene_ciudad"/>
+    </owl:inverseOf>
+    <rdfs:range rdf:resource="#Province"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="tiene_temp_promedio">
+    <rdfs:domain rdf:resource="#City"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="mime_type">
+    <rdfs:domain rdf:resource="#Resource"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="abstract">
+    <rdfs:domain rdf:resource="#Resource"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:resource="#CZaragoza"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="#tiene_categoria">
+    <rdfs:domain rdf:resource="#Accomodation"/>
+    <rdfs:range rdf:resource="#Category"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="url">
+    <rdfs:domain rdf:resource="#Resource"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+    <rdfs:comment rdf:resource="#CZaragoza"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="name">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Activity"/>
+          <owl:Class rdf:about="#Accomodation"/>
+          <owl:Class rdf:about="#TouristAttraction"/>
+          <owl:Class rdf:about="#Destiny"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="esta_en_destino">
+    <rdfs:domain rdf:resource="#TouristAttraction"/>
+    <owl:inverseOf>
+      <owl:InverseFunctionalProperty rdf:about="#tiene_atractivo_turistico"/>
+    </owl:inverseOf>
+    <rdfs:range rdf:resource="#Destiny"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="title">
+    <rdfs:domain rdf:resource="#Resource"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:resource="#CZaragoza"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="tiene_altitud_sobre_ndm">
+    <rdfs:domain rdf:resource="#City"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:InverseFunctionalProperty rdf:about="#tiene_ciudad">
+    <rdfs:range rdf:resource="#City"/>
+    <rdfs:domain rdf:resource="#Province"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:InverseFunctionalProperty>
+  <owl:InverseFunctionalProperty rdf:about="#tiene_atractivo_turistico">
+    <rdfs:range rdf:resource="#TouristAttraction"/>
+    <rdfs:domain rdf:resource="#Destiny"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:InverseFunctionalProperty>
+  <Province rdf:ID="Santa_Cruz_de_Tenerife">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <Province rdf:ID="Albacete">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <owl:AllDifferent>
+    <owl:distinctMembers rdf:parseType="Collection">
+      <Hotel rdf:ID="HotelDannCarlton">
+        <tiene_categoria rdf:resource="#CincoEstrellas"/>
+        <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Hotel Dann Carlton</name>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+      </Hotel>
+    </owl:distinctMembers>
+  </owl:AllDifferent>
+  <owl:AllDifferent>
+    <owl:distinctMembers rdf:parseType="Collection">
+      <owl:NamedIndividual rdf:ID="Bogota"/>
+      <owl:NamedIndividual rdf:ID="Medellin"/>
+    </owl:distinctMembers>
+  </owl:AllDifferent>
+  <owl:AllDifferent>
+    <owl:distinctMembers rdf:parseType="Collection">
+      <ParqueNatural rdf:ID="Chicaque">
+        <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Chicaque</name>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+      </ParqueNatural>
+      <ParqueNatural rdf:ID="IslaSalamanca">
+        <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Parque Natural Isla de Salamanca</name>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+      </ParqueNatural>
+      <ParqueNatural rdf:ID="ParqueChingaza">
+        <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Parque Natural Chingaza</name>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+      </ParqueNatural>
+      <ParqueNatural rdf:ID="ParqueNaturalDeElCocuy">
+        <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Parque Natural De El Cocuy</name>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+      </ParqueNatural>
+    </owl:distinctMembers>
+  </owl:AllDifferent>
+  <owl:AllDifferent>
+    <owl:distinctMembers rdf:parseType="Collection">
+      <Park rdf:ID="ParqueSimonBolivar">
+        <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Parque Simon Bolivar</name>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+      </Park>
+    </owl:distinctMembers>
+  </owl:AllDifferent>
+  <Province rdf:ID="Soria">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <Province rdf:ID="Badajoz">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <Province rdf:ID="Cantabria">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <owl:AllDifferent>
+    <owl:distinctMembers rdf:parseType="Collection">
+      <Museum rdf:ID="MuseoDelOro">
+        <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Museo del Oro</name>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+      </Museum>
+      <Museum rdf:ID="MuseoNacional">
+        <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Museo Nacional</name>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+      </Museum>
+    </owl:distinctMembers>
+  </owl:AllDifferent>
+  <Province rdf:ID="Tarragona">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <owl:AllDifferent>
+    <owl:distinctMembers rdf:parseType="Collection">
+      <Cultural rdf:ID="Carnaval">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+      </Cultural>
+      <Cultural rdf:ID="ObraTeatral">
+        <se_ofrece_en>
+          <Theather rdf:ID="TeatroNacional">
+            <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Fundacion Teatro Nacional</name>
+            <ofrece rdf:resource="#ObraTeatral"/>
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+          </Theather>
+        </se_ofrece_en>
+        <se_ofrece_en>
+          <Theather rdf:ID="TeatroLaCastellana">
+            <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Teatro la castellana</name>
+            <ofrece rdf:resource="#ObraTeatral"/>
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+          </Theather>
+        </se_ofrece_en>
+        <se_ofrece_en>
+          <Theather rdf:ID="JaimeManzur">
+            <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Fundacion Jaime Manzur</name>
+            <ofrece rdf:resource="#ObraTeatral"/>
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+          </Theather>
+        </se_ofrece_en>
+        <se_ofrece_en>
+          <Theather rdf:ID="AmiradeLaRosa">
+            <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Amira de La Rosa</name>
+            <ofrece rdf:resource="#ObraTeatral"/>
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+          </Theather>
+        </se_ofrece_en>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+      </Cultural>
+      <Cultural rdf:ID="Proyeccion">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+      </Cultural>
+      <Cultural rdf:ID="Recital">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+      </Cultural>
+    </owl:distinctMembers>
+  </owl:AllDifferent>
+  <owl:AllDifferent>
+    <owl:distinctMembers rdf:parseType="Collection">
+      <Hotel rdf:ID="HotelContinental">
+        <tiene_categoria rdf:resource="#DosEstrellas"/>
+        <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Hotel Continental</name>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+      </Hotel>
+      <Hotel rdf:about="#HotelDannCarlton"/>
+    </owl:distinctMembers>
+  </owl:AllDifferent>
+  <owl:Datatype/>
+  <Province rdf:ID="Melilla">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <Province rdf:ID="Caceres">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <Province rdf:ID="Huelva">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <owl:AllDifferent>
+    <owl:distinctMembers rdf:parseType="Collection">
+      <Park rdf:about="#ParqueMudvi"/>
+      <Park rdf:about="#ParqueSimonBolivar"/>
+    </owl:distinctMembers>
+  </owl:AllDifferent>
+  <Province rdf:ID="Malaga">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <owl:AllDifferent>
+    <owl:distinctMembers rdf:parseType="Collection">
+      <LuxuryHotel rdf:ID="HotelRoyal">
+        <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Hotel Royal</name>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+      </LuxuryHotel>
+      <LuxuryHotel rdf:ID="HoteldelPrado">
+        <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Hotel Del Prado</name>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+      </LuxuryHotel>
+    </owl:distinctMembers>
+  </owl:AllDifferent>
+  <owl:AllDifferent>
+    <owl:distinctMembers rdf:parseType="Collection">
+      <ParqueNatural rdf:about="#Chicaque"/>
+      <ParqueNatural rdf:about="#ParqueChingaza"/>
+      <ParqueNatural rdf:about="#ParqueNaturalDeElCocuy"/>
+    </owl:distinctMembers>
+  </owl:AllDifferent>
+  <Province rdf:ID="Cordoba">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <owl:AllDifferent>
+    <owl:distinctMembers rdf:parseType="Collection">
+      <Theather rdf:about="#AmiradeLaRosa"/>
+      <Theather rdf:about="#TeatroLaCastellana"/>
+      <Theather rdf:about="#TeatroNacional"/>
+    </owl:distinctMembers>
+  </owl:AllDifferent>
+  <owl:AllDifferent>
+    <owl:distinctMembers rdf:parseType="Collection">
+      <ParqueNatural rdf:about="#Chicaque"/>
+    </owl:distinctMembers>
+  </owl:AllDifferent>
+  <Province rdf:ID="Guadalajara">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <owl:AllDifferent>
+    <owl:distinctMembers rdf:parseType="Collection">
+      <ParqueNatural rdf:about="#Chicaque"/>
+      <ParqueNatural rdf:about="#ParqueNaturalDeElCocuy"/>
+    </owl:distinctMembers>
+  </owl:AllDifferent>
+  <owl:AllDifferent>
+    <owl:distinctMembers rdf:parseType="Collection">
+      <owl:NamedIndividual rdf:about="#Bogota"/>
+      <owl:NamedIndividual rdf:ID="Cali"/>
+    </owl:distinctMembers>
+  </owl:AllDifferent>
+  <Province rdf:ID="Madrid">
+    <tiene_ciudad>
+      <City rdf:ID="CMadrid">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+      </City>
+    </tiene_ciudad>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <Province rdf:ID="Alava">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <Province rdf:ID="Zamora">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <Province rdf:ID="Navarra">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <Province rdf:ID="La_Rioja">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <owl:AllDifferent>
+    <owl:distinctMembers rdf:parseType="Collection">
+      <owl:NamedIndividual rdf:ID="Barranquilla"/>
+      <owl:NamedIndividual rdf:about="#Bogota"/>
+      <owl:NamedIndividual rdf:about="#Cali"/>
+    </owl:distinctMembers>
+  </owl:AllDifferent>
+  <Province rdf:ID="Lugo">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <Province rdf:ID="Castellon">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <Province rdf:ID="Valladolid">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <Province rdf:ID="Guipuzcoa">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <Province rdf:ID="La_Coruna">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <owl:AllDifferent>
+    <owl:distinctMembers rdf:parseType="Collection">
+      <owl:NamedIndividual rdf:about="#Barranquilla"/>
+      <owl:NamedIndividual rdf:about="#Cali"/>
+      <owl:NamedIndividual rdf:about="#Medellin"/>
+    </owl:distinctMembers>
+  </owl:AllDifferent>
+  <owl:AllDifferent>
+    <owl:distinctMembers rdf:parseType="Collection">
+      <owl:NamedIndividual rdf:about="#Bogota"/>
+      <owl:NamedIndividual rdf:about="#Cali"/>
+      <owl:NamedIndividual rdf:about="#Medellin"/>
+    </owl:distinctMembers>
+  </owl:AllDifferent>
+  <Province rdf:ID="Lerida">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <owl:AllDifferent>
+    <owl:distinctMembers rdf:parseType="Collection">
+      <owl:NamedIndividual rdf:about="#Cali"/>
+      <owl:NamedIndividual rdf:about="#Medellin"/>
+    </owl:distinctMembers>
+  </owl:AllDifferent>
+  <owl:AllDifferent>
+    <owl:distinctMembers rdf:parseType="Collection">
+      <ThemePark rdf:about="#MundoAventura"/>
+      <ThemePark rdf:about="#ParqueDiversiones_50"/>
+    </owl:distinctMembers>
+  </owl:AllDifferent>
+  <owl:AllDifferent>
+    <owl:distinctMembers rdf:parseType="Collection">
+      <Activity rdf:about="#JuegoAcuatico"/>
+      <Activity rdf:about="#JuegoMecanico"/>
+    </owl:distinctMembers>
+  </owl:AllDifferent>
+  <Province rdf:ID="Toledo">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <Province rdf:ID="Gerona">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <Province rdf:ID="Leon">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <Province rdf:ID="Palencia">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <owl:AnnotationProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#comment"/>
+  <Province rdf:ID="Barcelona">
+    <tiene_ciudad>
+      <City rdf:ID="CBarcelona">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+      </City>
+    </tiene_ciudad>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <Province rdf:ID="Avila">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <Province rdf:ID="Pontevedra">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <Province rdf:ID="Segovia">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <Province rdf:ID="Orense">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <Province rdf:ID="Huesca">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <Province rdf:ID="Asturias">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <Province rdf:ID="Ceuta">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <Province rdf:ID="Alicante">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <Province rdf:ID="Burgos">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <Province rdf:ID="Cadiz">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <Province rdf:ID="Islas_Baleares">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <Province rdf:ID="Ciudad_Real">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <Province rdf:ID="Murcia">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <Province rdf:ID="Granada">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <owl:AnnotationProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#label"/>
+  <Province rdf:ID="Vizcaya">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <owl:AllDifferent>
+    <owl:distinctMembers rdf:parseType="Collection">
+      <Museum rdf:ID="MuseoDelCastillo">
+        <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Museo el Castillo</name>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+      </Museum>
+      <Museum rdf:about="#MuseoDelOro"/>
+      <Museum rdf:about="#MuseoNacional"/>
+    </owl:distinctMembers>
+  </owl:AllDifferent>
+  <CarRental rdf:ID="Hertz">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </CarRental>
+  <Flight rdf:ID="Iberia">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Flight>
+  <Province rdf:ID="Cuenca">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <owl:AllDifferent>
+    <owl:distinctMembers rdf:parseType="Collection">
+      <owl:NamedIndividual rdf:about="#Barranquilla"/>
+      <owl:NamedIndividual rdf:about="#Bogota"/>
+      <owl:NamedIndividual rdf:about="#Medellin"/>
+    </owl:distinctMembers>
+  </owl:AllDifferent>
+  <Province rdf:about="http://example.org/ontology#http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Jaén">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <owl:AllDifferent>
+    <owl:distinctMembers rdf:parseType="Collection">
+      <Theather rdf:about="#AmiradeLaRosa"/>
+      <Theather rdf:about="#JaimeManzur"/>
+      <Theather rdf:about="#TeatroLaCastellana"/>
+      <Theather rdf:about="#TeatroNacional"/>
+    </owl:distinctMembers>
+  </owl:AllDifferent>
+  <Province rdf:ID="Almeria">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <Province rdf:ID="Zaragoza">
+    <tiene_ciudad rdf:resource="#CZaragoza"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <Province rdf:ID="Salamanca">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <owl:AllDifferent>
+    <owl:distinctMembers rdf:parseType="Collection">
+      <Zoo rdf:ID="ZoologicoBarranquilla">
+        <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Zoologico de barranquilla</name>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+      </Zoo>
+      <Zoo rdf:ID="ZoologicoCali">
+        <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Zoologico de cali</name>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+      </Zoo>
+      <Zoo rdf:ID="ZoologicoSantaCruz">
+        <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Zoologico santa cruz</name>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+      </Zoo>
+      <Zoo rdf:ID="ZoologicoSantaFe">
+        <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Zoologico santa fe</name>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+      </Zoo>
+    </owl:distinctMembers>
+  </owl:AllDifferent>
+  <Province rdf:ID="Teruel">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <owl:AllDifferent>
+    <owl:distinctMembers rdf:parseType="Collection">
+      <Sports rdf:ID="DeporteAcuatico">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+      </Sports>
+      <Sports rdf:ID="DeporteExtremo">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+      </Sports>
+    </owl:distinctMembers>
+  </owl:AllDifferent>
+  <Province rdf:ID="Sevilla">
+    <tiene_ciudad>
+      <City rdf:ID="CSevilla">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+      </City>
+    </tiene_ciudad>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+  <Province rdf:ID="Las_Palmas">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </Province>
+</rdf:RDF>
+
+<!-- Created with TopBraid -->

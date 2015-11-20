@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:model="http://www.omg.org/spec/BPMN/20100524/MODEL">
+  <xs:element name="definitions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="model:import"/>
+        <xs:element ref="model:process"/>
+        <xs:element maxOccurs="unbounded" ref="model:itemDefinition"/>
+        <xs:element maxOccurs="unbounded" ref="model:message"/>
+        <xs:element ref="model:interface"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required" type="xs:NCName"/>
+      <xs:attribute name="targetNamespace" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="import">
+    <xs:complexType>
+      <xs:attribute name="importType" use="required" type="xs:anyURI"/>
+      <xs:attribute name="location" use="required" type="xs:anyURI"/>
+      <xs:attribute name="namespace" use="required" type="xs:anyURI"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="process">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="model:ioSpecification"/>
+        <xs:element ref="model:startEvent"/>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element ref="model:receiveTask"/>
+          <xs:element ref="model:sequenceFlow"/>
+          <xs:element ref="model:serviceTask"/>
+        </xs:choice>
+        <xs:element ref="model:endEvent"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required" type="xs:NCName"/>
+      <xs:attribute name="name" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="startEvent">
+    <xs:complexType>
+      <xs:attribute name="id" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="receiveTask">
+    <xs:complexType>
+      <xs:attribute name="id" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="sequenceFlow">
+    <xs:complexType>
+      <xs:attribute name="id" use="required" type="xs:NCName"/>
+      <xs:attribute name="sourceRef" use="required" type="xs:NCName"/>
+      <xs:attribute name="targetRef" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="serviceTask">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="model:ioSpecification"/>
+        <xs:element ref="model:dataInputAssociation"/>
+        <xs:element ref="model:dataOutputAssociation"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required" type="xs:NCName"/>
+      <xs:attribute name="implementation" use="required"/>
+      <xs:attribute name="name" use="required"/>
+      <xs:attribute name="operationRef" use="required" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dataInputAssociation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="model:sourceRef"/>
+        <xs:element ref="model:targetRef"/>
+        <xs:element ref="model:assignment"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="sourceRef" type="xs:NCName"/>
+  <xs:element name="assignment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="model:from"/>
+        <xs:element ref="model:to"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="from" type="xs:string"/>
+  <xs:element name="to" type="xs:string"/>
+  <xs:element name="dataOutputAssociation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="model:targetRef"/>
+        <xs:element ref="model:transformation"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="transformation" type="xs:string"/>
+  <xs:element name="endEvent">
+    <xs:complexType>
+      <xs:attribute name="id" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="itemDefinition">
+    <xs:complexType>
+      <xs:attribute name="id" use="required" type="xs:NCName"/>
+      <xs:attribute name="structureRef" use="required" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="message">
+    <xs:complexType>
+      <xs:attribute name="id" use="required" type="xs:NCName"/>
+      <xs:attribute name="itemRef" use="required" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="interface">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="model:operation"/>
+      </xs:sequence>
+      <xs:attribute name="name" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="operation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="model:inMessageRef"/>
+        <xs:element ref="model:outMessageRef"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required" type="xs:NCName"/>
+      <xs:attribute name="implementationRef" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="inMessageRef" type="xs:NMTOKEN"/>
+  <xs:element name="outMessageRef" type="xs:NMTOKEN"/>
+  <xs:element name="ioSpecification">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="model:dataInput"/>
+        <xs:element ref="model:dataOutput"/>
+        <xs:element ref="model:inputSet"/>
+        <xs:element ref="model:outputSet"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dataInput">
+    <xs:complexType>
+      <xs:attribute name="id" use="required" type="xs:NCName"/>
+      <xs:attribute name="itemSubjectRef" use="required" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dataOutput">
+    <xs:complexType>
+      <xs:attribute name="id" use="required" type="xs:NCName"/>
+      <xs:attribute name="itemSubjectRef" use="required" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="inputSet">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="model:dataInputRefs"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dataInputRefs" type="xs:NCName"/>
+  <xs:element name="outputSet">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="model:dataOutputRefs"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dataOutputRefs" type="xs:NCName"/>
+  <xs:element name="targetRef" type="xs:NCName"/>
+</xs:schema>

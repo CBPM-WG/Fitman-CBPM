@@ -1,0 +1,39 @@
+wsmlVariant _"http://www.wsmo.org/wsml/wsml-syntax/wsml-flight"
+
+namespace { _"http://www.soa4all.eu/ontology/eGovernment/axioms#", 
+		rdf _"http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        rdfs _"http://www.w3.org/2000/01/rdf-schema#",
+        msm	_"http://www.wsmo.org/ns/wsmo-lite#",
+        sawsdl	_"http://www.w3.org/ns/sawsdl#",
+        s4alpml _"http://www.soa4all.eu/lpml#",
+		s4acontext _"http://www.soa4all.eu/ontology/eGovernment/context#"
+        }
+        
+ontology S4A_Axioms
+
+
+relation subsumption/2
+
+axiom subsumptionrelation definedBy
+	subsumption(?x, ?y) equivalent ?y subConceptOf ?x
+.
+
+
+relation serviceswithcontext/2
+
+axiom selectservice
+definedBy 
+   serviceswithcontext(?service, ?y) 
+   impliedBy 
+      ?service[s4acontext#hasSensitivityTo hasValue ?d] 
+      and ?d[s4acontext#hasDimensionValue hasValue ?v] 
+      and ?d[s4acontext#hasAssociatedSlot hasValue ?s] 
+      and ?y[?s hasValue ?v] 
+    .
+
+
+//query for flexible FC matchings:
+//
+// ?x[msm#hasFunctionalClassification hasValue ?y] memberOf s4alpml#Process
+// and
+// subsumption( ?y, FlightSchedule)

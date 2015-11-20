@@ -1,0 +1,131 @@
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/seiplab/!svn/ver/57/trunk/yourBPM/Compel/bin/main/java/eu/atosresearch/webn1/businesslogic
+END
+AddInputMetadata.class
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/seiplab/!svn/ver/57/trunk/yourBPM/Compel/bin/main/java/eu/atosresearch/webn1/businesslogic/AddInputMetadata.class
+END
+SelectService.class
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/seiplab/!svn/ver/57/trunk/yourBPM/Compel/bin/main/java/eu/atosresearch/webn1/businesslogic/SelectService.class
+END
+WebN1ServicePortType.class
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/seiplab/!svn/ver/57/trunk/yourBPM/Compel/bin/main/java/eu/atosresearch/webn1/businesslogic/WebN1ServicePortType.class
+END
+DeleteAnnotation.class
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/seiplab/!svn/ver/57/trunk/yourBPM/Compel/bin/main/java/eu/atosresearch/webn1/businesslogic/DeleteAnnotation.class
+END
+AddContextualInformation.class
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/seiplab/!svn/ver/57/trunk/yourBPM/Compel/bin/main/java/eu/atosresearch/webn1/businesslogic/AddContextualInformation.class
+END
+WebN1Service.class
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/seiplab/!svn/ver/57/trunk/yourBPM/Compel/bin/main/java/eu/atosresearch/webn1/businesslogic/WebN1Service.class
+END
+ArrayOfString.class
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/seiplab/!svn/ver/57/trunk/yourBPM/Compel/bin/main/java/eu/atosresearch/webn1/businesslogic/ArrayOfString.class
+END
+RetrieveAnnotationOf.class
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/seiplab/!svn/ver/57/trunk/yourBPM/Compel/bin/main/java/eu/atosresearch/webn1/businesslogic/RetrieveAnnotationOf.class
+END
+AddRequirement.class
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/seiplab/!svn/ver/57/trunk/yourBPM/Compel/bin/main/java/eu/atosresearch/webn1/businesslogic/AddRequirement.class
+END
+AddFuntionalClassification.class
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/seiplab/!svn/ver/57/trunk/yourBPM/Compel/bin/main/java/eu/atosresearch/webn1/businesslogic/AddFuntionalClassification.class
+END
+RetrieveAnnotationOfResponse.class
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/seiplab/!svn/ver/57/trunk/yourBPM/Compel/bin/main/java/eu/atosresearch/webn1/businesslogic/RetrieveAnnotationOfResponse.class
+END
+AddNonFunctionalProperty.class
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/seiplab/!svn/ver/57/trunk/yourBPM/Compel/bin/main/java/eu/atosresearch/webn1/businesslogic/AddNonFunctionalProperty.class
+END
+GetSelectedService.class
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/seiplab/!svn/ver/57/trunk/yourBPM/Compel/bin/main/java/eu/atosresearch/webn1/businesslogic/GetSelectedService.class
+END
+GetSelectedServiceResponse.class
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/seiplab/!svn/ver/57/trunk/yourBPM/Compel/bin/main/java/eu/atosresearch/webn1/businesslogic/GetSelectedServiceResponse.class
+END
+AddReference.class
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/seiplab/!svn/ver/57/trunk/yourBPM/Compel/bin/main/java/eu/atosresearch/webn1/businesslogic/AddReference.class
+END
+ObjectFactory.class
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/seiplab/!svn/ver/57/trunk/yourBPM/Compel/bin/main/java/eu/atosresearch/webn1/businesslogic/ObjectFactory.class
+END
+AddAnnotation.class
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/seiplab/!svn/ver/57/trunk/yourBPM/Compel/bin/main/java/eu/atosresearch/webn1/businesslogic/AddAnnotation.class
+END
+RetrieveServicesOf.class
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/seiplab/!svn/ver/57/trunk/yourBPM/Compel/bin/main/java/eu/atosresearch/webn1/businesslogic/RetrieveServicesOf.class
+END
+AddOutputMetadata.class
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/seiplab/!svn/ver/57/trunk/yourBPM/Compel/bin/main/java/eu/atosresearch/webn1/businesslogic/AddOutputMetadata.class
+END
+RetrieveServicesOfResponse.class
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/seiplab/!svn/ver/57/trunk/yourBPM/Compel/bin/main/java/eu/atosresearch/webn1/businesslogic/RetrieveServicesOfResponse.class
+END
+package-info.class
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/seiplab/!svn/ver/57/trunk/yourBPM/Compel/bin/main/java/eu/atosresearch/webn1/businesslogic/package-info.class
+END

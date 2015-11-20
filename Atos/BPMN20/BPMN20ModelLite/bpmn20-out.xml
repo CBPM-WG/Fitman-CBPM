@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"><itemDefinition id="pruebaItem" structureRef="prueba:prueba"/><message id="messageID" itemRef="pruebaItem"/></definitions>

@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/seiplab/!svn/ver/110/trunk/yourBPM/Compel/src/main/java/eu/atosresearch/seiplab/yourbpm/compel/server
+END
+ConfigurationServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/seiplab/!svn/ver/110/trunk/yourBPM/Compel/src/main/java/eu/atosresearch/seiplab/yourbpm/compel/server/ConfigurationServiceImpl.java
+END
+GuiModelBuilder.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/seiplab/!svn/ver/57/trunk/yourBPM/Compel/src/main/java/eu/atosresearch/seiplab/yourbpm/compel/server/GuiModelBuilder.java
+END
+OntologyServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/seiplab/!svn/ver/110/trunk/yourBPM/Compel/src/main/java/eu/atosresearch/seiplab/yourbpm/compel/server/OntologyServiceImpl.java
+END

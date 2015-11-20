@@ -1,0 +1,30 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix wsml: <http://www.wsmo.org/wsml/wsml-syntax#>.
+@prefix sawsdl: <http://www.w3.org/ns/sawsdl#>.
+@prefix wsl: <http://www.wsmo.org/ns/wsmo-lite#>.
+@prefix posm: <http://www.wsmo.org/ns/posm/0.2#>.
+@prefix egfc: <http://www.soa4all.eu/ontology/eGovernment/fc#> .
+@prefix egio: <http://www.soa4all.eu/ontology/eGovernment/iotypes#> .
+@prefix s4acont: <http://www.soa4all.eu/ontology/eGovernment/context#> .
+@prefix s4anfp: <http://www.soa4all.eu/ontology/eGovernment/nfp#> .
+@prefix rbr: <http://www.wsmo.org/ontologies/nfp/preferenceOntology#>.
+@prefix serv: <http://www.soa4all.eu/eGovernment/services#> .
+
+s4a:CardPaymentService a posm:Service ;
+	posm:hasOperation s4a:CardPaymentServiceOperation ;
+	sawsdl:modelReference egfc:CardPaymentMethod ;
+	rdfs:isDefinedBy <http://coconut.tie.nl:8080/storage/templates/CardPaymentIncompleteTemplate.xml> ;
+	s4acont:hasSensitivityTo s4acont:CreditCardPaymentMethodDimension ;
+	sawsdl:modelReference s4anfp:HighAvailability .
+
+s4a:CardPaymentServiceOperation a posm:Operation ;
+	posm:hasOutput s4a:CardPaymentServiceOutput ;
+	posm:hasInputMessage s4a:CardPaymentServiceInput .
+
+s4a:CardPaymentServiceOutput a posm:Message ;
+	sawsdl:modelReference egio:CardPaymentReport .
+
+s4a:CardPaymentServiceInput a posm:Message ;
+	sawsdl:modelReference egio:PaymentDetails .

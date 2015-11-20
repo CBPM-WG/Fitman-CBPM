@@ -1,0 +1,24 @@
+KBRepository
+----------------------------------------------------------
+
+URL:http://192.168.215.196:8080/openrdf-workbench
+
+API: svn+ssh://servicesuser@mordac/repository/services/WebN1/KBWebN1Client
+use eu.atosresearch.webn1.businesslogic.AnnotationHandler.java class
+
+How to add Service Semantic Description to the KB
+-------------------------------------------------
+- Service descriptions in Compel/src/main/resources/ServiceDescriptions
+- Use src/test/java: ServiceSemanticDescriptionTest.java to load new descriptions:
+  method: addServiceSemanticDescription
+- Check loaded service descriptions querying the KB in this URL
+http://192.168.215.196:8080/openrdf-workbench/repositories/WebN1/query
+adding to the SPARQL:
+
+PREFIX posm: <http://www.wsmo.org/ns/posm/0.2#>
+
+select ?s where { ?s rdf:type posm:Service }
+
+
+  
+

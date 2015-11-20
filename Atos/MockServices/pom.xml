@@ -1,0 +1,24 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>eu.atosresearch.seiplab.yourbpm</groupId>
+  <artifactId>mockservices</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <properties>
+  	<cxf.version>2.4.2</cxf.version>
+  </properties>
+  <modules>
+  	<module>BrusselAirlines</module>
+  	<module>firstHotelService</module>
+	<!-- <module>gitanair</module> -->
+  	<module>HostelWorld</module>
+  	<module>HotelFind</module>
+  	<module>AirCongo</module>
+  	<module>demo-app</module>
+  </modules>
+  <parent>
+  	<groupId>eu.atosresearch.seiplab</groupId>
+  	<artifactId>yourbpm</artifactId>
+  	<version>1.0</version>
+  </parent>
+</project>

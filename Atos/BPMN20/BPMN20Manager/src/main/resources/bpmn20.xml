@@ -1,0 +1,146 @@
+<definitions id="definitions" targetNamespace="eu.atosresearch.webn1.bpmn.examples"
+	xmlns:activiti="http://activiti.org/bpmn" xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  	xmlns:imath="http://services.examples.bpmn.webn1.atosresearch.eu"	
+	xmlns:tns="eu.atosresearch.webn1.bpmn.examples">
+
+
+  <import importType="http://schemas.xmlsoap.org/wsdl/"
+          location="http://localhost:63081/math?wsdl"
+          namespace="http://services.examples.bpmn.webn1.atosresearch.eu" />
+          
+	<process id="BPMN20Test4" name="BPMN 2.0 Test">
+	
+<!--
+		The Data Inputs and Outputs of a Process have to be explicitly
+		declared with their type to be valid BPMN 2.0
+	-->
+	  	<ioSpecification>
+	  		<dataInput id="processInput" itemSubjectRef="tns:processInputItem" />
+	  		<dataOutput id="processOutput" itemSubjectRef="tns:processOutputItem" />
+	  		<inputSet>
+	  			<dataInputRefs>processInput</dataInputRefs>
+	  		</inputSet>
+	  		<outputSet>
+	  			<dataOutputRefs>processOutput</dataOutputRefs>
+	  		</outputSet>
+	  	</ioSpecification>
+  		
+        <startEvent id="theStart"/>
+		
+		<sequenceFlow id='flow1' sourceRef='theStart' targetRef='square' />
+				
+	    <serviceTask id="square"
+	                 name="IMath Service square invocation"
+	                 implementation="##WebService"
+	                 operationRef="tns:squareOperation" >
+	        <!-- The BPMN 2.0 Meta Model requires an Input/Output Specification -->
+	        <!-- Describing Task I/O -->
+	    	<ioSpecification>
+	                <dataInput id="taskInput" itemSubjectRef="tns:squareRequestItem" />
+	                <dataOutput id="taskOutput" itemSubjectRef="tns:squareResponseItem" />
+	                <inputSet>
+	                    <dataInputRefs>taskInput</dataInputRefs>
+	                </inputSet>
+	                <outputSet>
+	                	<dataOutputRefs>taskOutput</dataOutputRefs>
+	                </outputSet>
+	        </ioSpecification>
+	        
+	        <!-- Data flow mapping -->
+	        <dataInputAssociation>
+                <sourceRef>processInput</sourceRef>
+                <targetRef>taskInput</targetRef>
+   				<assignment>
+   					<from>${processInput}</from>
+   					<to>${taskInput.num}</to>
+   				</assignment>
+	        </dataInputAssociation>
+	      
+	        <dataOutputAssociation>
+	        	<targetRef>processOutput</targetRef>
+	        	<transformation>${taskOutput.square}</transformation>
+	        </dataOutputAssociation>
+	        
+	    </serviceTask>
+
+	    <serviceTask id="car"
+	                 name="IMath Service square invocation"
+	                 implementation="##WebService"
+	                 operationRef="tns:carRentalOperation" >
+	        <!-- The BPMN 2.0 Meta Model requires an Input/Output Specification -->
+	        <!-- Describing Task I/O -->
+	    	<ioSpecification>
+	                <dataInput id="taskInput2" itemSubjectRef="tns:carRequestItem" />
+	                <dataOutput id="taskOutput2" itemSubjectRef="tns:carResponseItem" />
+	                <inputSet>
+	                    <dataInputRefs>taskInput2</dataInputRefs>
+	                </inputSet>
+	                <outputSet>
+	                	<dataOutputRefs>taskOutput2</dataOutputRefs>
+	                </outputSet>
+	        </ioSpecification>
+	        
+	        <!-- Data flow mapping -->
+	        <dataInputAssociation>
+                <sourceRef>processInput</sourceRef>
+                <targetRef>taskInput2</targetRef>
+   				<assignment>
+   					<from>${processInput}</from>
+   					<to>${taskInput2.Parameter}</to>
+   				</assignment>
+	        </dataInputAssociation>
+	      
+	        <dataOutputAssociation>
+	        	<targetRef>processOutput</targetRef>
+	        	<transformation>${taskOutput2}</transformation>
+	        </dataOutputAssociation>
+	        
+	    </serviceTask>			    			
+		
+		<sequenceFlow id='flow2' sourceRef='square' targetRef='waitState' />
+		
+		<receiveTask id="waitState" />
+    
+    	<sequenceFlow id="flow3" sourceRef="waitState" targetRef="theEnd" />
+    
+		<endEvent id="theEnd" />
+
+	</process>
+
+  
+  
+  <!-- Process I/O message types -->
+<!--   <itemDefinition id="processInputItem" structureRef="xsd:int" /> -->
+<!--   <itemDefinition id="processOutputItem" structureRef="xsd:int" /> -->
+  <itemDefinition id="processInputItem" structureRef="xsd:int" />
+  <itemDefinition id="processOutputItem" structureRef="xsd:int" />  
+
+  <!-- Task Service message and types -->
+  <itemDefinition id="squareRequestItem" structureRef="imath:square" />
+  <itemDefinition id="squareResponseItem" structureRef="imath:squareResponse" />
+  
+  <itemDefinition id="carRequestItem" structureRef="imath:getCar" />
+  <itemDefinition id="carResponseItem" structureRef="imath:getCarResponse" />
+
+  <message id="squareRequestMessage" itemRef="tns:squareRequestItem" />
+  <message id="squareResponseMessage" itemRef="tns:squareResponseItem" />
+
+  <message id="carRequestMessage" itemRef="tns:carRequestItem" />
+  <message id="carResponseMessage" itemRef="tns:carResponseItem" />
+
+  <!-- Service Task interface -->
+  <interface name="IMath Interface"> 
+    <!-- Operation: implementationRef = QName of WSDL Operation -->
+    <operation id="squareOperation" name="Square" implementationRef="imath:square"> 
+      <inMessageRef>tns:squareRequestMessage</inMessageRef>
+      <outMessageRef>tns:squareResponseMessage</outMessageRef>
+    </operation>
+    <!-- Operation: implementationRef = QName of WSDL Operation -->
+    <operation id="carRentalOperation" name="Cars" implementationRef="imath:getCar"> 
+      <inMessageRef>tns:carRequestMessage</inMessageRef>
+      <outMessageRef>tns:carResponseMessage</outMessageRef>
+    </operation>    
+  </interface>
+  
+</definitions>

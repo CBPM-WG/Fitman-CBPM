@@ -1,0 +1,21 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix sawsdl: <http://www.w3.org/ns/sawsdl#>.
+@prefix posm: <http://www.wsmo.org/ns/posm/0.2#>.
+@prefix etour: <http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#> .
+@prefix wn1: <http://www.example.org/services#> .
+
+wn1:HostelWorld a posm:Service ;
+	posm:hasOperation wn1:Book ;
+	sawsdl:modelReference etour:Hotel ;
+	rdfs:isDefinedBy <http://compositioned.lab.fi-ware.eu/HostelWorldService/hostelWorldService?wsdl> .
+
+wn1:Book a posm:Operation ;
+	posm:hasInput wn1:BookRequest ;
+	posm:hasOutput wn1:BookResponse .
+
+wn1:BookRequest a posm:Message ;
+	sawsdl:modelReference etour:Destino .
+
+wn1:BookResponse a posm:Message ;
+	sawsdl:modelReference etour:Recurso .
+

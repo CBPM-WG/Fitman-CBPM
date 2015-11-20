@@ -1,0 +1,219 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix : <http://www.soa4all.eu/ontology/eGovernment/context#> .
+@prefix msm: <http://cms-wg.sti2.org/ns/minimal-service-model#> .
+@prefix s4alpml: <http://www.soa4all.eu/lpml#> .
+@prefix s4a: <http://www.soa4all.eu/contribution/atos#> .
+@prefix ten: <http://www.soa4all.eu/templateSensitivity#> .
+@prefix egov: <http://www.soa4all.eu/ontology/eGovernment/fc#> .
+@prefix egovio: <http://www.soa4all.eu/ontology/eGovernment/iotypes#> .
+
+
+s4alpml:Process a rdfs:Class .
+
+:hasSensitivityTo a rdf:Property ;
+	rdfs:domain s4alpml:Process .
+
+msm:Service a rdfs:Class .
+
+:hasSensitivityTo a rdf:Property ;
+	rdfs:domain msm:Service .
+
+:Dimension a rdfs:Class .
+
+:hasDimensionValue a rdf:Property ;
+	rdfs:domain :Dimension ;
+	rdfs:range :DimensionValue .
+
+:DimensionValue a rdfs:Class .
+
+:Organization a rdfs:Class .
+
+:hasPreferredPaymentMethod a rdf:Property ;
+	rdfs:domain :Organization .
+
+:hasSupportedReceptionMethod a rdf:Property ;
+	rdfs:domain :Organization .
+
+:EGovBusinessRegistrationEntity a rdfs:Class ;
+	rdfs:subClassOf egovio:PublicEntity .
+
+:hasPreferredPaymentMethod a rdf:Property ;
+	rdfs:domain :EGovBusinessRegistrationEntity ;
+	rdfs:range :DimensionValue .
+
+:hasSupportedReceptionMethod a rdf:Property ;
+	rdfs:domain :EGovBusinessRegistrationEntity ;
+	rdfs:range :DimensionValue .
+
+:hasPreferredLanguage a rdf:Property ;
+	rdfs:domain :EGovBusinessRegistrationEntity ;
+	rdfs:range :DimensionValue .
+	
+:hasPreferredLocation a rdf:Property ;
+	rdfs:domain :EGovBusinessRegistrationEntity ;
+	rdfs:range :DimensionValue .
+
+:hasPreferredCurrency a rdf:Property ;
+	rdfs:domain :EGovBusinessRegistrationEntity ;
+	rdfs:range :DimensionValue .
+	
+:AmexPayment a egov:CreditCardPayment .
+:VisaPayment a egov:CreditCardPayment .
+:MasterCardPayment a egov:CreditCardPayment .
+:VisaElectronPayment a egov:CreditCardPayment .
+:VisaDebitPayment a egov:CreditCardPayment .
+:DinersClubPayment a egov:CreditCardPayment .
+:OtherCCPayment a egov:CreditCardPayment .
+:BankPayment a egov:BankTranferPayment .
+:PayPalPayment a egov:PaypalPayment .
+:DefaultPayment a egov:Payment .
+
+:ReceptionMethod a rdfs:Class .
+:PaperFormReception a :ReceptionMethod .
+:PhoneFormReception a :ReceptionMethod .
+:WebFormReception a :ReceptionMethod .
+:EmailFormReception a :ReceptionMethod .
+
+:NotificationMethod a rdfs:Class .
+:SMSNotificationMethod a :NotificationMethod .
+:MailNotificationMethod a :NotificationMethod .
+:PhoneNotificationMethod a :NotificationMethod .
+:EmailNotificationMethod a :NotificationMethod .
+
+:ValidationProcedure a rdfs:Class .
+:FinancialBusinessValidationProcedure a :ValidationProcedure .
+:RealEstateBusinessValidationProcedure a :ValidationProcedure .
+:TransportationBusinessValidationProcedure a :ValidationProcedure .
+:ManufacturingBusinessValidationProcedure a :ValidationProcedure .
+:HealthCareBusinessValidationProcedure a :ValidationProcedure .
+:EducationBusinessValidationProcedure a :ValidationProcedure .
+:AccomodationBusinessValidationProcedure a :ValidationProcedure .
+:FoodBusinessValidationProcedure a :ValidationProcedure .
+:ConstructionBusinessValidationProcedure a :ValidationProcedure .
+:AgricultureBusinessValidationProcedure a :ValidationProcedure .
+:FishingBusinessValidationProcedure a :ValidationProcedure .
+:EntertainmentBusinessValidationProcedure a :ValidationProcedure .
+:InformationBusinessValidationProcedure a :ValidationProcedure .
+
+:Language a rdfs:Class .
+:SpanishLanguage a :Language .
+:EnglishLanguage a :Language .
+:GermanLanguage a :Language .
+
+:Location a rdfs:Class .
+:Spain a :Location .
+:France a :Location .
+
+:Currency a rdfs:Class .
+:Euro a :Currency . 
+:Pound a :Currency .
+:Dollar a :Currency .
+
+:CreditCardPaymentMethodDimension a :Dimension ;
+	:hasDimensionValue :AmexPayment , :VisaPayment , :DinersClubPayment , :MasterCardPayment , :OtherCCPayment ;
+	:hasAssociatedSlot :hasPreferredPaymentMethod .
+:DebitCardPaymentMethodDimension a :Dimension ;
+	:hasDimensionValue :VisaElectronPayment , :VisaDebitPayment , :OtherCCPayment ;
+	:hasAssociatedSlot :hasPreferredPaymentMethod .
+:BankPaymentMethodDimension a :Dimension ;
+	:hasDimensionValue :BankPayment ;
+	:hasAssociatedSlot :hasPreferredPaymentMethod .
+:DefaultPaymentMethodDimension a :Dimension ;
+	:hasDimensionValue :DefaultPayment ;
+	:hasAssociatedSlot :hasPreferredPaymentMethod .
+:PayPalPaymentMethodDimension a :Dimension ;
+	:hasDimensionValue :PayPalPayment ;
+	:hasAssociatedSlot :hasPrefferedPaymentMethod .
+
+:TraditionalFormReceptionDimension a :Dimension ;
+	:hasDimensionValue :PaperFormReception , :PhoneFormReception ;
+	:hasAssociatedSlot :hasSupportedReceptionMethod .
+:WebFormReceptionDimension a :Dimension ;
+	:hasDimensionValue :WebFormReception ;
+	:hasAssociatedSlot :hasSupportedReceptionMethod .
+:EmailFormReceptionDimension a :Dimension ;
+	:hasDimensionValue :EmailFormReception ;
+	:hasAssociatedSlot :hasSupportedReceptionMethod .
+
+:SMSNotificationMethodDimension a :Dimension ;
+	:hasDimensionValue :SMSNotificationMethod;
+	:hasAssociatedSlot :hasDeliveryMethod .
+:MailNotificationMethodDimension a :Dimension ;
+	:hasDimensionValue :MailNotificationMethod ;
+	:hasAssociatedSlot :hasDeliveryMethod . 
+:PhoneNotificationMethodDimension a :Dimension ;
+	:hasDimensionValue :PhoneNotificationMethod ;
+	:hasAssociatedSlot :hasDeliveryMethod .
+:EmailNotificationMethodDimension a :Dimension ;
+	:hasDimensionValue :EmailNotificationMethod ;
+	:hasAssociatedSlot :hasDeliveryMethod .
+	
+:FinancialBusinessValidationProcedureDimension a :Dimension;
+	:hasDimensionValue :FinancialBusinessValidationProcedure;
+	:hasAssociatedSlot :hasValidationProcedure .
+:RealEstateBusinessValidationProcedureDimension a :Dimension;
+	:hasDimensionValue :RealEstateBusinessValidationProcedure;
+	:hasAssociatedSlot :hasValidationProcedure .
+:TransportationBusinessValidationProcedureDimension a :Dimension;
+	:hasDimensionValue :TransportationBusinessValidationProcedure;
+	:hasAssociatedSlot :hasValidationProcedure .
+:ManufacturingBusinessValidationProcedureDimension a :Dimension;
+	:hasDimensionValue :ManufacturingBusinessValidationProcedure;
+	:hasAssociatedSlot :hasValidationProcedure .
+:HealthCareBusinessValidationProcedureDimension a :Dimension;
+	:hasDimensionValue :HealthCareBusinessValidationProcedure;
+	:hasAssociatedSlot :hasValidationProcedure .
+:EducationBusinessValidationProcedureDimension a :Dimension;
+	:hasDimensionValue :EducationBusinessValidationProcedure;
+	:hasAssociatedSlot :hasValidationProcedure .
+:AccomodationBusinessValidationProcedureDimension a :Dimension;
+	:hasDimensionValue :AccomodationBusinessValidationProcedure;
+	:hasAssociatedSlot :hasValidationProcedure .
+:FoodBusinessValidationProcedureDimension a :Dimension;
+	:hasDimensionValue :FoodBusinessValidationProcedure;
+	:hasAssociatedSlot :hasValidationProcedure .
+:ConstructionBusinessValidationProcedureDimension a :Dimension;
+	:hasDimensionValue :ConstructionBusinessValidationProcedure;
+	:hasAssociatedSlot :hasValidationProcedure .
+:AgricultureBusinessValidationProcedureDimension a :Dimension;
+	:hasDimensionValue :AgricultureBusinessValidationProcedure;
+	:hasAssociatedSlot :hasValidationProcedure .
+:FishingBusinessValidationProcedureDimension a :Dimension;
+	:hasDimensionValue :FishingBusinessValidationProcedure;
+	:hasAssociatedSlot :hasValidationProcedure .
+:EntertainmentBusinessValidationProcedureDimension a :Dimension;
+	:hasDimensionValue :EntertainmentBusinessValidationProcedure;
+	:hasAssociatedSlot :hasValidationProcedure .
+:InformationBusinessValidationProcedureDimension a :Dimension;
+	:hasDimensionValue :InformationBusinessValidationProcedure;
+	:hasAssociatedSlot :hasValidationProcedure .
+
+:SpanishLanguageDimension a :Dimension ;
+	:hasDimensionValue :SpanishLanguage ;
+	:hasAssociatedSlot :hasPreferredLanguage .
+:EnglishLanguageDimension a :Dimension ;
+	:hasDimensionValue :EnglishLanguage ;
+	:hasAssociatedSlot :hasPreferredLanguage .
+:GermanLanguageDimension a :Dimension ;
+	:hasDimensionValue :GermanLanguage ;
+	:hasAssociatedSlot :hasPreferredLanguage .
+	
+:SpainLocationDimension a :Dimension ;
+	:hasDimensionValue :Spain ;
+	:hasAssociatedSlot :hasPreferredLocation .
+:FranceLocationDimension a :Dimension ;
+	:hasDimensionValue :France ;
+	:hasAssociatedSlot :hasPreferredLocation .	
+
+:EuroCurrencyDimension a :Dimension ;
+	:hasDimensionValue :Euro ;
+	:hasAssociatedSlot :hasPreferredCurrency .	
+:DollarCurrencyDimension a :Dimension ;
+	:hasDimensionValue :Dollar ;
+	:hasAssociatedSlot :hasPreferredCurrency .	
+:PoundCurrencyDimension a :Dimension ;
+	:hasDimensionValue :Pound ;
+	:hasAssociatedSlot :hasPreferredCurrency .	
+

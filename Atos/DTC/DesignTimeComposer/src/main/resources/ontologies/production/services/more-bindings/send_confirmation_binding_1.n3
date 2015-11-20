@@ -1,0 +1,26 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix wsml: <http://www.wsmo.org/wsml/wsml-syntax#>.
+@prefix sawsdl: <http://www.w3.org/ns/sawsdl#>.
+@prefix wsl: <http://www.wsmo.org/ns/wsmo-lite#>.
+@prefix posm: <http://www.wsmo.org/ns/posm/0.2#>.
+@prefix egov: <http://www.soa4all.eu/contribution/atos#> .
+@prefix s4alpml: <http://www.soa4all.eu/lpml#> .
+@prefix egovfc: <http://www.soa4all.eu/ontology/eGovernment/fc#> .
+@prefix egovio: <http://www.soa4all.eu/ontology/eGovernment/iotypes#> .
+@prefix s4acont: <http://www.soa4all.eu/ontology/eGovernment/context#> .
+@prefix s4anfp: <http://www.soa4all.eu/ontology/eGovernment/nfp#> .
+
+egov:SendConfirmation_Service_1 a posm:Service;
+    posm:hasOperation egov:SendConfirmation_Service_1_Operation_1;
+    sawsdl:modelReference egovfc:FinalConfirmationNotification;
+    rdfs:isDefinedBy <http://www.soa4all.eu/services/egov/SendConfirmationService?wsdl> ;
+	s4acont:hasSensitivityTo s4acont:EmailNotificationMethodDimension ;
+	s4acont:hasSensitivityTo s4acont:BankPaymentMethodDimension ;
+	s4acont:hasSensitivityTo s4acont:DebitCardPaymentMethodDimension ;
+	s4acont:hasSensitivityTo s4acont:CreditCardPaymentMethodDimension .
+	
+egov:SendConfirmation_Service_1_Operation_1 a posm:Operation;
+	posm:hasInput [a posm:Message; sawsdl:modelReference egovio:Dossier; rdfs:label "dossier"; sawsdl:loweringSchemaMapping <http://lowering.schema/service1#lowering>];
+    posm:hasOutput [a posm:Message; sawsdl:modelReference egovio:Notification; rdfs:label "notification"; sawsdl:liftingSchemaMapping <http://lifting.schema/service1#lifting>].

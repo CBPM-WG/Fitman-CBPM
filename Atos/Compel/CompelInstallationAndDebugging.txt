@@ -1,0 +1,174 @@
+
+Compel
+------------------------------------------------------------------
+
+Current instructions based on a mavenised project
+
+Installation
+------------
+
+Requirements:
+Eclipse Helios J2EE 3.6
+GWT 2.1.1 (Se descargar� autom�ticamente al declarar el poryecto Maven)
+GWT Plugin for Eclipse 3.6
+Maven2 Plugin for Eclipse
+SVN Plugin for Eclipse
+Apache Tomcat 6.X
+
+To compile and install:
+from cmd: mvn clean install
+
+Configuration
+-------------
+Compel depends on an installation of Oryx, KB (Sesame), Ontology Repository and DTC WebService.
+Different Java classes requires to be configured:
+
+- eu.atosresearch.webn1.businesslogic.WebN1Service.java: configure access to KB
+- com.compel.client.CompelConstants.java: configure access to Oryx and Ontology repository
+- com.compel.server.OntologyServiceImpl.java: References to DTC web Service
+
+Debugging/Running (see new debugging procedure below)
+-----------------
+
+Requirements:
+Eclipse Web Developer Tools
+WST Server Adapters
+JST Server Adapters
+
+Create a Tomcat 6.X server configuration, following Eclipse manuals.
+	- Preferences/Server/Runtime Environments
+Create a Tomcat execution server in Servers View
+	- Open server configuration (double click on tomcat server in servers view)
+	- In modules tab, add following Web modules:
+	/oryx -> $ORYX_HOME/dist/client
+	/backend -> $ORYX_HOME/dist/backend
+	/compel -> $COMPEL_HOME/war
+	
+replace $ORYX_HOME by Oryx project path within the workspace, replace $COMPEL_HOME by Compel project path within the workspace
+
+Run tomcat server in debug mode from servers view.
+
+From cmd:
+mvn gwt:debug (for debugging)
+mvn gwt:run (for running)
+
+From Eclipse:
+- Create a debug configurations:
+1- Name: Compel debug start
+   Type: Maven build
+   Goal: gwt:debug
+2- Name: Compel debug connect
+   Type: Remote Java Application
+   Port: 8008
+   
+   Start Compel debug start debug configuration
+   Upon completion, start Compel debug connect
+
+NOTE: 
+It is required to debug Compel in Firefox. If you need a GXT DevMode plugin for Firefox,
+download it from 
+http://notepad2.blogspot.com.au/2012/10/gwt-developers-plugin-for-firefox-16.html
+
+NOTE:
+Compel pom.xml is configured to debug running in own server or launched by gwt:debug,
+by changing value <noServer>false</noServer>. If set to false, Compel is launched in internal jetty. 
+If set to true, you should launched in an external server (i.e. in the Tomcat configuration described above)
+
+IMPORTANT NOTE: Compel and Oryx must be located in the same server (http://<host>:<port>) otherwise, the connection
+between both will not work. This means that during debugging, compel and oryx must be hosted by the same
+server, whereby <noServer>false</noServer> will not work.
+
+NOTE: Launch Tomcat with increased pergem memory, for instance setting the following JAVA_OPTS:
+JAVA_OPTS="-Xms256m -Xmx1024m -XX:PermSize=256m -XX:MaxPermSize=512m -XX:+CMSClassUnloadingEnabled -XX:+UseConcMarkSweepGC"
+Existing script $TOMCAT_HOME/bin/setJavaOpts.sh does not work, execute the import manually. FIX this script
+
+NOTE: Compel+Oryx not working properly if Tomcat is launched within Eclipse. Check to run it using local installation, not using metadata.
+It works. Configure Tomcat environment in Eclipse to use local installation and add above JAVA OPTS to the tomcat launch configuration VM arguments
+
+NOTE: Testing following debugging environment:
+- Tomcat configured in Eclipse to launch existing tomcat installation, as described in previous note. In local toncat installation all modules are deployed.
+- Compel configured to not launch Jetty server: <noServer>true</noServer>
+WORKS
+
+NOTE: If you experience RPC serialization problems such as those described in:
+http://stackoverflow.com/questions/2122798/gwt-occasional-com-google-gwt-user-client-rpc-serializationexception
+delete $TOMCAT_HOME/webapps/compel-1.0/ directory and deploy a new compel war
+
+
+NEW DEBUGGING PROCEDURE
+---------------------------------------------------------------------------------------------------------------
+1- Create a Tomcat 6.X server configuration, following Eclipse manuals.
+	- Preferences/Server/Runtime Envireronments
+2 - Create a Tomcat execution server in Servers View
+	- Open server configuration (double click on tomcat server in servers view)
+	- In server locations section, select Use Tomcat installation
+	- In deploy path browse to $TOMCAT_DIR/webapps
+	- Open launch configuration. In Arguments tab, VM Arguments add the following JAVA options
+	-Xms256m -Xmx1024m -XX:PermSize=256m -XX:MaxPermSize=512m -XX:+CMSClassUnloadingEnabled -XX:+UseConcMarkSweepGC
+	
+3- Copy yourBPM required modules in $TOMCAT_DIR/webapps
+4- - Create a debug configurations:
+	1- Name: Compel debug start
+   	Type: Maven build
+   	Goal: gwt:debug
+	2- Name: Compel debug connect
+   	Type: Remote Java Application
+   	Port: 8008
+   	
+5- In servers view select create Tomcat execution server and launch it as debug using the icon in top right button bar
+6- Launch Compel debug start debug configuration
+7- Launch Compel debug connect debug configuration
+---------------------------------------------------------------------------------------------------------------
+
+
+
+
+Instructions to set up the complete development/debugging environment:
+----------------------------------------------------------------------
+
+- Setup/Configure Oryx as described in oryx-installation-readme.txt
+	-Ensure Postgresql is up and running.
+	-oryx/server/src/org.oryxeditor.server.Bpmn2_0Servlet.java: References to BPMNManager WebService
+
+- KBWebN1Client configuration
+	-Configure KB endpoint at: KBWebN1Client/src/main/java/sesame.properties
+	-Compile and install KBWebN1Client from KBWebN1Client: mvn clean install
+	-Cofigure new kb endpoint, compile and install WEBN1Service.aar
+	 
+- KBService configuration
+	- Change service endpoint at  /src/main/java/eu/atosresearch/webn1/businesslogic/WebN1Service
+	- If KB details has changed --> Regenerate the WEBN1Service.aar with the new parameters
+	-Configure DTC endpoint at Compel/src/main/java/com/compel/server/OntologyServiceImpl.java (259):
+		endpoint = "http://212.170.156.196:8080/DesignTimeComposer/services/DTComposer?wsdl";
+	-Compile Compel as described in this document.
+		
+- Deploy DTC war in $TOMCAT_HOME/webapps (for instance, in same Tomcat where Oryx was deployed).
+	-Compile and install DTC from DTC/DesignTimeComposer_v2: mvn clean install
+	-Compile and install WEBN1Service
+	-Deploy DTC war and Webn1Service.aar
+	-Alternatively, setup a new context in Tomcat server (as described above for Oryx and Compel) for DTC at:
+	DesignTimeComposer -> /path..to..workspace/DTC/DesignTimeComposer_v2/target/DesignTimeComposer
+	-Run Tomcat, if not done before for hosting Oryx.
+	
+	
+	
+Instructions to deploy new SWS descriptions into the KB
+---------------------------------------------------------------------
+
+- Current descriptions under Compel/src/main/resources/ServiceDescriptions
+- Define KB endpoint at /src/main/resources/sesame.properties
+- To post a new service, use method ah.loadTurtleFile("path..to../ServiceDescriptions/HotelService.posm") in
+  KBWebN1Client/src/main/java/Main.java
+
+
+
+
+
+
+
+
+
+
+
+
+

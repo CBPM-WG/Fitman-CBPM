@@ -1,0 +1,71 @@
+10
+
+dir
+151
+http://it-forge.atosresearch.eu/svn/seiplab/trunk/yourBPM/Compel/bin/main/java
+http://it-forge.atosresearch.eu/svn/seiplab
+
+
+
+2012-11-06T17:03:11.427820Z
+57
+yosu
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+bce00720-73f5-41e3-b9c8-2b46b42a2a5f
+
+META-INF
+dir
+
+com
+dir
+
+eu
+dir
+
+log4j.properties
+file
+
+
+
+
+2013-02-20T08:50:42.404000Z
+156e8f5b02d6bdfb542af236a374757f
+2012-11-06T17:03:11.427820Z
+57
+yosu
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+692
+

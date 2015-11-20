@@ -1,0 +1,80 @@
+wsmlVariant _"http://www.wsmo.org/wsml/wsml-syntax/wsml-core"
+
+namespace {_"urn:un:eu:soa4all:templates:definitions#",
+	dc	_"http://purl.org/dc/elements/1.1#",
+	wsml	_"http://www.wsmo.org/wsml/wsml-syntax#",
+	sapdmdli	_"urn:un:eu:soa4all:transform:interoperation:standard:www.sap.com:domainconceptualmodelinstance#",
+	sapesfcr	_"urn:un:eu:soa4all:transform:interoperation:standard:www.sap.com:enterpriseservicefunctionalclassificationroot#",
+	sapbondti	_"urn:un:eu:soa4all:transform:interoperation:standard:www.sap.com:businessobjectnodedatatypeinstance#",
+	rdf	_"http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+	st	_"http://www.wsmo.org/ns/service-template/0.1#",
+	sapboni	_"urn:un:eu:soa4all:transform:interoperation:standard:www.sap.com:businessobjectnodeinstance#",
+	sapesi	_"urn:un:eu:soa4all:transform:interoperation:standard:www.sap.com:enterpriseserviceinstance#",
+	sapbpmdli	_"urn:un:eu:soa4all:transform:interoperation:standard:www.sap.com:businessprocessmodelinstance#",
+	refwsmoliteonto	_"urn:un:eu:soa4all:transform:interoperation:standard:www.sap.com:sap_esi_layer_es_customer_erp_bank_details_update_request_confirmation_wsmo_lite#",
+	daml	_"http://www.daml.org/2000/10/daml-ont#",
+	sapesintfi	_"urn:un:eu:soa4all:transform:interoperation:standard:www.sap.com:enterpriseserviceinterfaceinstance#",
+	sapesmsg	_"urn:un:eu:soa4all:transform:interoperation:standard:www.sap.com:enterpriseservicemessage#",
+	msm	_"http://www.wsmo.org/ns/wsmo-lite#",
+	sapdmdl	_"urn:un:eu:soa4all:transform:interoperation:standard:www.sap.com:domainconceptualmodel#",
+	sap	_"http://www.sap.com/webas/630/wsdl/features#",
+	sapbdcp	_"urn:un:eu:soa4all:transform:interoperation:standard:www.sap.com:businessdomainconcept#",
+	sapesnfpmdli	_"urn:un:eu:soa4all:transform:interoperation:standard:www.sap.com:enterpriseservicenonfunctionalparametermodelinstance#",
+	tns	_"urn:un:eu:soa4all:transform:interoperation:standard:www.sap.com:msm_sap_esi_layer_es_customer_erp_bank_details_update_request_confirmation#",
+	http	_"http://schemas.xmlsoap.org/wsdl/http/#",
+	ccts	_"urn:un:eu:unece:uncefact:documentation:standard:CoreComponentsTechnicalSpecification:3.0#",
+	sapes	_"urn:un:eu:soa4all:transform:interoperation:standard:www.sap.com:enterpriseservice#",
+	owl	_"http://www.w3.org/2002/07/owl#",
+	soap	_"http://schemas.xmlsoap.org/wsdl/soap/#",
+	sapesintf	_"urn:un:eu:soa4all:transform:interoperation:standard:www.sap.com:enterpriseserviceinterface#",
+	hr	_"http://www.wsmo.org/ns/hrests#",
+	n1	_"http://www.sap.com/webas/630/soap/features/authentication/#",
+	n0	_"http://sap.com/xi/SAPGlobal20/Global#",
+	saptns	_"http://sap.com/xi/APPL/SE/Global#",
+	sapgdt	_"urn:un:eu:soa4all:transform:interoperation:standard:www.sap.com:globaldatatypes#",
+	sapbdcpi	_"urn:un:eu:soa4all:transform:interoperation:standard:www.sap.com:businessdomainconceptinstance#",
+	xform	_"http://www.w3.org/2002/xforms#",
+	sapesmsgi	_"urn:un:eu:soa4all:transform:interoperation:standard:www.sap.com:enterpriseservicemessageinstance#",
+	sapesnfpmdl	_"urn:un:eu:soa4all:transform:interoperation:standard:www.sap.com:enterpriseservicenonfunctionalparametermodel#",
+	sapesmsgdt	_"urn:un:eu:soa4all:transform:interoperation:standard:www.sap.com:enterpriseservicemessagedatatype#",
+	sapesopi	_"urn:un:eu:soa4all:transform:interoperation:standard:www.sap.com:enterpriseserviceoperationinstance#",
+	sapesnfpi	_"urn:un:eu:soa4all:transform:interoperation:standard:www.sap.com:enterpriseservicenonfunctionalparameterinstance#",
+	w3ctype	_"http://www.w3.org/2001/XMLSchema-datatypes#",
+	sapbomdl	_"urn:un:eu:soa4all:transform:interoperation:standard:www.sap.com:businessobjectmodel#",
+	rdfs	_"http://www.w3.org/2000/01/rdf-schema#",
+	owl2xml	_"http://www.w3.org/2006/12/owl2-xml#",
+	sapesfcri	_"urn:un:eu:soa4all:transform:interoperation:standard:www.sap.com:enterpriseservicefunctionalclassificationrootinstance#",
+	sapesop	_"urn:un:eu:soa4all:transform:interoperation:standard:www.sap.com:enterpriseserviceoperation#",
+	sapbpmdl	_"urn:un:eu:soa4all:transform:interoperation:standard:www.sap.com:businessprocessmodel#",
+	sapesnfp	_"urn:un:eu:soa4all:transform:interoperation:standard:www.sap.com:enterpriseservicenonfunctionalparameter#",
+	sapbpi	_"urn:un:eu:soa4all:transform:interoperation:standard:www.sap.com:businessprocessinstance#",
+	sapbondt	_"urn:un:eu:soa4all:transform:interoperation:standard:www.sap.com:businessobjectnodedatatype#",
+	sapbo	_"urn:un:eu:soa4all:transform:interoperation:standard:www.sap.com:businessobject#",
+	sapesmsgdti	_"urn:un:eu:soa4all:transform:interoperation:standard:www.sap.com:enterpriseservicemessagedatatypeinstance#",
+	sawsdl	_"http://www.w3.org/ns/sawsdl#",
+	sapbomdli	_"urn:un:eu:soa4all:transform:interoperation:standard:www.sap.com:businessobjectmodelinstance#",
+	sapesfcmdli	_"urn:un:eu:soa4all:transform:interoperation:standard:www.sap.com:enterpriseservicefunctionalclassificationmodelinstance#",
+	sapesfci	_"urn:un:eu:soa4all:transform:interoperation:standard:www.sap.com:enterpriseservicefunctionalclassificationinstance#",
+	sapcdt	_"urn:un:eu:soa4all:transform:interoperation:standard:www.sap.com:coredatatypes#",
+	xsd	_"http://www.w3.org/2001/XMLSchema#",
+	sapesfc	_"urn:un:eu:soa4all:transform:interoperation:standard:www.sap.com:enterpriseservicefunctionalclassification#",
+	sapesfcmdl	_"urn:un:eu:soa4all:transform:interoperation:standard:www.sap.com:enterpriseservicefunctionalclassificationmodel#",
+	sapboi	_"urn:un:eu:soa4all:transform:interoperation:standard:www.sap.com:businessobjectinstance#",
+	sapbp	_"urn:un:eu:soa4all:transform:interoperation:standard:www.sap.com:businessprocess#",
+	
+	s4a _"http://www.soa4all.eu/contribution/atos#",
+	s4alpml _"http://www.soa4all.eu/lpml#",
+	egfc _"http://www.soa4all.eu/ontology/eGovernment/fc#",
+	egio _"http://www.soa4all.eu/ontology/eGovernment/iotypes#"
+	
+	
+}
+
+
+ontology sap_es_sales_order_create_request_confirmation_Definition
+       
+	   importsOntology _"http://www.soa4all.eu/ontology/eGovernment/context#WP7Scenario"
+       
+       instance s4a#createSalesOrderService memberOf msm#Service
+
+			  rdfs#isDefinedBy hasValue _"http://www.soa4all.eu/services/SalesOrderCreateService?wsdl"

@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+
+	<bean name="composerConfiguration"
+		class="eu.soa4all.wp6.composer.configuration.ComposerConfiguration">
+
+		<!-- <property name="INSTALLATION_DIR" value="/home/soa4all/soa4all/wp6/Advance-Prototype/" /> --><!-- Path for Anthe server -->
+		<!--<property name="INSTALLATION_DIR" value="/home/yosu/projects/soa4all/wp6/workspace/DTComposerAdvancePrototype/" />--> <!-- Local path -->
+		<property name="INPUT_MODELS_DIR" value="models/input/" />		
+		<property name="TEMPLATES_DIR" value="models/templates/" />
+		
+		<property name="OUTPUT_MODELS_DIR" value="dtcomposer_instance/output/" />
+		<property name="TEMP_DIR" value="dtcomposer_instance/tmp/" />
+		
+		<property name="GOALS_DIR" value="ontologies/goals/" />		
+		<property name="SERVICES_DIR" value="ontologies/services/" />
+		<property name="ONTOLOGIES_DIR" value="ontologies/production/" />		
+	
+		<property name="SPACES_LOCALONTO_DIR" value="ontologies/production-spaces/" />		
+		<property name="SPACES_URL" value="http://spaces.com/" />		
+		<property name="SPACE_ID" value="http://soa4all.eu/spaces/dtc" />		
+	
+		<!-- Possible values: 
+			disabled (don't use semantic spaces), 
+			remote (use remote semantic spaces as pointed by URL), 
+			local (use local SS only. Loads only SPACES_LOCALONTO_DIR knowledge. for debugging purposes) 
+			mixed (use local SS + local knowledge (SPACES_LOCALONTO_DIR + ONTOLOGIES_DIR), for debugging purposes)
+		-->
+		<property name="spaces_mode" value="disabled" />
+	
+		<property name="debug" value="false" />
+		<property name="service" value="true" />
+		<property name="thread" value="false" />
+		
+		<property name="DSLR_DMA" value="rules/KnowledgeBaseLanguage.dsl" />
+		<property name="DSLR_DAA" value="rules/AnalysisAgentLanguage.dsl" />	
+	
+		<!-- Possible values: filesystem (template read locally), storage (template read for storage) -->
+		<property name="template_storage_method" value="filesystem" />
+		<property name="storage_url" value="http://coconut.tie.nl:8080/storage" /> <!-- storage url -->
+		<property name="template_repository" value="composer-templates" /> <!-- storage url -->
+		
+	</bean>
+
+	<!-- External platform services -->
+	<bean id="reasonerConfiguration" class="eu.soa4all.construction.reasoner.client.ReasonerClientConfiguration">
+		<property name="endpoint">
+			<bean class="java.lang.String">
+				<constructor-arg value="http://localhost:8765/soa4all/reasoner?wsdl" />
+			</bean>
+		</property>
+		<property name="namespaceURI">
+			<bean class="java.lang.String">
+				<constructor-arg value="http://service.repositoryreasoner.soa4all.eu/" />
+			</bean>
+		</property>
+		<property name="localpart">
+			<bean class="java.lang.String">
+				<constructor-arg value="ReasonerServiceService" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="reasoner" class="eu.soa4all.construction.reasoner.client.ReasonerAPIWSMLImpl">
+		<constructor-arg><ref bean="reasonerConfiguration"/></constructor-arg>
+		<constructor-arg><ref bean="composerConfiguration"/></constructor-arg>
+		<constructor-arg value="true"/><!-- Use embedded reasoner -->
+		<constructor-arg><ref bean="cache"/></constructor-arg>
+	</bean>
+	
+	<bean id="sdEndpoint" class="java.lang.String">
+		<constructor-arg value="http://km.aifb.kit.edu/services/soa4all-discovery/axis2/services/ServiceDiscovery?wsdl"/>
+	</bean>
+	
+	<bean id="SLOEndpoint" class="java.lang.String">
+		<constructor-arg value="http://localhost:8080/SemanticLinkOperator/services/SemanticLinkOperator"/>
+	</bean>
+	
+	<bean id="cache" class="eu.soa4all.wp6.common.utils.cache.QueryCache">
+		<constructor-arg value="true"/><!-- Activate cache -->
+	</bean>
+	
+	<!-- DTC Beans -->
+	<bean id="blackBoard" class="eu.soa4all.wp6.composer.blackboard.BlackBoardImpl">
+		<property name="identifier">
+			<bean class="java.net.URI">
+				<constructor-arg value="http://www.soa4all.eu/dtcomposer/BlackBoard" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean name="blackBoardControlAgent" class="eu.soa4all.wp6.composer.agents.BlackBoardControlAgent">
+		<property name="identifier">
+			<bean class="java.net.URI">
+				<constructor-arg
+					value="http://www.soa4all.eu/dtcomposer/BlackBoardController" />
+			</bean>
+		</property>
+		<property name="blackBoard" ref="blackBoard" />
+		<property name="maxNumberSolutions" value="10" />
+	</bean>
+
+	<!-- DTC Agents -->
+	<bean name="designAnalysisAgent" class="eu.soa4all.wp6.composer.agents.DesignAnalysisAgent">
+		<constructor-arg value="/rules/DesignAnalysisAgentKB.dslr" />
+		<constructor-arg value="/rules/AnalysisAgentLanguage.dsl" />
+	 	<constructor-arg><ref bean="reasoner"/></constructor-arg>
+		<property name="identifier">
+			<bean class="java.net.URI">
+				<constructor-arg value="http://www.soa4all.eu/dtcomposer/designAnalysisAgent" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean name="DesignModificationWSMLAgent"
+		class="eu.soa4all.wp6.composer.agents.DesignModificationWSMLAgent">
+		<constructor-arg><ref bean="reasoner"/></constructor-arg>
+
+		<property name="identifier">
+			<bean class="java.net.URI">
+				<constructor-arg
+					value="http://www.soa4all.eu/dtcomposer/DesignModificationWSMLAgent/" />
+			</bean>
+
+		</property>
+	</bean>
+
+	<bean name="designModificationSDAgent" class="eu.soa4all.wp6.composer.agents.DesignModificationSDAgent">
+		<constructor-arg><ref bean="sdEndpoint"/></constructor-arg>
+		<constructor-arg><ref bean="cache"/></constructor-arg>
+		<property name="identifier">
+			<bean class="java.net.URI">
+				<constructor-arg value="http://www.soa4all.eu/dtcomposer/designModificationSDAgent/" />
+			</bean>
+		</property>
+	</bean>
+
+
+	<!-- DTC Specialized Agents WP7 Knowledge -->
+<!--
+	<bean name="RecordManagementDMA"
+		class="eu.soa4all.wp6.composer.agents.DesignModificationRuleAgent">
+		<constructor-arg value="/rules/wp7/RecordManagementKB.dslr" />
+		<constructor-arg value="/rules/KnowledgeBaseLanguage.dsl" />
+		<constructor-arg><ref bean="reasoner"/></constructor-arg>
+		<property name="identifier">
+			<bean class="java.net.URI">
+				<constructor-arg
+					value="http://www.soa4all.eu/dtcomposer/RecordManagementDMA/" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean name="CheckingDMA"
+		class="eu.soa4all.wp6.composer.agents.DesignModificationRuleAgent">
+		<constructor-arg value="/rules/wp7/CheckingKB.dslr" />
+		<constructor-arg value="/rules/KnowledgeBaseLanguage.dsl" />
+		<constructor-arg><ref bean="reasoner"/></constructor-arg>
+		<property name="identifier">
+			<bean class="java.net.URI">
+				<constructor-arg
+					value="http://www.soa4all.eu/dtcomposer/CheckingDMA/" />
+			</bean>
+
+		</property>
+	</bean>
+
+	<bean name="RegistrationDMA"
+		class="eu.soa4all.wp6.composer.agents.DesignModificationRuleAgent">
+		<constructor-arg value="/rules/wp7/RegistrationKB.dslr" />
+		<constructor-arg value="/rules/KnowledgeBaseLanguage.dsl" />
+		<constructor-arg><ref bean="reasoner"/></constructor-arg>
+		<property name="identifier">
+			<bean class="java.net.URI">
+				<constructor-arg
+					value="http://www.soa4all.eu/dtcomposer/RegistrationDMA/" />
+			</bean>
+
+		</property>
+	</bean>
+
+	-->
+<!-- DTC Specialized Agents WP9 Knowledge -->
+<!--
+	<bean name="ProcurementDMA"
+		class="eu.soa4all.wp6.composer.agents.DesignModificationRuleAgent">
+		<constructor-arg value="/rules/wp9/ProcurementKB.dslr" />
+		<constructor-arg value="/rules/KnowledgeBaseLanguage.dsl" />
+		<constructor-arg><ref bean="reasoner"/></constructor-arg>
+		<property name="identifier">
+			<bean class="java.net.URI">
+				<constructor-arg
+					value="http://www.soa4all.eu/dtcomposer/ProcurementDMA/" />
+			</bean>
+		</property>
+	</bean>
+
+
+	
+	<bean name="WebShopDMA"
+		class="eu.soa4all.wp6.composer.agents.DesignModificationRuleAgent">
+		<constructor-arg value="/rules/wp9/WebShopKB.dslr" />
+		<constructor-arg value="/rules/KnowledgeBaseLanguage.dsl" />
+		<constructor-arg><ref bean="reasoner"/></constructor-arg>
+		<property name="identifier">
+			<bean class="java.net.URI">
+				<constructor-arg
+					value="http://www.soa4all.eu/dtcomposer/WebShopDMA/" />
+			</bean>
+		</property>
+	</bean>
+-->
+
+
+	
+    <bean name="SemanticLinkOperatorAgent"
+		class="eu.soa4all.wp6.composer.agents.SemanticLinkOperatorAgent">
+		<constructor-arg index="0">
+		  <list>
+		  	<value>/ontologies/production/wp7-io.wsml</value>
+		  	<value>/ontologies/production-wp7-final-demo/wp7-sap-m33-eval-ontology.rdfs.wsml</value>
+		  </list>
+		</constructor-arg>
+		<constructor-arg><ref bean="SLOEndpoint"/></constructor-arg>
+		
+		<property name="identifier">
+			<bean class="java.net.URI">
+				<constructor-arg
+					value="http://www.soa4all.eu/wp6/composer/tests#SemanticLinkOperatorAgent" />
+			</bean>
+
+		</property>
+	</bean>	
+	
+	<bean id="contextApplicationContextProvider"
+		class="eu.soa4all.wp6.composer.utils.ApplicationContextProvider"></bean>
+
+</beans>
+

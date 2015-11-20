@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/seiplab/!svn/ver/110/trunk/yourBPM/Compel/src/main/webapp/WEB-INF
+END
+logging.properties
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/seiplab/!svn/ver/57/trunk/yourBPM/Compel/src/main/webapp/WEB-INF/logging.properties
+END
+appengine-web.xml
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/seiplab/!svn/ver/57/trunk/yourBPM/Compel/src/main/webapp/WEB-INF/appengine-web.xml
+END
+web.xml
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/seiplab/!svn/ver/110/trunk/yourBPM/Compel/src/main/webapp/WEB-INF/web.xml
+END

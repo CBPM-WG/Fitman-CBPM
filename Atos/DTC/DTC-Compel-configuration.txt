@@ -1,0 +1,16 @@
+Configuration
+-------------
+
+DTC depends on KBWebN1Client module, which access KB (Sesame).
+- Configure KBWebN1Client module reference to KB Sesame in:
+KBWebN1Client/src/main/java/eu/atosresearch/webn1/sesame/sesame.properties
+- Install KBWebN1Client module
+mvn -o clean install
+- Install DTC module
+mvn -o -Dmaven.test.skip=true clean install
+
+
+Tests
+--------------
+DTC tests are located in folder:
+DesignTimeComposer_v2/src/test/java/eu/soa4all/wp6/composer/test/webn1

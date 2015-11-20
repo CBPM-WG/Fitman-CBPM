@@ -1,0 +1,46 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans    
+                           http://www.springframework.org/schema/beans/spring-beans.xsd 
+                           http://www.springframework.org/schema/context  
+                           http://www.springframework.org/schema/context/spring-context-3.0.xsd
+                           http://cxf.apache.org/jaxws
+                           http://cxf.apache.org/schemas/jaxws.xsd
+                           http://www.springframework.org/schema/tx       
+                           http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+                           
+  <import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+
+
+  
+  <jaxws:endpoint 
+    id="addressWebService" 
+    implementor="#addressService" 
+    address="/address" />
+    
+  <bean id="addressService" class="eu.atosresearch.seiplab.demo.AddressService">
+  </bean>
+
+  <jaxws:endpoint 
+    id="stockWebService" 
+    implementor="#stockService" 
+    address="/stock" />
+    
+  <bean id="stockService" class="eu.atosresearch.seiplab.demo.StockService">
+  </bean>
+  
+  
+    <jaxws:endpoint 
+    id="manufacturingWebService" 
+    implementor="#manufacturingService" 
+    address="/manufacturing" />
+    
+  <bean id="manufacturingService" class="eu.atosresearch.seiplab.demo.ManufacturingService">
+  </bean>
+
+</beans>

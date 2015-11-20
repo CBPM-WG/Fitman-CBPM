@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.example.org/FirstHotel/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FirstHotel" targetNamespace="http://www.example.org/FirstHotel/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.example.org/FirstHotel/">
+      <xsd:element name="MakeReservation">
+        <xsd:complexType>
+          <xsd:sequence>
+          	<xsd:element name="ClientId" type="xsd:string" />
+          	<xsd:element name="HotelName" type="xsd:string"></xsd:element>
+          	<xsd:element name="HotelCity" type="xsd:string"></xsd:element>
+          	<xsd:element name="Days" type="xsd:int"></xsd:element>
+          	<xsd:element name="GuestNumber" type="xsd:int"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="MakeReservationResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="out" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="NewOperation1">
+      	<xsd:complexType>
+      		<xsd:sequence>
+      			<xsd:element name="in" type="xsd:string"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="NewOperation1Response">
+      	<xsd:complexType>
+      		<xsd:sequence>
+      			<xsd:element name="out" type="xsd:string"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="MakeReservationRequest">
+    <wsdl:part element="tns:MakeReservation" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="MakeReservationResponse">
+    <wsdl:part element="tns:MakeReservationResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="NewOperation1Request">
+  	<wsdl:part name="parameters" element="tns:NewOperation1"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="NewOperation1Response">
+  	<wsdl:part name="parameters" element="tns:NewOperation1Response"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="FirstHotel">
+    <wsdl:operation name="MakeReservation">
+      <wsdl:input message="tns:MakeReservationRequest"/>
+      <wsdl:output message="tns:MakeReservationResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="FirstHotelSOAP" type="tns:FirstHotel">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="MakeReservation">
+      <soap:operation soapAction="http://www.example.org/FirstHotel/MakeReservation"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="FirstHotel">
+    <wsdl:port binding="tns:FirstHotelSOAP" name="FirstHotelSOAP">
+      <soap:address location="http://www.example.org/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

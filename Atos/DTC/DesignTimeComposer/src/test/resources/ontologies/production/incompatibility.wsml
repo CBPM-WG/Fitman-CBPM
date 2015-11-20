@@ -1,0 +1,80 @@
+wsmlVariant _"http://www.wsmo.org/wsml/wsml-syntax/wsml-flight"
+
+namespace {
+	_"http://www.soa4all.eu/ontology/eGovernment/axioms#",
+	sapesnfpi _"urn:un:eu:soa4all:transform:interoperation:standard:www.sap.com:enterpriseservicenonfunctionalparameter#",
+	atosnfp _"http://www.soa4all.eu/ontology/eGovernment/nfp#"
+}
+
+ontology example4
+
+concept Root
+ 
+concept SuperConcept subConceptOf Root 
+	//hasIncompatibility impliesType { SuperConcept }
+
+instance A5 memberOf SuperConcept
+
+relation incompatibility/2
+
+axiom relationaxiom definedBy
+	!- incompatibility(?y, ?z) and ?x memberOf ?y and ?x memberOf ?z
+.
+
+axiom relationsymmetricaxiom definedBy
+	incompatibility(?x, ?y) equivalent incompatibility(?y, ?x) 
+.
+
+//query
+// _""
+
+
+relationInstance incompatibility(atosnfp#NFserviceUsageFree, atosnfp#NFserviceUsageLow)
+relationInstance incompatibility(atosnfp#NFserviceUsageFree, atosnfp#NFserviceUsageMedium)
+relationInstance incompatibility(atosnfp#NFserviceUsageFree, atosnfp#NFserviceUsageHigh)
+relationInstance incompatibility(atosnfp#NFserviceUsageFree, atosnfp#NFserviceUsagePremium)
+relationInstance incompatibility(atosnfp#NFserviceUsageLow, atosnfp#NFserviceUsageMedium)
+relationInstance incompatibility(atosnfp#NFserviceUsageLow, atosnfp#NFserviceUsageHigh)
+relationInstance incompatibility(atosnfp#NFserviceUsageLow, atosnfp#NFserviceUsagePremium)
+relationInstance incompatibility(atosnfp#NFserviceUsageMedium, atosnfp#NFserviceUsageHigh)
+relationInstance incompatibility(atosnfp#NFserviceUsageMedium, atosnfp#NFserviceUsagePremium)
+relationInstance incompatibility(atosnfp#NFserviceUsageHigh, atosnfp#NFserviceUsagePremium)
+
+relationInstance incompatibility(atosnfp#NFPprocessingLatencyLow, atosnfp#NFPprocessingLatencyMedium)
+relationInstance incompatibility(atosnfp#NFPprocessingLatencyLow, atosnfp#NFPprocessingLatencyHigh)
+relationInstance incompatibility(atosnfp#NFPprocessingLatencyMedium, atosnfp#NFPprocessingLatencyHigh)
+
+relationInstance incompatibility(atosnfp#NFPProcessingDowntimeMinimal, atosnfp#NFPProcessingDowntimeAcceptable)
+relationInstance incompatibility(atosnfp#NFPProcessingDowntimeMinimal, atosnfp#NFPProcessingDowntimeAcceptable)
+relationInstance incompatibility(atosnfp#NFPProcessingDowntimeAcceptable, atosnfp#NFPProcessingDowntimeHigh)
+
+relationInstance incompatibility(atosnfp#NFserviceLicenseModeFreeUsage, atosnfp#NFserviceLicenseModePayPerUsage)
+relationInstance incompatibility(atosnfp#NFserviceLicenseModeFreeUsage, atosnfp#NFserviceLicenseModeSubscriptionBasedUsage)
+relationInstance incompatibility(atosnfp#NFserviceLicenseModeFreeUsage, atosnfp#NFserviceBundlePurchaseBasedUsage)
+relationInstance incompatibility(atosnfp#NFserviceLicenseModePayPerUsage, atosnfp#NFserviceLicenseModeSubscriptionBasedUsage)
+relationInstance incompatibility(atosnfp#NFserviceLicenseModePayPerUsage, atosnfp#NFserviceBundlePurchaseBasedUsage)
+relationInstance incompatibility(atosnfp#NFserviceLicenseModeSubscriptionBasedUsage, atosnfp#NFserviceBundlePurchaseBasedUsage)
+
+relationInstance incompatibility(atosnfp#SecurityLevelLow, atosnfp#SecurityLevelMedium)
+relationInstance incompatibility(atosnfp#SecurityLevelLow, atosnfp#SecurityLevelHigh)
+relationInstance incompatibility(atosnfp#SecurityLevelMedium, atosnfp#SecurityLevelHigh)
+
+relationInstance incompatibility(atosnfp#FreeCost, atosnfp#NonFreeCost)
+
+relationInstance incompatibility(atosnfp#LowAvailability, atosnfp#MediumAvailability)
+relationInstance incompatibility(atosnfp#LowAvailability, atosnfp#HighAvailability)
+relationInstance incompatibility(atosnfp#LowAvailability, atosnfp#VeryHighAvailability)
+relationInstance incompatibility(atosnfp#MediumAvailability, atosnfp#HighAvailability)
+relationInstance incompatibility(atosnfp#MediumAvailability, atosnfp#VeryHighAvailability)
+relationInstance incompatibility(atosnfp#HighAvailability, atosnfp#VeryHighAvailability)
+
+relationInstance incompatibility(atosnfp#LowReliability, atosnfp#MediumReliability)
+relationInstance incompatibility(atosnfp#LowReliability, atosnfp#HighReliability)
+relationInstance incompatibility(atosnfp#LowReliability, atosnfp#VeryHighReliability)
+relationInstance incompatibility(atosnfp#MediumReliability, atosnfp#HighReliability)
+relationInstance incompatibility(atosnfp#MediumReliability, atosnfp#VeryHighReliability)
+relationInstance incompatibility(atosnfp#HighReliability, atosnfp#VeryHighAvailability)
+
+relationInstance incompatibility(atosnfp#LowPerformance, atosnfp#MediumPerformance)
+relationInstance incompatibility(atosnfp#LowPerformance, atosnfp#HighPerformance)
+relationInstance incompatibility(atosnfp#MediumPerformance, atosnfp#HighPerformance)

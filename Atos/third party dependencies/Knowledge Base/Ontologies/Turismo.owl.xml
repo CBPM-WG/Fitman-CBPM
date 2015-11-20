@@ -1,0 +1,1744 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY swrl "http://www.w3.org/2003/11/swrl#" >
+    <!ENTITY swrlb "http://www.w3.org/2003/11/swrlb#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY wsmo-lite "http://www.wsmo.org/ns/wsmo-lite#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY j.0 "http://www.owl-ontologies.com/turismo.owl#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY protege "http://protege.stanford.edu/plugins/owl/protege#" >
+    <!ENTITY xsp "http://www.owl-ontologies.com/2005/08/07/xsp.owl#" >
+    <!ENTITY swrla "http://swrl.stanford.edu/ontologies/3.3/swrla.owl#" >
+    <!ENTITY sqwrl "http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#" >
+    <!ENTITY Turismo "http://example.org/ontology#http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#" >
+]>
+
+
+<rdf:RDF xmlns="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#"
+     xml:base="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl"
+     xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+     xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
+     xmlns:wsmo-lite="http://www.wsmo.org/ns/wsmo-lite#"
+     xmlns:j.0="http://www.owl-ontologies.com/turismo.owl#"
+     xmlns:Turismo="http://example.org/ontology#http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#"
+     xmlns:sqwrl="http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:swrla="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#">
+    <owl:Ontology rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl">
+        <rdfs:comment xml:lang="es">Ontologia que representa el dominio de  conocimiento (limitado) sobre turismo en colombia. incluye clases para representar alojamientos,ciudades, destinos, actividades generales, atractivos turisticos especificos, asi como las relaciones entre ellas</rdfs:comment>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:AnnotationProperty rdf:about="&rdfs;label"/>
+    <owl:AnnotationProperty rdf:about="&rdfs;comment"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#alojamiento_esta_en_destino -->
+
+    <owl:ObjectProperty rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#alojamiento_esta_en_destino">
+        <rdfs:domain rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Alojamiento"/>
+        <rdfs:range rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Destino"/>
+        <owl:inverseOf rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#tiene_alojamiento"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#esta_en_departamento -->
+
+    <owl:ObjectProperty rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#esta_en_departamento">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Ciudad"/>
+        <rdfs:range rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+        <owl:inverseOf rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#tiene_ciudad"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#esta_en_destino -->
+
+    <owl:ObjectProperty rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#esta_en_destino">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#AtractivoTuristico"/>
+        <rdfs:range rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Destino"/>
+        <owl:inverseOf rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#tiene_atractivo_turistico"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ofrece -->
+
+    <owl:ObjectProperty rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ofrece">
+        <rdfs:range rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Actividad"/>
+        <rdfs:domain rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#AtractivoTuristico"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#se_ofrece_en -->
+
+    <owl:ObjectProperty rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#se_ofrece_en">
+        <rdfs:domain rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Actividad"/>
+        <rdfs:range rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#AtractivoTuristico"/>
+        <owl:inverseOf rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ofrece"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#tiene_alojamiento -->
+
+    <owl:ObjectProperty rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#tiene_alojamiento">
+        <rdfs:range rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Alojamiento"/>
+        <rdfs:domain rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Destino"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#tiene_atractivo_turistico -->
+
+    <owl:ObjectProperty rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#tiene_atractivo_turistico">
+        <rdf:type rdf:resource="&owl;InverseFunctionalProperty"/>
+        <rdfs:range rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#AtractivoTuristico"/>
+        <rdfs:domain rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Destino"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#tiene_categoria -->
+
+    <owl:ObjectProperty rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#tiene_categoria">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Alojamiento"/>
+        <rdfs:range rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Categoria"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#tiene_ciudad -->
+
+    <owl:ObjectProperty rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#tiene_ciudad">
+        <rdf:type rdf:resource="&owl;InverseFunctionalProperty"/>
+        <rdfs:range rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Ciudad"/>
+        <rdfs:domain rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#tiene_recursos -->
+
+    <owl:ObjectProperty rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#tiene_recursos">
+        <rdfs:range rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Recurso"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Alojamiento"/>
+                    <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#AtractivoTuristico"/>
+                    <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Destino"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#abstract -->
+
+    <owl:DatatypeProperty rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#abstract">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:comment rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CZaragoza"/>
+        <rdfs:domain rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Recurso"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#mime_type -->
+
+    <owl:DatatypeProperty rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#mime_type">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Recurso"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#name -->
+
+    <owl:DatatypeProperty rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#name">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Actividad"/>
+                    <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Alojamiento"/>
+                    <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#AtractivoTuristico"/>
+                    <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Destino"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#tiene_altitud_sobre_ndm -->
+
+    <owl:DatatypeProperty rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#tiene_altitud_sobre_ndm">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Ciudad"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#tiene_direccion -->
+
+    <owl:DatatypeProperty rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#tiene_direccion">
+        <rdfs:domain rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Alojamiento"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#tiene_temp_promedio -->
+
+    <owl:DatatypeProperty rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#tiene_temp_promedio">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Ciudad"/>
+        <rdfs:range rdf:resource="&xsd;float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#title -->
+
+    <owl:DatatypeProperty rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#title">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:comment rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CZaragoza"/>
+        <rdfs:domain rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Recurso"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#url -->
+
+    <owl:DatatypeProperty rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#url">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:comment rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CZaragoza"/>
+        <rdfs:domain rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Recurso"/>
+        <rdfs:range rdf:resource="&xsd;anyURI"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Actividad -->
+
+    <owl:Class rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Actividad">
+        <owl:disjointWith rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Alojamiento"/>
+        <owl:disjointWith rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#AtractivoTuristico"/>
+        <owl:disjointWith rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Categoria"/>
+        <owl:disjointWith rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Destino"/>
+        <owl:disjointWith rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Recurso"/>
+        <rdfs:comment rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CZaragoza"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Acuario -->
+
+    <owl:Class rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Acuario">
+        <rdfs:label rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CZaragoza"/>
+        <rdfs:subClassOf rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#AtractivoTuristico"/>
+        <owl:disjointWith rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#LugarHistorico"/>
+        <owl:disjointWith rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Museo"/>
+        <owl:disjointWith rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#MuseoNaval"/>
+        <owl:disjointWith rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Parque"/>
+        <owl:disjointWith rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Teatro"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Alojamiento -->
+
+    <owl:Class rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Alojamiento">
+        <rdfs:label rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CZaragoza"/>
+        <rdfs:subClassOf rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Servicio"/>
+        <owl:disjointWith rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#AtractivoTuristico"/>
+        <owl:disjointWith rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Categoria"/>
+        <owl:disjointWith rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Destino"/>
+        <owl:disjointWith rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Recurso"/>
+        <rdfs:comment rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CZaragoza"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#AlquilerCoche -->
+
+    <owl:Class rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#AlquilerCoche">
+        <rdfs:subClassOf rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Servicio"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Apartahotel -->
+
+    <owl:Class rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Apartahotel">
+        <rdfs:label rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CZaragoza"/>
+        <rdfs:subClassOf rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Alojamiento"/>
+        <owl:disjointWith rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Hostal"/>
+        <owl:disjointWith rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Hotel"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#AreaRural -->
+
+    <owl:Class rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#AreaRural">
+        <rdfs:label rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CZaragoza"/>
+        <rdfs:subClassOf rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Destino"/>
+        <owl:disjointWith rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#AreaUrbana"/>
+        <owl:disjointWith rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#AreaUrbana -->
+
+    <owl:Class rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#AreaUrbana">
+        <rdfs:label rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CZaragoza"/>
+        <rdfs:subClassOf rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Destino"/>
+        <owl:disjointWith rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#AtractivoTuristico -->
+
+    <owl:Class rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#AtractivoTuristico">
+        <rdfs:label rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CZaragoza"/>
+        <owl:disjointWith rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Categoria"/>
+        <owl:disjointWith rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Destino"/>
+        <owl:disjointWith rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Recurso"/>
+        <rdfs:comment rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CZaragoza"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Categoria -->
+
+    <owl:Class rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Categoria">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#UnaEstrella"/>
+                    <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CincoEstrellas"/>
+                    <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#DosEstrellas"/>
+                    <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CuatroEstrellas"/>
+                    <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#TresEstrellas"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <owl:disjointWith rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Destino"/>
+        <rdfs:comment rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CZaragoza"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Ciudad -->
+
+    <owl:Class rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Ciudad">
+        <rdfs:label rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CZaragoza"/>
+        <rdfs:subClassOf rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#AreaUrbana"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Cultural -->
+
+    <owl:Class rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Cultural">
+        <rdfs:subClassOf rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Actividad"/>
+        <owl:disjointWith rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Deporte"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Deporte -->
+
+    <owl:Class rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Deporte">
+        <rdfs:subClassOf rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Actividad"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Destino -->
+
+    <owl:Class rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Destino">
+        <owl:disjointWith rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Recurso"/>
+        <rdfs:comment rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CZaragoza"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#DestinoCultural -->
+
+    <owl:Class rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#DestinoCultural">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#tiene_atractivo_turistico"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Museo"/>
+                            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Teatro"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Destino"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#DestinoFamiliar -->
+
+    <owl:Class rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#DestinoFamiliar">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Destino"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#tiene_atractivo_turistico"/>
+                        <owl:someValuesFrom rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Parque"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#tiene_alojamiento"/>
+                        <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minCardinality>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#DestinoMochilero -->
+
+    <owl:Class rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#DestinoMochilero">
+        <rdfs:subClassOf rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Destino"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#tiene_alojamiento"/>
+                <owl:someValuesFrom rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#HotelBarato"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Hostal -->
+
+    <owl:Class rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Hostal">
+        <rdfs:label rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CZaragoza"/>
+        <rdfs:subClassOf rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Alojamiento"/>
+        <owl:disjointWith rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Hotel"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Hotel -->
+
+    <owl:Class rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Hotel">
+        <rdfs:label rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CZaragoza"/>
+        <rdfs:subClassOf rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Alojamiento"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#HotelBarato -->
+
+    <owl:Class rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#HotelBarato">
+        <rdfs:label rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CZaragoza"/>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#tiene_categoria"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#UnaEstrella"/>
+                            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#DosEstrellas"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Hotel"/>
+        <owl:disjointWith rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#HoteldeLujo"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#HoteldeLujo -->
+
+    <owl:Class rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#HoteldeLujo">
+        <rdfs:label rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CZaragoza"/>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#tiene_categoria"/>
+                <owl:hasValue rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CincoEstrellas"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Hotel"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#LugarHistorico -->
+
+    <owl:Class rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#LugarHistorico">
+        <rdfs:label rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CZaragoza"/>
+        <rdfs:subClassOf rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#AtractivoTuristico"/>
+        <owl:disjointWith rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Museo"/>
+        <owl:disjointWith rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#MuseoNaval"/>
+        <owl:disjointWith rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Parque"/>
+        <owl:disjointWith rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Teatro"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Museo -->
+
+    <owl:Class rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Museo">
+        <rdfs:label rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CZaragoza"/>
+        <rdfs:subClassOf rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#AtractivoTuristico"/>
+        <owl:disjointWith rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#MuseoNaval"/>
+        <owl:disjointWith rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Parque"/>
+        <owl:disjointWith rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Teatro"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#MuseoNaval -->
+
+    <owl:Class rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#MuseoNaval">
+        <rdfs:label rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CZaragoza"/>
+        <rdfs:subClassOf rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#AtractivoTuristico"/>
+        <owl:disjointWith rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Parque"/>
+        <owl:disjointWith rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Teatro"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Parque -->
+
+    <owl:Class rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Parque">
+        <rdfs:label rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CZaragoza"/>
+        <rdfs:subClassOf rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#AtractivoTuristico"/>
+        <owl:disjointWith rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Teatro"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ParqueAcuatico -->
+
+    <owl:Class rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ParqueAcuatico">
+        <rdfs:label rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CZaragoza"/>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ofrece"/>
+                <owl:hasValue rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#JuegoAcuatico"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Parque"/>
+        <owl:disjointWith rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ParqueDiversiones"/>
+        <owl:disjointWith rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ParqueNatural"/>
+        <owl:disjointWith rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Zoologico"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ParqueDiversiones -->
+
+    <owl:Class rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ParqueDiversiones">
+        <rdfs:label rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CZaragoza"/>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ofrece"/>
+                <owl:hasValue rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#JuegoMecanico"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Parque"/>
+        <owl:disjointWith rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ParqueNatural"/>
+        <owl:disjointWith rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Zoologico"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ParqueNatural -->
+
+    <owl:Class rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ParqueNatural">
+        <rdfs:label rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CZaragoza"/>
+        <rdfs:subClassOf rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Parque"/>
+        <owl:disjointWith rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Zoologico"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia -->
+
+    <owl:Class rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia">
+        <rdfs:subClassOf rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Destino"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Recurso -->
+
+    <owl:Class rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Recurso">
+        <rdfs:comment rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CZaragoza"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Servicio -->
+
+    <owl:Class rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Servicio">
+        <rdfs:subClassOf rdf:resource="&wsmo-lite;FunctionalClassificationRoot"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Teatro -->
+
+    <owl:Class rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Teatro">
+        <rdfs:label rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CZaragoza"/>
+        <rdfs:subClassOf rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#AtractivoTuristico"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Vuelo -->
+
+    <owl:Class rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Vuelo">
+        <rdfs:subClassOf rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Servicio"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Zoologico -->
+
+    <owl:Class rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Zoologico">
+        <rdfs:label rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CZaragoza"/>
+        <rdfs:subClassOf rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Parque"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#Datatype -->
+
+    <owl:Class rdf:about="&owl;Datatype"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#Thing -->
+
+    <owl:Class rdf:about="&owl;Thing"/>
+    
+
+
+    <!-- http://www.wsmo.org/ns/wsmo-lite#FunctionalClassificationRoot -->
+
+    <owl:Class rdf:about="&wsmo-lite;FunctionalClassificationRoot"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://example.org/ontology#http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Ja&#233;n -->
+
+    <owl:NamedIndividual rdf:about="&Turismo;Ja&#233;n">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Alava -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Alava">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Albacete -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Albacete">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Alicante -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Alicante">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Almeria -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Almeria">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#AmiradeLaRosa -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#AmiradeLaRosa">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Teatro"/>
+        <name rdf:datatype="&xsd;string">Amira de La Rosa</name>
+        <ofrece rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ObraTeatral"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Asturias -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Asturias">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Avila -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Avila">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Badajoz -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Badajoz">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Barcelona -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Barcelona">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+        <tiene_ciudad rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CBarcelona"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Barranquilla -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Barranquilla"/>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Bogota -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Bogota"/>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Burgos -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Burgos">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CBarcelona -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CBarcelona">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Ciudad"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CMadrid -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CMadrid">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Ciudad"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CSevilla -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CSevilla">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Ciudad"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CZaragoza -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CZaragoza">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Ciudad"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Caceres -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Caceres">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Cadiz -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Cadiz">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Cali -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Cali"/>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Cantabria -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Cantabria">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Carnaval -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Carnaval">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Cultural"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Castellon -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Castellon">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Ceuta -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Ceuta">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Chicaque -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Chicaque">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ParqueNatural"/>
+        <name rdf:datatype="&xsd;string">Chicaque</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CincoEstrellas -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CincoEstrellas">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Categoria"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Ciudad_Real -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Ciudad_Real">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Cordoba -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Cordoba">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CuatroEstrellas -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CuatroEstrellas">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Categoria"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Cuenca -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Cuenca">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#DeporteAcuatico -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#DeporteAcuatico">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Deporte"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#DeporteExtremo -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#DeporteExtremo">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Deporte"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#DosEstrellas -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#DosEstrellas">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Categoria"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Gerona -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Gerona">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Granada -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Granada">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Guadalajara -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Guadalajara">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Guipuzcoa -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Guipuzcoa">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Hertz -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Hertz">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#AlquilerCoche"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#HotelContinental -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#HotelContinental">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Hotel"/>
+        <name rdf:datatype="&xsd;string">Hotel Continental</name>
+        <tiene_categoria rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#DosEstrellas"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#HotelDannCarlton -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#HotelDannCarlton">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Hotel"/>
+        <name rdf:datatype="&xsd;string">Hotel Dann Carlton</name>
+        <tiene_categoria rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CincoEstrellas"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#HotelRoyal -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#HotelRoyal">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#HoteldeLujo"/>
+        <name rdf:datatype="&xsd;string">Hotel Royal</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#HoteldelPrado -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#HoteldelPrado">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#HoteldeLujo"/>
+        <name rdf:datatype="&xsd;string">Hotel Del Prado</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Huelva -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Huelva">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Huesca -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Huesca">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Iberia -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Iberia">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Vuelo"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#IslaSalamanca -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#IslaSalamanca">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ParqueNatural"/>
+        <name rdf:datatype="&xsd;string">Parque Natural Isla de Salamanca</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Islas_Baleares -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Islas_Baleares">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#JaimeManzur -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#JaimeManzur">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Teatro"/>
+        <name rdf:datatype="&xsd;string">Fundacion Jaime Manzur</name>
+        <ofrece rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ObraTeatral"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#JuegoAcuatico -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#JuegoAcuatico">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Actividad"/>
+        <se_ofrece_en rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ParqueMudvi"/>
+        <se_ofrece_en rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ciciAquaPark"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#JuegoMecanico -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#JuegoMecanico">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Actividad"/>
+        <se_ofrece_en rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#MundoAventura"/>
+        <se_ofrece_en rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ParqueDiversiones_50"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#La_Coruna -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#La_Coruna">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#La_Rioja -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#La_Rioja">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Las_Palmas -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Las_Palmas">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Leon -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Leon">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Lerida -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Lerida">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Lugo -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Lugo">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Madrid -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Madrid">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+        <tiene_ciudad rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CMadrid"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Malaga -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Malaga">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Medellin -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Medellin"/>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Melilla -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Melilla">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#MundoAventura -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#MundoAventura">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ParqueDiversiones"/>
+        <name rdf:datatype="&xsd;string">Mundo Aventura</name>
+        <ofrece rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#JuegoMecanico"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Murcia -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Murcia">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#MuseoDelCastillo -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#MuseoDelCastillo">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Museo"/>
+        <name rdf:datatype="&xsd;string">Museo el Castillo</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#MuseoDelOro -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#MuseoDelOro">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Museo"/>
+        <name rdf:datatype="&xsd;string">Museo del Oro</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#MuseoNacional -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#MuseoNacional">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Museo"/>
+        <name rdf:datatype="&xsd;string">Museo Nacional</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Navarra -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Navarra">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ObraTeatral -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ObraTeatral">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Cultural"/>
+        <se_ofrece_en rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#AmiradeLaRosa"/>
+        <se_ofrece_en rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#JaimeManzur"/>
+        <se_ofrece_en rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#TeatroLaCastellana"/>
+        <se_ofrece_en rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#TeatroNacional"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Orense -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Orense">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Palencia -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Palencia">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ParqueChingaza -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ParqueChingaza">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ParqueNatural"/>
+        <name rdf:datatype="&xsd;string">Parque Natural Chingaza</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ParqueDiversiones_50 -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ParqueDiversiones_50">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ParqueDiversiones"/>
+        <name rdf:datatype="&xsd;string">Parque generico</name>
+        <ofrece rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#JuegoMecanico"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ParqueMudvi -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ParqueMudvi">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Parque"/>
+        <name rdf:datatype="&xsd;string">Parque Mudvi</name>
+        <ofrece rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#JuegoAcuatico"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ParqueNaturalDeElCocuy -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ParqueNaturalDeElCocuy">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ParqueNatural"/>
+        <name rdf:datatype="&xsd;string">Parque Natural De El Cocuy</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ParqueSimonBolivar -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ParqueSimonBolivar">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Parque"/>
+        <name rdf:datatype="&xsd;string">Parque Simon Bolivar</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Pontevedra -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Pontevedra">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Proyeccion -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Proyeccion">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Cultural"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Recital -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Recital">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Cultural"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Salamanca -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Salamanca">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Santa_Cruz_de_Tenerife -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Santa_Cruz_de_Tenerife">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Segovia -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Segovia">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Sevilla -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Sevilla">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+        <tiene_ciudad rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CSevilla"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Soria -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Soria">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Tarragona -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Tarragona">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#TeatroLaCastellana -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#TeatroLaCastellana">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Teatro"/>
+        <name rdf:datatype="&xsd;string">Teatro la castellana</name>
+        <ofrece rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ObraTeatral"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#TeatroNacional -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#TeatroNacional">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Teatro"/>
+        <name rdf:datatype="&xsd;string">Fundacion Teatro Nacional</name>
+        <ofrece rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ObraTeatral"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Teruel -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Teruel">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Toledo -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Toledo">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#TresEstrellas -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#TresEstrellas">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Categoria"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#UnaEstrella -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#UnaEstrella">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Categoria"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Valladolid -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Valladolid">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Vizcaya -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Vizcaya">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Zamora -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Zamora">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Zaragoza -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Zaragoza">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Provincia"/>
+        <tiene_ciudad rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#CZaragoza"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ZoologicoBarranquilla -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ZoologicoBarranquilla">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Zoologico"/>
+        <name rdf:datatype="&xsd;string">Zoologico de barranquilla</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ZoologicoCali -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ZoologicoCali">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Zoologico"/>
+        <name rdf:datatype="&xsd;string">Zoologico de cali</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ZoologicoSantaCruz -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ZoologicoSantaCruz">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Zoologico"/>
+        <name rdf:datatype="&xsd;string">Zoologico santa cruz</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ZoologicoSantaFe -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ZoologicoSantaFe">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Zoologico"/>
+        <name rdf:datatype="&xsd;string">Zoologico santa fe</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ciciAquaPark -->
+
+    <owl:NamedIndividual rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ciciAquaPark">
+        <rdf:type rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ParqueAcuatico"/>
+        <name rdf:datatype="&xsd;string">cici AquaPark</name>
+        <ofrece rdf:resource="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#JuegoAcuatico"/>
+    </owl:NamedIndividual>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;Datatype"/>
+    </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Chicaque"/>
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ParqueNaturalDeElCocuy"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#AmiradeLaRosa"/>
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#JaimeManzur"/>
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#TeatroLaCastellana"/>
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#TeatroNacional"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Bogota"/>
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Medellin"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Bogota"/>
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Cali"/>
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Medellin"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Cali"/>
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Medellin"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Chicaque"/>
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#IslaSalamanca"/>
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ParqueChingaza"/>
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ParqueNaturalDeElCocuy"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#MuseoDelOro"/>
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#MuseoNacional"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Chicaque"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Barranquilla"/>
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Bogota"/>
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Cali"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#HotelRoyal"/>
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#HoteldelPrado"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#MundoAventura"/>
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ParqueDiversiones_50"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Bogota"/>
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Cali"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ZoologicoBarranquilla"/>
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ZoologicoCali"/>
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ZoologicoSantaCruz"/>
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ZoologicoSantaFe"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Barranquilla"/>
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Bogota"/>
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Medellin"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Carnaval"/>
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ObraTeatral"/>
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Proyeccion"/>
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Recital"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#HotelDannCarlton"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ParqueMudvi"/>
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ParqueSimonBolivar"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#MuseoDelCastillo"/>
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#MuseoDelOro"/>
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#MuseoNacional"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#HotelContinental"/>
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#HotelDannCarlton"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#DeporteAcuatico"/>
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#DeporteExtremo"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Chicaque"/>
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ParqueChingaza"/>
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ParqueNaturalDeElCocuy"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#JuegoAcuatico"/>
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#JuegoMecanico"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Barranquilla"/>
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Cali"/>
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#Medellin"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#ParqueSimonBolivar"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#AmiradeLaRosa"/>
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#TeatroLaCastellana"/>
+            <rdf:Description rdf:about="http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#TeatroNacional"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version [Not Released]) http://owlapi.sourceforge.net -->
+
+

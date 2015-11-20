@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.example.org/AirCongo/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="AirCongo" targetNamespace="http://www.example.org/AirCongo/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.example.org/AirCongo/">
+      <xsd:element name="Search">
+        <xsd:complexType>
+          <xsd:sequence>
+          	<xsd:element name="DepCity" type="xsd:string" />
+          	<xsd:element name="ArrivCity" type="xsd:string"></xsd:element>
+          	<xsd:element name="DepDate" type="xsd:string"></xsd:element>
+          	<xsd:element name="ArrivDate" type="xsd:string"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SearchResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="out" type="tns:Results"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    
+      <xsd:complexType name="Results">
+      	<xsd:sequence>
+      		<xsd:element name="resultList" type="tns:resultListType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+    
+      <xsd:complexType name="resultListType">
+      	<xsd:sequence>
+      		<xsd:element name="CompanyName" type="xsd:string"></xsd:element>
+      		<xsd:element name="Price" type="xsd:int"></xsd:element>
+      		<xsd:element name="DepTime" type="xsd:string"></xsd:element>
+      		<xsd:element name="ArrivTime" type="xsd:string"></xsd:element>
+      		<xsd:element name="city1" type="xsd:string"></xsd:element>
+      		<xsd:element name="city2" type="xsd:string"></xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="SearchRequest">
+    <wsdl:part element="tns:Search" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SearchResponse">
+    <wsdl:part element="tns:SearchResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="AirCongo">
+    <wsdl:operation name="Search">
+      <wsdl:input message="tns:SearchRequest"/>
+      <wsdl:output message="tns:SearchResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AirCongoSOAP" type="tns:AirCongo">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="Search">
+      <soap:operation soapAction="http://atosresearch.eu/AirCongo/Search"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AirCongo">
+    <wsdl:port binding="tns:AirCongoSOAP" name="AirCongoSOAP">
+      <soap:address location="http://www.example.org/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

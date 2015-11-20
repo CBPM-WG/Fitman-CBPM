@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" 
+			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+			 xmlns:tns="http://www.bpmnwithactiviti.org"
+			 xmlns:activiti="http://activiti.org/bpmn" 
+			 xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" 
+			 xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" 
+			 xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI"
+			 xmlns:sales="http://ws.chapter11.bpmnwithactiviti.org/" 
+			 typeLanguage="http://www.w3.org/2001/XMLSchema" 
+			 expressionLanguage="http://www.w3.org/1999/XPath" 
+			 targetNamespace="http://www.bpmnwithactiviti.org">
+
+ <import importType="http://schemas.xmlsoap.org/wsdl/"
+        location="http://localhost:8087/book-sales-app/services/address?wsdl"
+        namespace="http://ws.chapter11.bpmnwithactiviti.org/" />
+  
+  <message id="findCustomerAddressRequestMessage" itemRef="tns:findCustomerAddressRequestItem" />
+	<message id="findCustomerAddressResponseMessage" itemRef="tns:findCustomerAddressResponseItem" />
+  
+	<itemDefinition id="findCustomerAddressRequestItem" structureRef="sales:findCustomerAddress" />
+	<itemDefinition id="findCustomerAddressResponseItem" structureRef="sales:findCustomerAddressResponse" />
+	
+	<interface name="Find customer address" implementationRef="sales:AddressService">
+  	<operation id="findCustomerAddressOperation" name="Find customer address operation" 
+    				implementationRef="sales:findCustomerAddress">
+    	<inMessageRef>tns:findCustomerAddressRequestMessage</inMessageRef>
+      <outMessageRef>tns:findCustomerAddressResponseMessage</outMessageRef>
+    </operation>
+	</interface>
+	
+	<itemDefinition id="name" structureRef="string" />
+  <itemDefinition id="customerName" structureRef="string" />
+  <itemDefinition id="address" structureRef="string" />
+  <itemDefinition id="webserviceResponse" structureRef="string" />
+
+
+  <process id="procesExampleWS" name="exampleWS" isExecutable="true">
+    <startEvent id="sid-6F1777D4-40C2-4239-BC49-61207AEA9D8F">
+      <extensionElements>
+        <activiti:formProperty id="name" name="Name" type="string" variable="name"/>
+      </extensionElements>
+    </startEvent>
+    <endEvent id="sid-AA00ACBC-0465-4E5F-85CF-6AAA55F7C414"/>
+    <scriptTask id="sid-CAAA03C1-04BB-4A6B-8EA1-D05D8573D733" name="BeforeWS" scriptFormat="groovy">
+      <script>out:println "Before call the WS, Name:"+name;</script>
+    </scriptTask>
+    <sequenceFlow id="sid-32346D4D-E81E-47E6-9403-496D45D91609" sourceRef="sid-6F1777D4-40C2-4239-BC49-61207AEA9D8F" targetRef="sid-CAAA03C1-04BB-4A6B-8EA1-D05D8573D733"/>
+    <scriptTask id="sid-9BA5BF73-A519-467E-A7B6-5A93268369B3" name="AfterWS" scriptFormat="groovy">
+      <script>out:println "After call the WS"+webserviceResponse;</script>
+    </scriptTask>
+    <sequenceFlow id="sid-A63993BB-3BE7-4CD1-8B75-52D247FE2B71" sourceRef="sid-9BA5BF73-A519-467E-A7B6-5A93268369B3" targetRef="sid-AA00ACBC-0465-4E5F-85CF-6AAA55F7C414"/>
+    
+    
+    <serviceTask id="sid-2FDD8852-67B7-4272-AEAE-7CF44B93B163" name="ExampleAdress" implementation="##WebService" operationRef="tns:findCustomerAddressOperation">
+    	<ioSpecification>
+        <dataInput itemSubjectRef="tns:findCustomerAddressRequestItem" id="dataInput" />
+        <dataOutput itemSubjectRef="tns:findCustomerAddressResponseItem" id="dataOutput" />
+        <inputSet>
+        	<dataInputRefs>dataInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        	<dataOutputRefs>dataOutput</dataOutputRefs>
+        </outputSet>
+			</ioSpecification>
+			<dataInputAssociation>
+        <sourceRef>name</sourceRef>
+        <targetRef>customerName</targetRef>
+			</dataInputAssociation>
+			<dataOutputAssociation>
+				<sourceRef>address</sourceRef>
+        <targetRef>webserviceResponse</targetRef>
+			</dataOutputAssociation>
+    </serviceTask>
+    
+    
+    
+    
+    <sequenceFlow id="sid-3AAF360E-FD01-4AF2-BBFA-621A32BCDAEC" sourceRef="sid-CAAA03C1-04BB-4A6B-8EA1-D05D8573D733" targetRef="sid-2FDD8852-67B7-4272-AEAE-7CF44B93B163"/>
+    <sequenceFlow id="sid-2DA8C2FC-0AF8-49F5-AAAC-47067EB0B8F5" sourceRef="sid-2FDD8852-67B7-4272-AEAE-7CF44B93B163" targetRef="sid-9BA5BF73-A519-467E-A7B6-5A93268369B3"/>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_procesExampleWS">
+    <bpmndi:BPMNPlane bpmnElement="procesExampleWS" id="BPMNPlane_procesExampleWS">
+      <bpmndi:BPMNShape bpmnElement="sid-6F1777D4-40C2-4239-BC49-61207AEA9D8F" id="BPMNShape_sid-6F1777D4-40C2-4239-BC49-61207AEA9D8F">
+        <omgdc:Bounds height="30.0" width="30.0" x="30.0" y="103.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-CAAA03C1-04BB-4A6B-8EA1-D05D8573D733" id="BPMNShape_sid-CAAA03C1-04BB-4A6B-8EA1-D05D8573D733">
+        <omgdc:Bounds height="80.0" width="100.0" x="105.0" y="78.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-AA00ACBC-0465-4E5F-85CF-6AAA55F7C414" id="BPMNShape_sid-AA00ACBC-0465-4E5F-85CF-6AAA55F7C414">
+        <omgdc:Bounds height="28.0" width="28.0" x="660.0" y="104.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-2FDD8852-67B7-4272-AEAE-7CF44B93B163" id="BPMNShape_sid-2FDD8852-67B7-4272-AEAE-7CF44B93B163">
+        <omgdc:Bounds height="80.0" width="100.0" x="300.0" y="78.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-9BA5BF73-A519-467E-A7B6-5A93268369B3" id="BPMNShape_sid-9BA5BF73-A519-467E-A7B6-5A93268369B3">
+        <omgdc:Bounds height="80.0" width="100.0" x="480.0" y="78.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="sid-32346D4D-E81E-47E6-9403-496D45D91609" id="BPMNEdge_sid-32346D4D-E81E-47E6-9403-496D45D91609">
+        <omgdi:waypoint x="60.0" y="118.0"/>
+        <omgdi:waypoint x="105.0" y="118.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-2DA8C2FC-0AF8-49F5-AAAC-47067EB0B8F5" id="BPMNEdge_sid-2DA8C2FC-0AF8-49F5-AAAC-47067EB0B8F5">
+        <omgdi:waypoint x="400.0" y="118.0"/>
+        <omgdi:waypoint x="480.0" y="118.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-A63993BB-3BE7-4CD1-8B75-52D247FE2B71" id="BPMNEdge_sid-A63993BB-3BE7-4CD1-8B75-52D247FE2B71">
+        <omgdi:waypoint x="580.0" y="118.0"/>
+        <omgdi:waypoint x="660.0" y="118.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-3AAF360E-FD01-4AF2-BBFA-621A32BCDAEC" id="BPMNEdge_sid-3AAF360E-FD01-4AF2-BBFA-621A32BCDAEC">
+        <omgdi:waypoint x="205.0" y="118.0"/>
+        <omgdi:waypoint x="300.0" y="118.0"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

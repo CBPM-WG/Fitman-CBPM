@@ -1,0 +1,25 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <groupId>eu.atosresearch.seiplab.yourbpm</groupId>
+  <artifactId>bpmn20</artifactId>
+  <version>1.0</version>
+  <packaging>pom</packaging>
+  <name>Parent Project for BPMN20 software</name>
+  
+  <parent>
+  	<groupId>eu.atosresearch.seiplab</groupId>
+  	<artifactId>yourbpm</artifactId>
+  	<version>1.0</version>
+  	<relativePath>..</relativePath>
+  </parent>
+  
+  <modules>
+  	<module>BPMN20Manager</module>
+  	<module>BPMN20Model</module>
+  	<module>BPMN20ModelLite</module>
+  	<module>BPMN20Module</module>
+  	<module>BPMN20Service</module>
+  </modules>
+  
+</project>

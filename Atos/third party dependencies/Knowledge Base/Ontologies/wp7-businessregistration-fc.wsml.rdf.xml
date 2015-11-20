@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+	xmlns="http://www.soa4all.eu/ontology/eGovernment/fc#"
+	xmlns:wsl="http://www.wsmo.org/ns/wsmo-lite#"
+	xmlns:sawsdl="http://www.w3.org/ns/sawsdl#">
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#eGovernmentBusinessRegistrationRoot">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.wsmo.org/ns/wsmo-lite#FunctionalClassificationRoot"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#CRM">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#eGovernmentBusinessRegistrationRoot"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#BankingCRM">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#CRM"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#EGovernmentCRM">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#CRM"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#HealthCRM">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#CRM"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#FootballClubCRM">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#CRM"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#EnterpriseCRM">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#CRM"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#ArmyCRM">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#CRM"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#EGovInternalCaseManagement">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#EGovernmentCRM"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#EGovInternalDocumentManagement">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#EGovernmentCRM"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#EGovInternalProcedures">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#EGovernmentCRM"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#EGovCitizenAttendance">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#EGovernmentCRM"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#CitizenCaseProgressNotification">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#EGovernmentCRM"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#EGovOpenCase">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#EGovInternalCaseManagement"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#EGovCloseCase">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#EGovInternalCaseManagement"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#EGovSuspendCase">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#EGovInternalCaseManagement"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#EGovIDMAttachDocument">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#EGovInternalDocumentManagement"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#EGovIDMCollectNecessaryDocuments">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#EGovInternalDocumentManagement"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#FormReception">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#EGovCitizenAttendance"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#FormProcessing">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#EGovCitizenAttendance"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#EMailFormReception">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#FormReception"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#PaperFormReception">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#FormReception"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#WebFormReception">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#FormReception"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#PhoneFormReception">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#FormReception"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#FormReceptionConfirmation">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#FormReception"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#FormProcessing"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#FormReceptionArchive">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#FormProcessing"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#FormRejectionNotification">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#FormProcessing"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#FormIncompletenessNotification">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#FormProcessing"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#FormPrerequisiteVerification">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#FormProcessing"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#DegreeRecognitionEligibilityCheck">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#DegreeRecognition"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#DegreeDocumentCheck">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#DegreeRecognitionEligibilityCheck"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#FeePaymentInvoiceCheck">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#DegreeRecognitionEligibilityCheck"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#DegreeRecognitionFormCheck">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#DegreeRecognitionEligibilityCheck"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#BusinessRegistrationInputCheck">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#BusinessRegistration"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#BusinessRegistrationCitizenEligibilityCheck">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#BusinessRegistration"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#CriminalRecordCheck">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#BusinessRegistrationCitizenEligibilityCheck"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#MedicalRecordCheck">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#BusinessRegistrationCitizenEligibilityCheck"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#DebtorBlacklistcheck">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#BusinessRegistrationCitizenEligibilityCheck"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#CitizenLocationCheck">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#BusinessRegistrationCitizenEligibilityCheck"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#FamilyRecordCheck">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#BusinessRegistrationCitizenEligibilityCheck"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#TaxOfficeCheck">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#BusinessRegistrationCitizenEligibilityCheck"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#CitizenLegalStatusCheck">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#BusinessRegistrationCitizenEligibilityCheck"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#PaymentDataCheck">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#BusinessRegistrationCitizenEligibilityCheck"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#CaseOpeningAcknowledgement">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#CitizenCaseProgressNotification"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#FinalConfirmationNotification">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#CitizenCaseProgressNotification"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#FinalDenialNotification">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#CitizenCaseProgressNotification"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#CaseStatusChangedNotification">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#CitizenCaseProgressNotification"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#CaseDeferralNotification">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#CitizenCaseProgressNotification"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#CaseRejectedNotification">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#CitizenCaseProgressNotification"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#BusinessRegistrationLawfulness">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#BusinessRegistration"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#BusinessAllowanceRegistrationCheck">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#BusinessRegistrationLawfulness"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#BusinessRegistration">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#EGovInternalProcedures"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#MainBusinessRegistrationServices">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#BusinessRegistration"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#GeneralBusinessRegistration">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#MainBusinessRegistrationServices"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#TaxOfficeNotification">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#MainBusinessRegistrationServices"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#AppropriateAssociatedEntityNotification"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#AppropriateAssociatedEntitySearch">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#MainBusinessRegistrationServices"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#TaxOfficeSearch">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#AppropriateAssociatedEntitySearch"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#PublicRegistrySearch">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#AppropriateAssociatedEntitySearch"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#AppropriateAssociatedEntityNotification">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#MainBusinessRegistrationServices"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#SocialServiceNotification">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#AppropriateAssociatedEntityNotification"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#PublicRegistryNotification">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#AppropriateAssociatedEntityNotification"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#ArchiveProcedures">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#MainBusinessRegistrationServices"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#ArchiveRegistrationHistory">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#ArchiveProcedures"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#Payment">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#eGovernmentBusinessRegistrationRoot"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#PaymentProcedures">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#Payment"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#PaymentMethods">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#PaymentProcedures"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#SalesOrderPreparation">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#PaymentProcedures"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#CreateSalesOrder">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#SalesOrderPreparation"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#CancelSalesOrder">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#SalesOrderPreparation"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#DeferSalesOrder">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#SalesOrderPreparation"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#ReceivePaymentInfo">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#PaymentProcedures"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#GetPaymentCardInfo">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#ReceivePaymentInfo"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#GetBankTransferInfo">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#ReceivePaymentInfo"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#GetPayPalData">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#ReceivePaymentInfo"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#CardPayment">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#PaymentMethods"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#CreditCardPayment">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#CardPayment"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#AmexPayment">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#CreditCardPayment"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#MasterCardPayment">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#CreditCardPayment"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#DiscoverPayment">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#CreditCardPayment"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#DinersClubPayment">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#CreditCardPayment"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#VisaPayment">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#CreditCardPayment"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#VisaElectronPayment">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#CreditCardPayment"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#DebitCardPayment">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#CardPayment"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#PaypalPayment">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#PaymentMethods"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#BankTranferPayment">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#PaymentMethods"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#ByCheckPayment">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#PaymentMethods"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#CashPayment">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#PaymentMethods"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#ByInvoicePayment">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#PaymentMethods"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#EGovCRMCustomerManagement">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#EGovernmentCRM"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#EGovCRMSearchCustomer">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#EGovCRMCustomerManagement"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#EGovCRMCreateCustomer">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#EGovCRMCustomerManagement"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#EGovCRMDeleteCustomer">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#EGovCRMCustomerManagement"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#EGovCRMEditCustomer">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#EGovCRMCustomerManagement"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#EGovCRMReadCustomerBankDetails">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#EGovCRMCustomerManagement"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#EGovCRMCreateCustomerBankDetails">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#EGovCRMCustomerManagement"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#EGovCRMEditCustomerBankDetails">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#EGovCRMCustomerManagement"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#EGovCRMDeleteCustomerBankDetails">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#EGovCRMCustomerManagement"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#HTActivity">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#eGovernmentBusinessRegistrationRoot"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#EGovHTActivity">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#HTActivity"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#EGovLegalHTActivity">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#EGovHTActivity"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.soa4all.eu/ontology/eGovernment/fc#EGovProceduralHTActivity">
+	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.soa4all.eu/ontology/eGovernment/fc#EGovHTActivity"/>
+</rdf:Description>
+
+</rdf:RDF>

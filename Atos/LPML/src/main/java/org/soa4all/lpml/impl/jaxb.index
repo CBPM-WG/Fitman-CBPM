@@ -1,0 +1,10 @@
+ActivityImpl
+ProcessImpl
+BindingImpl
+ConnectorImpl
+FlowImpl
+IdentifiableImpl
+ParallelGatewayImpl
+ParameterImpl
+ProcessElementImpl
+SemanticAnnotationImpl

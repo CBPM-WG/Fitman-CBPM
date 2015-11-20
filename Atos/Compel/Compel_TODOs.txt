@@ -1,0 +1,60 @@
+- Detect when no task has been selected in Oryx. Show process annotations
+OK
+
+- If process selected, only context, preferences and requirements annotations are supported. 
+Filter annotation types depending on element selected.
+OK
+
+- Filter annotation types in Annotations View depending on whether the process or a task has been selected.
+OK
+
+- Errors when showing task annotations. 
+Task annotations don't refer to selected task
+OK
+
+- Investigate log in and store/retrieval of models into/from the repository
+OK
+
+- Investigate model retrieval from repository, keeping original Ids 
+OK
+
+- Add button to go back to the repository when editing a model. Model should be saved before proceeding to the repository
+OK
+
+- Mavenize Compel
+OK
+
+- Check how to add service descriptions into the KB
+OK
+
+- Fix error when invoking DTC: 
+java.lang.NoClassDefFoundError: edu/emory/mathcs/backport/java/util/concurrent/ConcurrentHashMap
+OK Added missing dependency backport-util-concurrency-3.1.jar to pom.xml
+
+
+- Check Compel-DTC connection. Make tests.
+Modified DTC to ignore LILO schemas in SWS description
+First test OK
+
+- TODO: Verify relaxed query (non exact matching) wrt LILO schemas
+ 
+
+For DTC/KBClient deployment, consider KBClient sesame.properties
+
+- Fix problems to load data in Oryx (related with language files). See error log
+fix: remove all .svn directories in oryx/dist
+OK
+
+- Fix navigation problems during Oryx log in. If not logged previously, when requesting log-in the browse opens a openid page
+replacing Compel portal.
+
+- Rearrange Compel widgets layout and structure. 
+
+- Improve Widgets L&F
+
+- Improve Ontology Browser View
+
+- Create eTourism process model example
+
+
+

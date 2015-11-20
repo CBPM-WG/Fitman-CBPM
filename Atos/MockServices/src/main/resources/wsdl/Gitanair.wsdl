@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.example.org/Gitanair/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Gitanair" targetNamespace="http://www.example.org/Gitanair/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.example.org/Gitanair/">
+      <xsd:element name="ReservameVuelo"
+      	type="tns:ReservameVueloType">
+      </xsd:element>
+      <xsd:element name="NewOperationResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="out" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="BuscameVuelosPrimo" type="tns:Buscar"></xsd:element>
+      <xsd:element name="AquiLosTienesPayo" type="tns:Vuelos"></xsd:element>
+            
+            <xsd:complexType name="Vuelos">
+            	<xsd:sequence>
+            		<xsd:element name="Vuelo" type="tns:VueloType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+    
+            <xsd:complexType name="VueloType">
+            	<xsd:sequence>
+            		<xsd:element name="Compañia" type="xsd:string"></xsd:element>
+            		<xsd:element name="HoraIda" type="xsd:string"></xsd:element>
+            		<xsd:element name="HoraVuelta" type="xsd:string"></xsd:element>
+            		<xsd:element name="AeropuertoIda"
+            			type="xsd:string">
+            		</xsd:element>
+            		<xsd:element name="AeropuertoVuelta"
+            			type="xsd:string">
+            		</xsd:element>
+            		<xsd:element name="Precio" type="xsd:string"></xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+    
+            <xsd:complexType name="Buscar">
+            	<xsd:sequence>
+            		<xsd:element name="FechaIda" type="xsd:string"></xsd:element>
+            		<xsd:element name="FechaVuelta" type="xsd:string"></xsd:element>
+            		<xsd:element name="Destino" type="xsd:string"></xsd:element>
+            		<xsd:element name="Origen" type="xsd:string"></xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+    
+            <xsd:complexType name="VueloType1"></xsd:complexType>
+            <xsd:element name="ReservameVueloResponse1"
+            	type="tns:ReservaRespuestaType">
+            </xsd:element>
+            
+            <xsd:complexType name="ReservameVueloType">
+            	<xsd:sequence>
+            		<xsd:element name="NumeroVuelo" type="xsd:string"></xsd:element>
+            		<xsd:element name="IdPasagero" type="xsd:string"></xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+    
+            <xsd:complexType name="ReservaRespuestaType">
+            	<xsd:sequence>
+            		<xsd:element name="Resultado" type="xsd:string"></xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="BuscameArgoRequest">
+    <wsdl:part element="tns:BuscameVuelosPrimo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="BuscameArgoResponse">
+    <wsdl:part element="tns:AquiLosTienesPayo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="ReservameVueloRequest">
+  	<wsdl:part name="parameters" element="tns:ReservameVuelo"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ReservameVueloResponse">
+  	<wsdl:part name="parameters" element="tns:ReservameVueloResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="Gitanair">
+    <wsdl:operation name="BuscameArgo">
+      <wsdl:input message="tns:BuscameArgoRequest"/>
+      <wsdl:output message="tns:BuscameArgoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="ReservameVuelo">
+    	<wsdl:input message="tns:ReservameVueloRequest"></wsdl:input>
+    	<wsdl:output message="tns:ReservameVueloResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="GitanairSOAP" type="tns:Gitanair">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="BuscameArgo">
+      <soap:operation soapAction="http://www.example.org/Gitanair/BuscameArgo"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Gitanair">
+    <wsdl:port binding="tns:GitanairSOAP" name="GitanairSOAP">
+      <soap:address location="http://www.example.org/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

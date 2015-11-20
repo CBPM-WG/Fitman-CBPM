@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="DTComposer" scope="application">
+	<description>Design Time Composer service</description>
+	<messageReceivers>
+		<messageReceiver mep="http://www.w3.org/2004/08/wsdl/in-out"
+			class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+		<messageReceiver mep="http://www.w3.org/2004/08/wsdl/in-only"
+    		class="org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver"/>		
+	</messageReceivers>
+	<parameter name="ServiceClass">eu.atosresearch.seiplab.yourbpm.dtc.DTComposerImpl</parameter>
+	<operation name="resolveActivity">
+      <messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+   	</operation>
+   	<operation name="resolveGoalMS">
+      <messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+   	</operation>
+	<operation name="resolveGoalWithTemplate">
+      <messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+   	</operation>
+   	<operation name="resolveGoalWithTemplateMS">
+      <messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+   	</operation>
+   	<operation name="bindActivity">
+      <messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+   	</operation>
+   	<operation name="resolveGoalWithWSMS">
+      <messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+   	</operation>
+   	<operation name="resolveProcess">
+      <messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+   	</operation>
+   	<operation name="resolveProcessMS">
+      <messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+   	</operation>
+   	<operation name="resolveProcessWithTemplate">
+      <messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+   	</operation>
+   	<operation name="resolveProcessWithTemplateMS">
+      <messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+   	</operation>
+   	<operation name="resolveProcessWithWS">
+      <messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+   	</operation>
+   	<operation name="resolveProcessWithWSMS">
+      <messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+   	</operation>
+   	<operation name="checkIOSemanticCompatibility">
+      <messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+   	</operation>
+   	<operation name="generateDataFlow">
+      <messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+   	</operation>
+   	<operation name="registerDesignModificationRuleAgent">
+      <messageReceiver class="org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver"/>
+   	</operation>
+   	<operation name="registerDesignAnalysisAgent">
+      <messageReceiver class="org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver"/>
+   	</operation>
+   	<operation name="registerDesignModificationSemanticAgent">
+      <messageReceiver class="org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver"/>
+   	</operation>
+   	<operation name="unregisterDesignModificationRuleAgent">
+      <messageReceiver class="org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver"/>
+   	</operation>
+   	<operation name="unregisterDesignAnalysisAgent">
+      <messageReceiver class="org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver"/>
+   	</operation>
+   	<operation name="unregisterDesignModificationSemanticAgent">
+      <messageReceiver class="org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver"/>
+   	</operation>
+	<excludeOperations>
+    	<operation>getInstance</operation>
+   		<operation>initConfiguration</operation>
+    	<operation>pressAnyKey</operation>
+    	<operation>exit</operation>
+    	<operation>getBlackBoardControlAgent</operation>
+    	<operation>setSpringConfigurationFile</operation>
+    	<operation>getConfiguration</operation>
+    	<operation>init</operation>
+    	<operation>destroy</operation>
+    	<operation>getClassLoader</operation>
+    	<operation>registerSemanticLinkOperatorAgent</operation>
+    	<operation>registerDesignModificationRuleAgent</operation>
+    	<operation>getAxis2ClassLoader</operation>
+    	<operation>resolveGoalWithWSMS</operation>
+    	<operation>resolveProcessMS</operation>
+    	<operation>resolveProcessWithWS</operation>
+    	<operation>registerDesignModificationSemanticAgent</operation>
+    	<operation>registerDesignAnalysisAgent</operation>
+    	<operation>resolveProcessWithWSMS</operation>
+    	<operation>resolveGoalMS</operation>
+    	<operation>resolveProcessWithTemplate</operation>
+    	<operation>resolveGoalWithTemplate</operation>
+    	<operation>unregisterDesignModificationSemanticAgent</operation>
+    	<operation>resolveGoalWithWS</operation>
+    	<operation>unregisterDesignModificationRuleAgent</operation>
+    	<operation>resolveProcessWithTemplateMS</operation>
+    	<operation>resolveGoalWithTemplateMS</operation>
+    	<operation>unregisterSemanticLinkOperatorAgent</operation>
+    	<operation>getDTCClassLoader</operation>
+    	<operation>unregisterDesignAnalysisAgent</operation>
+	</excludeOperations>
+</service>

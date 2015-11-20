@@ -1,0 +1,21 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix sawsdl: <http://www.w3.org/ns/sawsdl#>.
+@prefix posm: <http://www.wsmo.org/ns/posm/0.2#>.
+@prefix eLogistic: <http://www.logistics.com/logisticOntology.owl#> .
+@prefix wn1: <http://www.example.org/services#> .
+
+wn1:Manufacturing a posm:Service ;
+	posm:hasOperation wn1:manufacturingOrder ;
+	sawsdl:modelReference eLogistic:Consolidation ;
+	rdfs:isDefinedBy <http://avalon.atos.net:8080/demo-app-1.0/services/manufacturing?wsdl> .
+
+wn1:manufacturingOrder a posm:Operation ;
+	posm:hasInput wn1:manufacturingOrder ;
+	posm:hasOutput wn1:manufacturingOrderResponse .
+
+wn1:manufacturingOrder a posm:Message ;
+	sawsdl:modelReference eLogistic:MoveableResource .
+
+wn1:manufacturingOrderResponse a posm:Message ;
+	sawsdl:modelReference eLogistic:SpatialEntity .
+

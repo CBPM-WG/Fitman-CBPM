@@ -1,0 +1,21 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix sawsdl: <http://www.w3.org/ns/sawsdl#>.
+@prefix posm: <http://www.wsmo.org/ns/posm/0.2#>.
+@prefix eLogistic: <http://www.logistics.com/logisticOntology.owl#> .
+@prefix wn1: <http://www.example.org/services#> .
+
+wn1:Stock a posm:Service ;
+	posm:hasOperation wn1:isAvailable ;
+	sawsdl:modelReference eLogistic:Storage ;
+	rdfs:isDefinedBy <http://localhost:8080/demo-app-1.0/services/stock?wsdl> .
+
+wn1:isAvailable a posm:Operation ;
+	posm:hasInput wn1:isAvailable ;
+	posm:hasOutput wn1:isAvailableResponse .
+
+wn1:isAvailable a posm:Message ;
+	sawsdl:modelReference eLogistic:MoveableResource .
+
+wn1:isAvailableResponse a posm:Message ;
+	sawsdl:modelReference eLogistic:isAvailableIn .
+

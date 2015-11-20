@@ -1,0 +1,21 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix sawsdl: <http://www.w3.org/ns/sawsdl#>.
+@prefix posm: <http://www.wsmo.org/ns/posm/0.2#>.
+@prefix etour: <http://ssear.googlecode.com/svn/trunk/ontology/Turismo.owl#> .
+@prefix wn1: <http://www.example.org/services#> .
+
+wn1:BrusselAirlines a posm:Service ;
+	posm:hasOperation wn1:SearchFlights ;
+	sawsdl:modelReference etour:Flight ;
+	rdfs:isDefinedBy <http://compositioned.lab.fi-ware.eu/brusselAirlinesService/brusselAirlinesService?wsdl> .
+
+wn1:SearchFlights a posm:Operation ;
+	posm:hasInput wn1:SearchFlightsRequest ;
+	posm:hasOutput wn1:SearchFlightsResponse .
+
+wn1:SearchFlightsRequest a posm:Message ;
+	sawsdl:modelReference etour:Destiny .
+
+wn1:SearchFlightsResponse a posm:Message ;
+	sawsdl:modelReference etour:Resource .
+

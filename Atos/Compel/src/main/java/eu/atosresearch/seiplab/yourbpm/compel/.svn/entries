@@ -1,0 +1,71 @@
+10
+
+dir
+151
+http://it-forge.atosresearch.eu/svn/seiplab/trunk/yourBPM/Compel/src/main/java/eu/atosresearch/seiplab/yourbpm/compel
+http://it-forge.atosresearch.eu/svn/seiplab
+
+
+
+2013-02-07T13:34:39.355433Z
+149
+qiranzo
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+bce00720-73f5-41e3-b9c8-2b46b42a2a5f
+
+Compel.gwt.xml
+file
+
+
+
+
+2013-02-20T08:50:22.373000Z
+20ed9285875497c77021bbad533422a3
+2012-11-13T09:56:08.597548Z
+98
+yosu
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1896
+
+client
+dir
+
+server
+dir
+
+shared
+dir
+

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+
+	<bean name="composerConfiguration"
+		class="eu.atosresearch.seiplab.yourbpm.dtc.configuration.ComposerConfiguration">
+
+		<!--  <property name="INSTALLATION_DIR" value="/home/yosu/projects/soa4all/wp6/workspace/DTComposerAdvancePrototype/" /> -->
+		<property name="INPUT_MODELS_DIR" value="models/input/" />		
+		<property name="TEMPLATES_DIR" value="models/templates/" />
+		
+		<property name="OUTPUT_MODELS_DIR" value="dtcomposer_instance/output/" />
+		<property name="TEMP_DIR" value="dtcomposer_instance/tmp/" />
+		
+		<property name="GOALS_DIR" value="ontologies/goals/" />		
+		<property name="SERVICES_DIR" value="ontologies/services/" />
+		<property name="ONTOLOGIES_DIR" value="ontologies/production/" />		
+		
+		<property name="SPACES_LOCALONTO_DIR" value="ontologies/production-spaces/" />		
+		<property name="SPACES_URL" value="http://spaces.com/" />		
+		<property name="SPACE_ID" value="http://soa4all.eu/spaces/dtc" />	
+	
+		<!-- Possible values: 
+			disabled (don't use semantic spaces), 
+			remote (use remote semantic spaces as pointed by URL), 
+			local (use local SS only. Loads only SPACES_LOCALONTO_DIR knowledge. for debugging purposes) 
+			mixed (use local SS + local knowledge (SPACES_LOCALONTO_DIR + ONTOLOGIES_DIR), for debugging purposes)
+		-->		
+		<property name="spaces_mode" value="disabled" />
+		
+		<property name="debug" value="true" />
+		<property name="service" value="false" />
+		<property name="thread" value="false" />
+		
+		<property name="DSLR_DMA" value="rules/KnowledgeBaseLanguage.dsl" />
+		<property name="DSLR_DAA" value="rules/AnalysisAgentLanguage.dsl" />	
+	
+		<!-- Possible values: filesystem (template read locally), storage (template read for storage) -->
+		<property name="template_storage_method" value="filesystem" />
+		<property name="storage_url" value="http://coconut.tie.nl:8080/storage" /> <!-- storage url -->
+		<property name="template_repository" value="composer-templates" /> <!-- storage url -->
+		
+	</bean>
+
+	<!-- External platform services -->
+<!-- 	<bean id="reasonerConfiguration" class="eu.soa4all.construction.reasoner.client.ReasonerClientConfiguration">
+		<property name="endpoint">
+			<bean class="java.lang.String">
+				<constructor-arg value="http://localhost:8765/soa4all/reasoner?wsdl" />
+			</bean>
+		</property>
+		<property name="namespaceURI">
+			<bean class="java.lang.String">
+				<constructor-arg value="http://service.repositoryreasoner.soa4all.eu/" />
+			</bean>
+		</property>
+		<property name="localpart">
+			<bean class="java.lang.String">
+				<constructor-arg value="ReasonerServiceService" />
+			</bean>
+		</property>
+	</bean> -->
+<!--
+
+	<bean id="reasoner" class="eu.soa4all.construction.reasoner.client.ReasonerAPIWSMLImpl">
+		<constructor-arg><ref bean="reasonerConfiguration"/></constructor-arg>
+		<constructor-arg><ref bean="composerConfiguration"/></constructor-arg>
+		<constructor-arg value="true"/> Use embedded reasoner 
+		<constructor-arg><ref bean="cache"/></constructor-arg>
+	</bean>
+	
+	--><bean id="reasonerSPARQL" class="eu.atosresearch.seiplab.yourbpm.dtc.reasoner.client.ReasonerAPISPARQLImpl">
+		<constructor-arg><ref bean="cache"/></constructor-arg>
+	</bean>
+	
+	<bean id="SLOEndpoint" class="java.lang.String">
+		<constructor-arg value="http://localhost:9081/axis2/services/SemanticLinkOperator"/>
+	</bean>
+	
+	<bean id="cache" class="eu.atosresearch.seiplab.yourbpm.dtc.common.utils.cache.QueryCache">
+		<constructor-arg value="true"/><!-- Activate cache -->
+	</bean>
+	
+	<!-- DTC Beans -->
+	<bean id="blackBoard" class="eu.atosresearch.seiplab.yourbpm.dtc.blackboard.BlackBoardImpl">
+		<property name="identifier">
+			<bean class="java.net.URI">
+				<constructor-arg value="http://www.soa4all.eu/dtcomposer/BlackBoard" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean name="blackBoardControlAgent" class="eu.atosresearch.seiplab.yourbpm.dtc.agents.BlackBoardControlAgent">
+		<property name="identifier">
+			<bean class="java.net.URI">
+				<constructor-arg
+					value="http://www.soa4all.eu/dtcomposer/BlackBoardController" />
+			</bean>
+		</property>
+		<property name="blackBoard" ref="blackBoard" />
+		<property name="maxNumberSolutions" value="10" />
+	</bean>
+
+	<!-- DTC Agents -->
+	<bean name="designAnalysisAgent" class="eu.atosresearch.seiplab.yourbpm.dtc.agents.DesignAnalysisAgent">
+		<constructor-arg value="/rules/DesignAnalysisAgentKB.dslr" />
+		<constructor-arg value="/rules/AnalysisAgentLanguage.dsl" />
+	 	<constructor-arg><ref bean="reasonerSPARQL"/></constructor-arg>
+		<property name="identifier">
+			<bean class="java.net.URI">
+				<constructor-arg value="http://www.soa4all.eu/dtcomposer/designAnalysisAgent" />
+			</bean>
+		</property>
+	</bean>
+	
+
+ 	<bean name="DesignModificationSPARQLAgent"
+		class="eu.atosresearch.seiplab.yourbpm.dtc.agents.DesignModificationSPARQLAgent">
+		<constructor-arg><ref bean="reasonerSPARQL"/></constructor-arg>
+
+		<property name="identifier">
+			<bean class="java.net.URI">
+				<constructor-arg
+					value="http://www.soa4all.eu/dtcomposer/DesignModificationWSMLAgent/" />
+			</bean>
+
+		</property>
+	</bean>
+
+
+	<bean id="contextApplicationContextProvider"
+		class="eu.atosresearch.seiplab.yourbpm.dtc.utils.ApplicationContextProvider"></bean>
+
+</beans>
+

@@ -1,0 +1,1382 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY logisticOntology "http://www.logistics.com/logisticOntology.owl#" >
+    <!ENTITY Truck "http://www.logistics.com/logisticOntology.owl#Truck+" >
+    <!ENTITY Locom "http://www.logistics.com/logisticOntology.owl#Locom+" >
+    <!ENTITY exchanges "http://www.logistics.com/logisticOntology.owl#exchanges&amp;" >
+    <!ENTITY hasProvider "http://www.logistics.com/logisticOntology.owl#hasProvider&amp;" >
+]>
+
+
+<rdf:RDF xmlns="http://www.logistics.com/logisticOntology.owl#"
+     xml:base="http://www.logistics.com/logisticOntology.owl"
+     xmlns:logisticOntology="http://www.logistics.com/logisticOntology.owl#"
+     xmlns:Truck="&logisticOntology;Truck+"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:exchanges="&logisticOntology;exchanges&amp;"
+     xmlns:hasProvider="&logisticOntology;hasProvider&amp;"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:Locom="&logisticOntology;Locom+"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#">
+    <owl:Ontology rdf:about="http://www.logistics.com/logisticOntology.owl">
+        <rdfs:comment>Version 2.5 - December  2012 
+
+List of changes compared to the previous version 2.4:
+
+1. Activity class:
+    - decomposition of activities in atomic and complex activities;
+    - introduction of the ActivityType class to denote different types of activities
+
+2. Introduction of the Event class 
+
+3. Actor class:
+    - The Actor class of version 2.4 is now called Party
+    - The Shipper class (under the class Party) is now called Consignor
+
+4. Introduction of the Entity class:
+    - The Resource class of version 2.4 is now incorporated in the Entity class and it is now refined in Moveable Resource and Static Resource 
+   - The ModeofTransport of version 2.4 is now called TrasnportMode and it is incorporated in the Entity class as an IntangibleEntity
+    
+5. Location class:
+    - it is now decomposed in GeoArea and GeoPoint in order to denote coarse-grained location and fine-grained location. 
+    - the Location class of version 2.4, which was decomposed in Port and Terminal, now it is called Facility and it is a type of StaticResource (under the Entity class) </rdfs:comment>
+        <owl:versionInfo>2.5</owl:versionInfo>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#consistsOf -->
+
+    <owl:ObjectProperty rdf:about="&logisticOntology;consistsOf">
+        <rdfs:range rdf:resource="&logisticOntology;AtomicActivity"/>
+        <rdfs:domain rdf:resource="&logisticOntology;ComplexActivity"/>
+        <owl:inverseOf rdf:resource="&logisticOntology;isPartOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#contains -->
+
+    <owl:ObjectProperty rdf:about="&logisticOntology;contains">
+        <rdfs:range rdf:resource="&logisticOntology;Container"/>
+        <rdfs:range rdf:resource="&logisticOntology;Pallet"/>
+        <rdfs:domain rdf:resource="&logisticOntology;Truck"/>
+        <rdfs:subPropertyOf rdf:resource="&logisticOntology;transports"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#has -->
+
+    <owl:ObjectProperty rdf:about="&logisticOntology;has">
+        <rdfs:domain rdf:resource="&logisticOntology;Activity"/>
+        <rdfs:range rdf:resource="&logisticOntology;ActivityType"/>
+        <rdfs:range rdf:resource="&logisticOntology;Event"/>
+        <rdfs:range rdf:resource="&logisticOntology;Location"/>
+        <rdfs:range rdf:resource="&logisticOntology;Party"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&logisticOntology;TimeInterval"/>
+                    <rdf:Description rdf:about="&logisticOntology;TimePoint"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#hasEndTime -->
+
+    <owl:ObjectProperty rdf:about="&logisticOntology;hasEndTime">
+        <rdfs:domain rdf:resource="&logisticOntology;TimeInterval"/>
+        <rdfs:range rdf:resource="&logisticOntology;TimePoint"/>
+        <owl:inverseOf rdf:resource="&logisticOntology;isEndTimeOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#hasRole -->
+
+    <owl:ObjectProperty rdf:about="&logisticOntology;hasRole">
+        <rdfs:domain rdf:resource="&logisticOntology;Party"/>
+        <rdfs:range rdf:resource="&logisticOntology;Role"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#hasStartTime -->
+
+    <owl:ObjectProperty rdf:about="&logisticOntology;hasStartTime">
+        <rdfs:domain rdf:resource="&logisticOntology;TimeInterval"/>
+        <rdfs:range rdf:resource="&logisticOntology;TimePoint"/>
+        <owl:inverseOf rdf:resource="&logisticOntology;isStartTimeOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#involves -->
+
+    <owl:ObjectProperty rdf:about="&logisticOntology;involves">
+        <rdfs:domain rdf:resource="&logisticOntology;Activity"/>
+        <rdfs:range rdf:resource="&logisticOntology;Entity"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#isAssociatedWith -->
+
+    <owl:ObjectProperty rdf:about="&logisticOntology;isAssociatedWith">
+        <rdfs:range rdf:resource="&logisticOntology;Facility"/>
+        <rdfs:domain rdf:resource="&logisticOntology;Modality"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#isAvailableAt -->
+
+    <owl:ObjectProperty rdf:about="&logisticOntology;isAvailableAt">
+        <rdfs:range rdf:resource="&logisticOntology;Location"/>
+        <rdfs:domain rdf:resource="&logisticOntology;SpatialEntity"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#isAvailableIn -->
+
+    <owl:ObjectProperty rdf:about="&logisticOntology;isAvailableIn">
+        <rdfs:domain rdf:resource="&logisticOntology;SpatialEntity"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&logisticOntology;TimeInterval"/>
+                    <rdf:Description rdf:about="&logisticOntology;TimePoint"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#isEndTimeOf -->
+
+    <owl:ObjectProperty rdf:about="&logisticOntology;isEndTimeOf">
+        <rdfs:range rdf:resource="&logisticOntology;TimeInterval"/>
+        <rdfs:domain rdf:resource="&logisticOntology;TimePoint"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#isPartOf -->
+
+    <owl:ObjectProperty rdf:about="&logisticOntology;isPartOf">
+        <rdfs:domain rdf:resource="&logisticOntology;AtomicActivity"/>
+        <rdfs:range rdf:resource="&logisticOntology;ComplexActivity"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#isRelativeTo -->
+
+    <owl:ObjectProperty rdf:about="&logisticOntology;isRelativeTo">
+        <rdfs:domain rdf:resource="&logisticOntology;RelativeTimePoint"/>
+        <rdfs:range rdf:resource="&logisticOntology;TimePoint"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#isStartTimeOf -->
+
+    <owl:ObjectProperty rdf:about="&logisticOntology;isStartTimeOf">
+        <rdfs:range rdf:resource="&logisticOntology;TimeInterval"/>
+        <rdfs:domain rdf:resource="&logisticOntology;TimePoint"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#isTransportedBy -->
+
+    <owl:ObjectProperty rdf:about="&logisticOntology;isTransportedBy">
+        <rdfs:domain rdf:resource="&logisticOntology;MoveableEquipment"/>
+        <rdfs:range rdf:resource="&logisticOntology;TransportMeans"/>
+        <owl:inverseOf rdf:resource="&logisticOntology;transports"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#pulls -->
+
+    <owl:ObjectProperty rdf:about="&logisticOntology;pulls">
+        <rdfs:domain rdf:resource="&logisticOntology;SemiTrailer"/>
+        <rdfs:domain rdf:resource="&logisticOntology;Tractor"/>
+        <rdfs:range rdf:resource="&logisticOntology;Trailer"/>
+        <rdfs:subPropertyOf rdf:resource="&logisticOntology;transports"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#requiresProper -->
+
+    <owl:ObjectProperty rdf:about="&logisticOntology;requiresProper">
+        <rdfs:range rdf:resource="&logisticOntology;MoveableEquipment"/>
+        <rdfs:range rdf:resource="&logisticOntology;Package"/>
+        <rdfs:domain rdf:resource="&logisticOntology;ProductClass"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#transports -->
+
+    <owl:ObjectProperty rdf:about="&logisticOntology;transports">
+        <rdfs:range rdf:resource="&logisticOntology;MoveableEquipment"/>
+        <rdfs:domain rdf:resource="&logisticOntology;TransportMeans"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#exampleproperty -->
+
+    <owl:DatatypeProperty rdf:about="&logisticOntology;exampleproperty"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Activity -->
+
+    <owl:Class rdf:about="&logisticOntology;Activity">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+        <rdfs:comment>An activity denotes some action continuous in time that is relevant for the purpose of logistics.
+
+An Activity has an ActivityType (such as, for example, Transport, Transhipment, Storage, etc.)
+
+Some activities are atomic and can be used to compose more complex activities. An example of complex activity is the following:
+1) Loading a certain transport means with a container in a location of origin
+2) Transport of the container using the transport means towards a location of destination
+3) Unloading the transport means at the location of destination
+
+Activities can be combined with events. For example, consider the following sequence : 
+1) the activity of loading a container on a truck and the departure event of the truck;
+2) the road transport activity and the arrival event of the truck at a certain port; 
+3) the transshipment of the container from the truck to a vessel, which implies that an arrival event of the vessel has previously taken place; 
+4) the departure event of the vessel and the sea transport activity of the container; 
+5) the arrival event of the vessel in a port of destination;  
+6) the transshipment of the container from the vessel to a truck, which implies that an arrival event of the truck has previously taken place; 
+7) the departure event of the truck and the road transport activity towards a destination location; and 
+8) the arrival event of the truck and the activity of unloading the container from the truck.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#ActivityType -->
+
+    <owl:Class rdf:about="&logisticOntology;ActivityType">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+        <rdfs:comment>An activity type denotes the type of action that is taking place in an activity.
+
+We have identified some relevant activity types, but the list is not complete and can be further extended. 
+
+The identified activity types are the following:
+- Transport, which denotes the activity of moving load units (namely, products and/or packages and/or pieces of equipment, but also empty containers) from a location of origin to a location of destination, in a certain time, using suitable transport mode and transport means;
+- Transhipment, which denotes the activity of changing transport mode at an intermediate destination and, consequently, transshipment implies a change of transport means (for example, from a truck to a vessel in a port);
+- Loading,  which denotes the activity of placing load units (namely, products and/or packages and/or pieces of equipment, but also empty containers) into/onto a transport means prior to transportation;
+- Unloading, which denotes the activity of taking out load units (or other piece of equipment) (namely, products and/or packages and/or pieces of equipment, but also empty containers) from a transport means after transportation;
+- Storage, which denotes the activity of keeping in stock products, and/or packages, and/or pieces of equipment, but also empty containers, in a warehouse facility for a certain period of time;
+- Consolidation, which denotes the activity of assembling of several (small) load units into one (big) unit;
+- Deconsolidation, which denotes the activity of disassembling of one (big) load unit in several (small) units.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#AirCarrier -->
+
+    <owl:Class rdf:about="&logisticOntology;AirCarrier">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Carrier"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#AirTransport -->
+
+    <owl:Class rdf:about="&logisticOntology;AirTransport">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;TransportMode"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Airplane -->
+
+    <owl:Class rdf:about="&logisticOntology;Airplane">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;TransportMeans"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Airport -->
+
+    <owl:Class rdf:about="&logisticOntology;Airport">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;StaticResource"/>
+        <rdfs:comment>An airport is a static resource built, installed or established to faciltate related activities in a geographical area. An airport has a location of type GeoArea (in contrast to a facility, which has a location of type GeoPoint since it denotes a specific address that we consider as a point location).
+
+An airport hosts several facilities.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Arrive -->
+
+    <owl:Class rdf:about="&logisticOntology;Arrive">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Event"/>
+        <rdfs:comment>Arrive (of a transport means) can be regarded as the starting event for the activity of transport</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#AtomicActivity -->
+
+    <owl:Class rdf:about="&logisticOntology;AtomicActivity">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Activity"/>
+        <rdfs:comment>An atomic activity is a basic building block that can be used to compose more complex activities
+
+An atomic activitiy can be part of zero or more (0..*) complex activities 
+
+An example of atomic activity is the follwoing:
+Loading a certain transport means with a container in a location of origin</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Bank -->
+
+    <owl:Class rdf:about="&logisticOntology;Bank">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Party"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#BargeOperator -->
+
+    <owl:Class rdf:about="&logisticOntology;BargeOperator">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Carrier"/>
+        <owl:disjointWith rdf:resource="&logisticOntology;RailOperator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#BargeTerminalOperator -->
+
+    <owl:Class rdf:about="&logisticOntology;BargeTerminalOperator">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;InlandTerminalOperator"/>
+        <rdfs:comment>the party who is operating the terminal between iInland waterway and road </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Barrel -->
+
+    <owl:Class rdf:about="&logisticOntology;Barrel">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Package"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Box -->
+
+    <owl:Class rdf:about="&logisticOntology;Box">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Package"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Bulk -->
+
+    <owl:Class rdf:about="&logisticOntology;Bulk">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;ProductClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Buyer -->
+
+    <owl:Class rdf:about="&logisticOntology;Buyer">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Party"/>
+        <rdfs:comment>Who is paying </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#CalendarDate -->
+
+    <owl:Class rdf:about="&logisticOntology;CalendarDate">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;TimePoint"/>
+        <rdfs:comment>A calendar date is a kind of time point characterised by being represented as a specific calendar year, month, day, hour and minute
+
+For example, 20 December 2012 18:23</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Carrier -->
+
+    <owl:Class rdf:about="&logisticOntology;Carrier">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Party"/>
+        <rdfs:comment>Who is carrying the goods and is operating the transport means. That&#39;s why a synonim of carrier is Operator.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Carton -->
+
+    <owl:Class rdf:about="&logisticOntology;Carton">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Package"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#ComplexActivity -->
+
+    <owl:Class rdf:about="&logisticOntology;ComplexActivity">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Activity"/>
+        <rdfs:comment>A complex activity is an activity that can be decomposed in more atomic activities
+
+A complex activity consists of at least two or more (2..*) atomic activities
+
+An example of complex activity is the following:
+1) Loading a certain transport means with a container in a location of origin
+2) Transport of the container using the transport means towards a location of destination
+3) Unloading the transport means at the location of destination</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Consignee -->
+
+    <owl:Class rdf:about="&logisticOntology;Consignee">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Party"/>
+        <rdfs:comment>Who is receving (sometimes buyer and consignee are the same)</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Consignor -->
+
+    <owl:Class rdf:about="&logisticOntology;Consignor">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Party"/>
+        <rdfs:comment>Who is shipping (sometimes is the same than the seller) - Shipper is a synonym of Consignor</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Consolidation -->
+
+    <owl:Class rdf:about="&logisticOntology;Consolidation">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;ActivityType"/>
+        <rdfs:comment>Consolidation is the activity of assembling several (small) load units into one (big) unit.
+
+For example, in case of LCL (Less than Container Load) process, several (small) load units belonging to different consignors but with the same destination can be consolidated into one container in order to be trasported as a single load unit.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Consumer -->
+
+    <owl:Class rdf:about="&logisticOntology;Consumer">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Role"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Container -->
+
+    <owl:Class rdf:about="&logisticOntology;Container">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;MoveableEquipment"/>
+        <rdfs:comment>Container is classified as a moveable equipment, but it can also be considered as package (therefore, the classes MoveableEquipment and Package are NOT disjoint).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Crane -->
+
+    <owl:Class rdf:about="&logisticOntology;Crane">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;StaticEquipment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#CustomsAuthority -->
+
+    <owl:Class rdf:about="&logisticOntology;CustomsAuthority">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Party"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#CustomsBroker -->
+
+    <owl:Class rdf:about="&logisticOntology;CustomsBroker">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Party"/>
+        <rdfs:comment>who is acting on behalf of an importer (who can be the buyer) or exporter (who can be the seller) for customs related issues</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Deconsolidation -->
+
+    <owl:Class rdf:about="&logisticOntology;Deconsolidation">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;ActivityType"/>
+        <rdfs:comment>Deconsolidation is the activity of disassembling one (big) load unit in several (small) units
+
+For example, once a container that carries several (small) load units has reached its destination, it can be deconsolidated for the final delivery of the individual units to the corresponding consignee. </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Depart -->
+
+    <owl:Class rdf:about="&logisticOntology;Depart">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Event"/>
+        <rdfs:comment>Depart (of a transport means) can be regarded as the ending event for the activity of transport</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Drop -->
+
+    <owl:Class rdf:about="&logisticOntology;Drop">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Event"/>
+        <rdfs:comment>Drop (of a container or other moveable equipment) can be regarded as the starting event for the activity of storage</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Entity -->
+
+    <owl:Class rdf:about="&logisticOntology;Entity">
+        <rdfs:comment>An entity represents something that is used or exchanged during an activity.
+
+For example, a container is a SpatialEntity of type MoveableResource that is exchanged during the activity of Transport. 
+Another example is a crane, which is a StaticResource that is used during the activity of Transport to facilitate the movement of containers whithin a port</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Event -->
+
+    <owl:Class rdf:about="&logisticOntology;Event">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+        <rdfs:comment>An event is an occurrence of interest for the execution of a certain activity.
+
+In contrast to an activity, which denotes an action that is continous in time, an event denotes an occurrence at a specific moment in time. Events trigger the execution of activities.
+
+For example, the departure of a transport means from a location of origin and its arrival to the destination can be regarded, respectively, as start and end events for the transport activity
+
+Events can be combined with activities. For example, consider the following sequence : 
+1) the activity of loading a container on a truck and the departure event of the truck;
+2) the road transport activity and the arrival event of the truck at a certain port; 
+3) the transshipment of the container from the truck to a vessel, which implies that an arrival event of the vessel has previously taken place; 
+4) the departure event of the vessel and the sea transport activity of the container; 
+5) the arrival event of the vessel in a port of destination;  
+6) the transshipment of the container from the vessel to a truck, which implies that an arrival event of the truck has previously taken place; 
+7) the departure event of the truck and the road transport activity towards a destination location; and 
+8) the arrival event of the truck and the activity of unloading the container from the truck.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Facility -->
+
+    <owl:Class rdf:about="&logisticOntology;Facility">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;StaticResource"/>
+        <rdfs:comment>A facility is a static resource built, installed or established to faciltate related activities in a point location. A facility has a location of type GeoPoint (in contrast to ports or airports, which have a location of type GeoArea since they denote an entire geographical area).
+
+A facility can be part of a port or an airport.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Flammable -->
+
+    <owl:Class rdf:about="&logisticOntology;Flammable">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;ProductClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Forwarder -->
+
+    <owl:Class rdf:about="&logisticOntology;Forwarder">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Party"/>
+        <rdfs:comment>Who is handling/organizing the shipment on behalf of somebody else that owns the goods. This organization sometimes is hust about having a phone and a desk, maybe a computer, and booking resources. In other cases, for example DHL, the forwarder also executes some parts because he owns resources (airplanes, trucks), but the forwarder never own the goods himself. </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Gas -->
+
+    <owl:Class rdf:about="&logisticOntology;Gas">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;PhysicalState"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#GeoArea -->
+
+    <owl:Class rdf:about="&logisticOntology;GeoArea">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Location"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#GeoPoint -->
+
+    <owl:Class rdf:about="&logisticOntology;GeoPoint">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Location"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Haulier -->
+
+    <owl:Class rdf:about="&logisticOntology;Haulier">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Carrier"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#HeavyMachinery -->
+
+    <owl:Class rdf:about="&logisticOntology;HeavyMachinery">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;ProductClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Hub -->
+
+    <owl:Class rdf:about="&logisticOntology;Hub">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Facility"/>
+        <rdfs:comment>Hub is a facility where items/containers/load units are dropped and stored for a limited time before being distributed to another hub or to their final destination (using road transport) </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#InlandTerminalOperator -->
+
+    <owl:Class rdf:about="&logisticOntology;InlandTerminalOperator">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;TerminalOperator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Insurer -->
+
+    <owl:Class rdf:about="&logisticOntology;Insurer">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Party"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#IntangibleEntity -->
+
+    <owl:Class rdf:about="&logisticOntology;IntangibleEntity">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Entity"/>
+        <rdfs:comment>An intangible entity represents an intangible object, such as a modality or an application.
+
+We have identified Modality and Sate as type of IntangibleObject, but the list is not complete and can be further extended</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Liquid -->
+
+    <owl:Class rdf:about="&logisticOntology;Liquid">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;PhysicalState"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Loading -->
+
+    <owl:Class rdf:about="&logisticOntology;Loading">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;ActivityType"/>
+        <rdfs:comment>Loading is the activity of placing load units (namely, products and/or packages and/or pieces of equipment, but also empty containers) into/onto a transport means prior to transportation</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Location -->
+
+    <owl:Class rdf:about="&logisticOntology;Location">
+        <rdfs:comment>The geo location represents the geographical area or geographical point used to define the place of origin and destination for entities and activities. 
+
+Location can have different levels of granularity. Location can be coarse-grained for scheduling, since in long term planning it is sufficient to specify approximately the place of origin and destination, such as, for example, the Netherlands or the port of Rotterdam. However, location needs to be fine-grained for delivery, since one has to specify the precise address to which a certain item must be delivered.
+
+Since location is a concept common to other domains, we probably do not need to define it from scratch, but we can import another existing ontology (if there are any). </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#MaritimeTransport -->
+
+    <owl:Class rdf:about="&logisticOntology;MaritimeTransport">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;TransportMode"/>
+        <rdfs:comment>MaritimeTransport uses Port as Location. the follwing holds:
+MaritimeTransport hasInputPlace POL (PortOfLoading)  AND MaritimeTransport hasOutputPlace POD (PortOfDischarge)</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Modality -->
+
+    <owl:Class rdf:about="&logisticOntology;Modality">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;IntangibleEntity"/>
+        <rdfs:comment>A modality is an intangible entity that denotes the specific mode in which a certain activity is used.
+
+For example, the mode of transport is a modality that denotes which particluar mode is used for the activity of transport, i.e., air transport, road transport, etc. </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#MoveableEquipment -->
+
+    <owl:Class rdf:about="&logisticOntology;MoveableEquipment">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;MoveableResource"/>
+        <rdfs:comment>A moveable equipment is a reusable entity used for containment, protection and movement of product classes with or without package. A moveable equipment cannot move on its own (unpowered vehicle), but can be pulled or contained in a transport means</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#MoveableResource -->
+
+    <owl:Class rdf:about="&logisticOntology;MoveableResource">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;SpatialEntity"/>
+        <rdfs:comment>A moveable resource is a (spatial) entity characterized by the capability of moving on its own or being contained in another entity for the purpose of transportation</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#NormalTruck -->
+
+    <owl:Class rdf:about="&logisticOntology;NormalTruck">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Truck"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Notify -->
+
+    <owl:Class rdf:about="&logisticOntology;Notify">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Event"/>
+        <rdfs:comment>Notify is a notification event for the successfull completion (or not successfull) of an activity </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Organic -->
+
+    <owl:Class rdf:about="&logisticOntology;Organic">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;ProductClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Package -->
+
+    <owl:Class rdf:about="&logisticOntology;Package">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;MoveableResource"/>
+        <rdfs:comment>Package is material used for containment, protection and movement of product classes</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Pallet -->
+
+    <owl:Class rdf:about="&logisticOntology;Pallet">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;MoveableEquipment"/>
+        <rdfs:comment>Pallet  is classified as a moveable equipment, but it can also be considered as package (therefore, the classes MoveableEquipment and Package are NOT disjoint).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Party -->
+
+    <owl:Class rdf:about="&logisticOntology;Party">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+        <rdfs:comment>Actors are overlapping since they may change over time depending on the situation (for example, a forwarder can also be a carrier). However, with respect to a specific transaction, actors always have specific role, namely consumer or provider. </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Perishable -->
+
+    <owl:Class rdf:about="&logisticOntology;Perishable">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;ProductClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#PhysicalState -->
+
+    <owl:Class rdf:about="&logisticOntology;PhysicalState">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;State"/>
+        <rdfs:comment>The physical state denotes in which state a certain product class exists and, therefore, it is used to select the proper package, equipment, transport means, etc. for the transportation of that product  </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Pick -->
+
+    <owl:Class rdf:about="&logisticOntology;Pick">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Event"/>
+        <rdfs:comment>Pick (of a container or other moveable equipment) can be regarded as the end event for the activity of storage</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Port -->
+
+    <owl:Class rdf:about="&logisticOntology;Port">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;StaticResource"/>
+        <rdfs:comment>A port is a static resource built, installed or established to faciltate related activities in a geographical area. A port has a location of type GeoArea (in contrast to a facility, which has a location of type GeoPoint since it denotes a specific address that we consider as a point location).
+
+A port hosts several facilities.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#ProductClass -->
+
+    <owl:Class rdf:about="&logisticOntology;ProductClass">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;MoveableResource"/>
+        <rdfs:comment>A product class is used  to select proper package, moveable equipment and transport means for the logistics activities, especially for transport. The selection is based on relevant properties of the product class, such as its physical state (solid, liquid, gas), reuired temperature, dangerousness, etc.
+
+The classification of product classes types is is not complete and can be further extended </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Provider -->
+
+    <owl:Class rdf:about="&logisticOntology;Provider">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Role"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#RailOperator -->
+
+    <owl:Class rdf:about="&logisticOntology;RailOperator">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Carrier"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#RailTerminalOperator -->
+
+    <owl:Class rdf:about="&logisticOntology;RailTerminalOperator">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;InlandTerminalOperator"/>
+        <rdfs:comment>the party who is operating the terminal  between road and rail</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#RailwayStation -->
+
+    <owl:Class rdf:about="&logisticOntology;RailwayStation">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Facility"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#RailwayTransport -->
+
+    <owl:Class rdf:about="&logisticOntology;RailwayTransport">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;TransportMode"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#RailwayWagon -->
+
+    <owl:Class rdf:about="&logisticOntology;RailwayWagon">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;MoveableEquipment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Regular -->
+
+    <owl:Class rdf:about="&logisticOntology;Regular">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;ProductClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#RelativeTimePoint -->
+
+    <owl:Class rdf:about="&logisticOntology;RelativeTimePoint">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;TimePoint"/>
+        <rdfs:comment>A relative time point is a kind of time point characterised by being represented as a durational offset from an origin,
+
+For example, the day after tomorrw.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Resume -->
+
+    <owl:Class rdf:about="&logisticOntology;Resume">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Event"/>
+        <rdfs:comment>Resume is a notification event of the resume of an activity that was previously suspended</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#RoadTransport -->
+
+    <owl:Class rdf:about="&logisticOntology;RoadTransport">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;TransportMode"/>
+        <rdfs:comment>RoadTransport uses Warehouses and Port as Location.
+- In case of Warehouses:
+RoadTransport hasInputPlace PLA (PlaceOfAcceptance)  AND RoadTransport hasOutputPlace PLD (PlaceOfDelivery) 
+ - In case of Port:
+RoadTransport hasInputPlace POD (PortOfDischarge) AND RoadTransport hasOutputPlace POL (PortOfLoading)</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Role -->
+
+    <owl:Class rdf:about="&logisticOntology;Role">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#SeaCarrier -->
+
+    <owl:Class rdf:about="&logisticOntology;SeaCarrier">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Carrier"/>
+        <rdfs:comment>A synonym of seaCarrier is OceanCarrier</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#SeaTerminalOperator -->
+
+    <owl:Class rdf:about="&logisticOntology;SeaTerminalOperator">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;TerminalOperator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Seller -->
+
+    <owl:Class rdf:about="&logisticOntology;Seller">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Party"/>
+        <rdfs:comment>Who is selling (is getting paid)</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#SemiTrailer -->
+
+    <owl:Class rdf:about="&logisticOntology;SemiTrailer">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Truck"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Solid -->
+
+    <owl:Class rdf:about="&logisticOntology;Solid">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;PhysicalState"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#SpatialEntity -->
+
+    <owl:Class rdf:about="&logisticOntology;SpatialEntity">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Entity"/>
+        <rdfs:comment>A spatial entity represents a tangible object, such as an equipment or a person.
+
+A SpatialEntity is furter specialized in MoveableResource and StaticResource</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#State -->
+
+    <owl:Class rdf:about="&logisticOntology;State">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;IntangibleEntity"/>
+        <rdfs:comment>A state is an intangible entity that denotes the way of being of an entity.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#StaticEquipment -->
+
+    <owl:Class rdf:about="&logisticOntology;StaticEquipment">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;StaticResource"/>
+        <rdfs:comment>A static equipment is a reusable entity that cannot move of its own (unpowered) used to handle moveable resources prior to their transportation</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#StaticResource -->
+
+    <owl:Class rdf:about="&logisticOntology;StaticResource">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;SpatialEntity"/>
+        <rdfs:comment>A static resource is a (spatial) entity used to host and/or handle moveable resources prior to their transportation</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Stevedore -->
+
+    <owl:Class rdf:about="&logisticOntology;Stevedore">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Party"/>
+        <rdfs:comment>who is phisically handling the containers in a location (sea transport related)</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Storage -->
+
+    <owl:Class rdf:about="&logisticOntology;Storage">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;ActivityType"/>
+        <rdfs:comment>Storage is the activity of keeping in stock products, and/or packages, and/or pieces of equipment, but also empty containers, in a warehouse facility for a certain period of time</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Subscribe -->
+
+    <owl:Class rdf:about="&logisticOntology;Subscribe">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Event"/>
+        <rdfs:comment>Subscribe is a subscription event necessary to get notifications of interest for the successfull completion (or not successfull) of activities </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Suspend -->
+
+    <owl:Class rdf:about="&logisticOntology;Suspend">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Event"/>
+        <rdfs:comment>Suspend is a notification event of the suspension of an activity that was being executed</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Tank -->
+
+    <owl:Class rdf:about="&logisticOntology;Tank">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Package"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Terminal -->
+
+    <owl:Class rdf:about="&logisticOntology;Terminal">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Facility"/>
+        <rdfs:comment>A terminal is a facility used both for air transport and maritime transport </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#TerminalOperator -->
+
+    <owl:Class rdf:about="&logisticOntology;TerminalOperator">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Party"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#TimeInterval -->
+
+    <owl:Class rdf:about="&logisticOntology;TimeInterval">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+        <rdfs:comment>Since the concept of time is relevant to logistics, but it is common to other domains, instead of specifying it from scratch, we followed  the representation of time proposed in: 
+Uschold, M., King, M., Moralee, S., Zorgios, Y.: The Enterprise Ontology. In: the Knowledge Engineering Review, vol. 13 (1), pp. 31-89. Cambridge University Press (1998)
+
+A time interval is an ordered, continuous, infinite sequence of time points that represents a duration associated to processes and activities</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#TimePoint -->
+
+    <owl:Class rdf:about="&logisticOntology;TimePoint">
+        <rdfs:comment>A time point is a specific, instantaneous point in time</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Toxic -->
+
+    <owl:Class rdf:about="&logisticOntology;Toxic">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;ProductClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Tractor -->
+
+    <owl:Class rdf:about="&logisticOntology;Tractor">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Truck"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Trailer -->
+
+    <owl:Class rdf:about="&logisticOntology;Trailer">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;MoveableEquipment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Train -->
+
+    <owl:Class rdf:about="&logisticOntology;Train">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;TransportMeans"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Transport -->
+
+    <owl:Class rdf:about="&logisticOntology;Transport">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;ActivityType"/>
+        <rdfs:comment>Transport is the activity of moving load units (namely, products and/or packages and/or pieces of equipment, but also empty containers) from a location of origin to a location of destination, in a certain time, using suitable transport mode and transport means.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#TransportMeans -->
+
+    <owl:Class rdf:about="&logisticOntology;TransportMeans">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;MoveableResource"/>
+        <rdfs:comment>A transport means is a reusable entity that facilitates the activity of transport and moves on its own (powered vehicle)</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#TransportMode -->
+
+    <owl:Class rdf:about="&logisticOntology;TransportMode">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Modality"/>
+        <rdfs:comment>TransportMode is the modality used for the activities of transport and transhipment</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Transshipment -->
+
+    <owl:Class rdf:about="&logisticOntology;Transshipment">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;ActivityType"/>
+        <rdfs:comment>Transshipment is the activity of changing transport mode at an intermediate destination and, consequently, transshipment implies a change of transport means (for example, from a truck to a vessel in a port). 
+
+Therefore, transshipment can be defined as a complex activity that takes place at an intermediate destination and consists of:
+1) Unloading a load unit from a transport means;
+2) Storage (optional);
+3) Loading to another transport means;
+afterwards, the transshipment is followed by the actual transport towards the final destination (maybe through other intermediate locations).
+
+Sometimes transshipment is realized for the purpose of consolidation and this activity is called &quot;cross-docking&quot;. In this case, we have a complex activity of transhipment that involves:
+1) Unloading; 
+2) Deconsolidation;
+3) Storage (optional);
+4) Consolidation; 
+5) Loading;
+afterwards, the transshipment is followed by the actual transport towards the final destination (maybe through other intermediate locations).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#TrimodalTerminalOperator -->
+
+    <owl:Class rdf:about="&logisticOntology;TrimodalTerminalOperator">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;InlandTerminalOperator"/>
+        <rdfs:comment>the party who is operating the terminal between inland waterway and road and rail</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Truck -->
+
+    <owl:Class rdf:about="&logisticOntology;Truck">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;TransportMeans"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#UniformLoadDevice -->
+
+    <owl:Class rdf:about="&logisticOntology;UniformLoadDevice">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;MoveableEquipment"/>
+        <rdfs:comment>A uniform load device is a container used for air transport </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Unloading -->
+
+    <owl:Class rdf:about="&logisticOntology;Unloading">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;ActivityType"/>
+        <rdfs:comment>Unloading is the activity of taking out load units (or other piece of equipment) (namely, products and/or packages and/or pieces of equipment, but also empty containers) from a transport means after transportation</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Vessel -->
+
+    <owl:Class rdf:about="&logisticOntology;Vessel">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;TransportMeans"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Warehouse -->
+
+    <owl:Class rdf:about="&logisticOntology;Warehouse">
+        <rdfs:subClassOf rdf:resource="&logisticOntology;Facility"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Mode -->
+
+    <owl:NamedIndividual rdf:about="&logisticOntology;Mode"/>
+    
+
+
+    <!-- http://www.logistics.com/logisticOntology.owl#Test -->
+
+    <owl:NamedIndividual rdf:about="&logisticOntology;Test"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="&logisticOntology;NormalTruck"/>
+            <rdf:Description rdf:about="&logisticOntology;SemiTrailer"/>
+            <rdf:Description rdf:about="&logisticOntology;Tractor"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="&logisticOntology;Container"/>
+            <rdf:Description rdf:about="&logisticOntology;RailwayWagon"/>
+            <rdf:Description rdf:about="&logisticOntology;UniformLoadDevice"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="&logisticOntology;Gas"/>
+            <rdf:Description rdf:about="&logisticOntology;Liquid"/>
+            <rdf:Description rdf:about="&logisticOntology;Solid"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="&logisticOntology;Box"/>
+            <rdf:Description rdf:about="&logisticOntology;Carton"/>
+            <rdf:Description rdf:about="&logisticOntology;Pallet"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.2.3.1824) http://owlapi.sourceforge.net -->
+

@@ -1,0 +1,36 @@
+Dependencies:
+        -JDK 1.6.0
+        -FaCT++-1.2.2
+
+Installation procedure
+-Install FaCT++-1.2.2 following software instructions.
+
+-Checkout project: svn co https://svn.sti2.at/soa4all/trunk/soa4all-service-construction/soa4all-service-construction-dtcomposer
+ We refer to this checkout directory as DTC_HOME
+
+-Checkout project: svn co https://svn.sti2.at/soa4all/trunk/soa4all-service-construction/soa4all-service-construction-dtcomposer-client
+ We refer to this checkout directory as DTC_HOME_CLIENT
+ 
+ cd DTC_HOME_CLIENT
+ mvn -Dmaven.test.skip="true" clean install
+    
+-Configure DTC:
+ Edit $DTC_HOME/DesignTimeComposer_v2/src/main/resources/dtcomposer-service-configuration.xml:
+ - configure Service Discovery service endpoint:
+ <bean id="sdEndpoint" class="java.lang.String">
+	<constructor-arg value="http://km.aifb.kit.edu/services/soa4all-discovery/axis2/services/ServiceDiscovery?wsdl"/>
+ </bean>
+ 
+-Create service aar:
+ cd DTC_HOME
+ mvn -Dmaven.test.skip="true" clean install
+    
+-Copy $DTC_HOME/DesignTimeComposer_v2/target/DesignTimeComposer-1.0-SNAPSHOT.aar into
+ $DTC_HOME/tools/axis2-dtc/axis2-1.5.1/repository/services
+
+-Launch FaCT++-1.2.2, listening on default port.
+-Launch DTC service using: $DTC_HOME/tools/startDTCTools.sh
+
+Design Time Composer now listens on http://localhost:9090/axis2/services/DTComposer?wsdl
+
+- Test DTC service using $DTC_HOME_CLIENT/src/test/java/eu/soa4all/wp6/composer/client/test/review/DTCICTDemo1.java

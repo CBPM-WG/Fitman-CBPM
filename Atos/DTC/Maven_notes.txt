@@ -1,0 +1,8 @@
+To install aar file:
+- under DesignTimeComposer_v2 dir: mvn install
+
+To skip test:
+mvn -Dmaven.test.skip="true"
+
+To see dependencies tree:
+mvn dependency:tree -Dverbose=true install

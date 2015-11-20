@@ -1,0 +1,84 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <groupId>eu.atosresearch.seiplab</groupId>
+  <artifactId>yourbpm</artifactId>
+  <version>1.0</version>
+  <packaging>pom</packaging>
+  <name>Parent Project for YourBPM software</name>
+  
+  <modules>
+  	<module>BPMModel</module>
+  	<module>LPML</module>
+  	<module>WSDLManager</module>
+  	<module>KBClient</module>
+  	<module>BPMN20</module>
+	<module>DTC</module>
+	<module>DTCClient</module>
+	<module>Compel</module>
+	<module>activiti</module>
+	<module>MockServices</module>
+  </modules>
+  
+     <distributionManagement>
+        <repository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>seiplab-release</id>
+            <name>Atos SEIP Lab release repository</name>
+            <url>http://hudson.cloud4soa.eu:8080/nexus/content/repositories/seiplab-release/</url>
+        </repository>
+        <snapshotRepository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>seiplab-snapshots</id>
+            <name>Atos SEIP Lab snapshot repository</name>
+            <url>http://hudson.cloud4soa.eu:8080/nexus/content/repositories/seiplab-snapshot/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <repositories>
+        <repository>
+            <id>seip-release</id>
+            <url>http://hudson.cloud4soa.eu:8080/nexus/content/repositories/seiplab-release/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+<!--         <repository> -->
+<!--             <id>seip-snapshots</id> -->
+<!--             <url>http://hudson.cloud4soa.eu:8080/nexus/content/repositories/seiplab-snapshot/</url> -->
+<!--             <snapshots> -->
+<!--                 <enabled>true</enabled> -->
+<!--             </snapshots> -->
+<!--         </repository> -->
+    </repositories>
+  
+   	<issueManagement>
+		<url>http://ari-trac.atosorigin.es/services</url>
+	</issueManagement>
+	<organization>
+        <name>Atos</name>
+        <url>http://www.atos.com</url>
+        </organization>
+	<developers>
+		<developer>
+			<name>Jesus Gorronogoitia</name>
+			<id>yosu</id>
+			<email>jesus.gorronogoitia@atosresearch.eu</email>
+		</developer>
+		<developer>
+			<name>Jose Lucea</name>
+			<id>jose.lucea</id>
+			<email>jose.lucea@mail.atosresearch.eu</email>
+		</developer>
+		<developer>
+			<name>Mateusz Radzimski</name>
+			<id>mateusz.radzimski</id>
+			<email>mateusz.radzimski@atosresearch.eu</email>
+		</developer>
+		<developer>
+			<name>Miguel Angel Huerta</name>
+			<id>miguel</id>
+			<email>miguel.huerta@atosresearch.eu</email>
+		</developer>                
+	</developers>
+</project>

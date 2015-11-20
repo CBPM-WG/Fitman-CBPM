@@ -1,0 +1,280 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <groupId>eu.atosresearch.seiplab.yourbpm</groupId>
+  <artifactId>compel</artifactId>
+  <version>1.0</version>
+  
+  <packaging>war</packaging>
+  
+  <parent>
+  	<groupId>eu.atosresearch.seiplab</groupId>
+  	<artifactId>yourbpm</artifactId>
+  	<version>1.0</version>
+  	<relativePath>..</relativePath>
+  </parent>
+  
+  <properties>
+    <!-- Convenience property to set the GWT version -->
+    <gwtVersion>2.1.1</gwtVersion>
+
+    <!-- GWT needs at least java 1.5 -->
+    <maven.compiler.source>1.6</maven.compiler.source>
+    <maven.compiler.target>1.6</maven.compiler.target>
+    
+	<webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
+  </properties>
+  
+  <dependencies>
+  	<dependency>
+  		<groupId>wsdl4j</groupId>
+  		<artifactId>wsdl4j</artifactId>
+  		<version>1.6.2</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>xerces</groupId>
+  		<artifactId>xercesImpl</artifactId>
+  		<version>2.10.0</version>
+  	</dependency>
+   	<dependency> 
+   		<groupId>org.slf4j</groupId> 
+   		<artifactId>slf4j-log4j12</artifactId> 
+   		<version>1.5.8</version>
+   	</dependency> 
+  	<dependency>
+  		<groupId>org.slf4j</groupId>
+  		<artifactId>slf4j-api</artifactId>
+  		<version>1.5.8</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>net.sf.jsr107cache</groupId>
+  		<artifactId>jsr107cache</artifactId>
+  		<version>1.1</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>com.hp.hpl.jena</groupId>
+  		<artifactId>jena</artifactId>
+  		<version>2.6.3</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>javax.jdo</groupId>
+  		<artifactId>jdo2-api</artifactId>
+  		<version>2.3-eb</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>com.hp.hpl.jena</groupId>
+  		<artifactId>iri</artifactId>
+  		<version>0.8</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>com.extjs</groupId>
+  		<artifactId>gxt</artifactId>
+  		<version>2.2.0</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>com.google.gwt</groupId>
+  		<artifactId>gwt-servlet</artifactId>
+  		<version>${gwtVersion}</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.apache.geronimo.specs</groupId>
+  		<artifactId>geronimo-jta_1.1_spec</artifactId>
+  		<version>1.1.1</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.apache.geronimo.specs</groupId>
+  		<artifactId>geronimo-jpa_3.0_spec</artifactId>
+  		<version>1.1.1</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.datanucleus</groupId>
+  		<artifactId>datanucleus-jpa</artifactId>
+  		<version>1.1.5</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.datanucleus</groupId>
+  		<artifactId>datanucleus-core</artifactId>
+  		<version>1.1.5</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>com.google.appengine.orm</groupId>
+  		<artifactId>datanucleus-appengine</artifactId>
+  		<version>1.0.7</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>commons-httpclient</groupId>
+  		<artifactId>commons-httpclient</artifactId>
+  		<version>3.1</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>commons-codec</groupId>
+  		<artifactId>commons-codec</artifactId>
+  		<version>1.4</version>
+  	</dependency>
+  	<!-- <dependency>
+  		<groupId>org.apache.axis2</groupId>
+  		<artifactId>axis2-kernel</artifactId>
+  		<version>1.6.2</version>
+  	</dependency> -->
+  	<dependency>
+  	  	<artifactId>servlet-api</artifactId>
+  		<groupId>javax.servlet</groupId>
+  		<version>2.3</version>
+  		<scope>provided</scope>  		
+  	</dependency>
+  	<dependency>
+  		<groupId>org.apache.axis2</groupId>
+		<artifactId>axis2-adb</artifactId>
+		<version>1.6.2</version>
+	</dependency>
+  	<dependency>
+  		<groupId>eu.atosresearch.seiplab.yourbpm.dtc</groupId>
+  		<artifactId>DTCClient</artifactId>
+  		<version>1.0</version>
+  	</dependency>
+	<dependency>
+	  <groupId>eu.atosresearch.seiplab.yourbpm</groupId>
+	  <artifactId>KBClient</artifactId>
+	  <version>1.0</version>
+	</dependency>
+	<dependency>
+  		<groupId>eu.atosresearch.seiplab.yourbpm</groupId>
+  		<artifactId>KBClient</artifactId>
+  		<version>1.0</version>
+	</dependency>
+  	<dependency>
+  		<groupId>com.smartgwt</groupId>
+  		<artifactId>smartgwt</artifactId>
+  		<version>2.2</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>net.sourceforge.wsmo4j</groupId>
+  		<artifactId>wsmo-api</artifactId>
+  		<version>0.6.1</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>backport-util-concurrent</groupId>
+  		<artifactId>backport-util-concurrent</artifactId>
+  		<version>3.1</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>junit</groupId>
+  		<artifactId>junit</artifactId>
+  		<version>4.10</version>
+  	</dependency>
+  </dependencies>
+  <build>
+ 
+  <resources>
+      <resource>
+        <directory>src/main/java</directory>
+        <includes>
+          <include>**/*.java</include>
+          <include>**/*.gwt.xml</include>
+          <include>**/*.ui.xml</include>
+        </includes>
+      </resource>
+      
+      <resource>
+        <directory>src/main/resources</directory>
+        <includes>
+            <include>*.properties</include>
+        </includes>
+      </resource>
+  	</resources>
+ 
+  	<plugins>
+ 
+<!--  	
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>gwt-maven-plugin</artifactId>
+        <version>2.4.0</version>
+        <dependencies>
+          <dependency>
+            <groupId>com.google.gwt</groupId>
+            <artifactId>gwt-user</artifactId>
+            <version>${gwtVersion}</version>
+          </dependency>
+          <dependency>
+            <groupId>com.google.gwt</groupId>
+            <artifactId>gwt-dev</artifactId>
+            <version>${gwtVersion}</version>
+          </dependency>
+        </dependencies>
+	    <executions>
+	         <execution>
+	             <goals>
+	                <goal>compile</goal>
+	             </goals>
+	         </execution>
+	    </executions>
+	    <configuration>
+	         <module>com.compel.Compel</module>
+	    </configuration>        
+      </plugin>
+-->	  
+	   
+	  <!-- GWT Maven Plugin -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>gwt-maven-plugin</artifactId>
+        <version>2.4.0</version>
+		<dependencies>
+          <dependency>
+            <groupId>com.google.gwt</groupId>
+            <artifactId>gwt-user</artifactId>
+            <version>${gwtVersion}</version>
+          </dependency>
+          <dependency>
+            <groupId>com.google.gwt</groupId>
+            <artifactId>gwt-dev</artifactId>
+            <version>${gwtVersion}</version>
+          </dependency>
+        </dependencies>
+        <executions>
+          <execution>
+            <goals>
+              <goal>compile</goal>
+<!--              <goal>test</goal> -->
+<!--               <goal>i18n</goal> -->
+<!--               <goal>generateAsync</goal> -->
+            </goals>
+           <configuration>
+           	<style>DETAILED</style>
+           </configuration>
+          </execution>
+        </executions>
+        <!-- Plugin configuration. There are many available options, see gwt-maven-plugin 
+          documentation at codehaus.org -->
+        <configuration>
+          <!-- <runTarget>Compel.html</runTarget> -->
+          <runTarget>http://localhost:8080/compel-1.0/Compel.html</runTarget>
+          <hostedWebapp>${webappDirectory}</hostedWebapp>
+		  <debugPort>8008</debugPort> 
+		  <noServer>true</noServer>
+        </configuration>
+
+      </plugin>
+
+      <!-- Copy static web files before executing gwt:run -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>2.1.1</version>
+        <executions>
+          <execution>
+<!--             <phase>compile</phase> -->
+            <goals>
+              <goal>exploded</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <webappDirectory>${webappDirectory}</webappDirectory>
+        </configuration>
+      </plugin>
+  	</plugins>
+  </build>
+  
+</project>

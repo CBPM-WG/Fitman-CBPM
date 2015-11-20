@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<xs:schema xmlns="http://www.soa4all.eu/lpml"
+		   targetNamespace="http://www.soa4all.eu/lpml"
+		   elementFormDefault="qualified"
+		   xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+
+<xs:element name="process">
+   <xs:complexType>
+      <xs:sequence>
+      	<xs:element name="id" type="xs:string"/>
+      	<xs:element name="annotation" type="semanticAnnotation" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="element" type="processElement" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="flow" type="flow" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+</xs:element>
+
+
+
+<xs:complexType name="processElement">
+	<xs:sequence>
+		<xs:element name="id" type="xs:string"/>
+		<xs:element name="name" type="xs:string"/>
+	 	<xs:element name="annotations" type="semanticAnnotation" minOccurs="0" maxOccurs="unbounded" />
+	</xs:sequence>
+ </xs:complexType>
+ 
+<xs:complexType name="activity">
+	<xs:complexContent>
+		<xs:extension base="processElement">
+ 			<xs:sequence>
+   				<xs:element name="bindings" type="binding"/>
+   				<xs:element name="source" type="processElement"/>
+ 				<xs:element name="destination" type="processElement"/>
+ 				<xs:element name="condition"  type="semanticAnnotation"/>
+   			</xs:sequence>
+		</xs:extension>
+	</xs:complexContent>
+</xs:complexType>
+ 
+<xs:complexType name="binding">
+	<xs:sequence>
+		<xs:element name="id" type="xs:string"/>
+		<xs:element name="service" type="xs:anyURI"/>
+		<xs:element name="operation" type="xs:anyURI"/>
+  	</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="flow">
+	<xs:complexContent>
+		<xs:extension base="processElement">
+	 		<xs:sequence>
+	   			<xs:element name="sequenceNumber" type="xs:int"/>
+	   			<xs:element name="source" type="processElement"/>
+	 			<xs:element name="destination" type="processElement"/>
+	 			<xs:element name="condition"  type="semanticAnnotation"/>
+	   		</xs:sequence>
+		</xs:extension>
+	</xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="semanticAnnotation">
+	<xs:sequence>
+		<xs:element name="id" type="xs:string"/>
+ 		<xs:element name="referenceURI" type="xs:string"/>
+ 		<xs:element name="expression" type="xs:string"/>
+ 		<xs:element name="type" type="annotationType"/>
+	</xs:sequence>
+</xs:complexType>
+
+<xs:simpleType name="annotationType" >
+   <xs:restriction base="xs:string">
+      <xs:enumeration value="functionalClassification" />
+      <xs:enumeration value="nonFunctionalProperty" />
+   </xs:restriction>
+</xs:simpleType>
+
+
+</xs:schema>
+           
